@@ -25,3 +25,5 @@ Participants : Steven, Quentin, Aurélien.
         → Valider la pull request sur GitHub.
 
         Repeat & Enjoy !
+
+----------------------

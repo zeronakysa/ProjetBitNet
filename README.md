@@ -10,8 +10,8 @@ Projet Annuel 1A2 ESGI
 Participants : Steven, Quentin, Aurélien.
 
 ----------------------
-    Working Rules :
----------------------
+    WORKING RULES :
+
     AVANT DE COMMENCER A TRAVAILLER :
         → Toujours vérifier que vous êtes dans votre branche perso !
         → Faire un Update From Master pour synchroniser votre branche avec les dernières modifications du Master.
@@ -24,4 +24,6 @@ Participants : Steven, Quentin, Aurélien.
         → Dans l'idéal, envoyer une notif à un membre du projet pour vérifier le push vers le MASTER.
         → Valider la pull request sur GitHub.
 
-        Repeat & Enjoy ! 
+        Repeat & Enjoy !
+
+----------------------

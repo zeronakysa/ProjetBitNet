@@ -1,8 +1,12 @@
 # ProjetBitNet
-ProjetBitNet 
 
-Projet annuel 1A2 ESGI 
+-------------
+Projet BitNet
+-------------
 
-Steven, 
-Quentin, 
-Aurelien, 
+
+Projet Annuel 1A2 ESGI
+
+Participants : Steven, Quentin, Aurélien.
+
+N'oubliez pas de pull avant toutes modifications/commit !  

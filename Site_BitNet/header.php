@@ -45,8 +45,8 @@
 	  		<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; <a href="index.php">BitNet</a></span>
 
 	  		<div class="pull-right login">
-	  			<a href="createUser.php">Connexion</a>
-				<a href="connection.php">Inscription</a>
+	  			<a href="connection.php">Connexion</a>
+				<a href="createUser.php">Inscription</a>
 			</div>
 
 	 	</header>

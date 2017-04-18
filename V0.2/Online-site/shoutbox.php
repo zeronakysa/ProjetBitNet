@@ -3,7 +3,7 @@
   include "navBar.php";
 ?>
 
-Work In progress (Hall Of Fame)
+Work In progress (ShoutBox)
 
 <?php
   include "footer.php";

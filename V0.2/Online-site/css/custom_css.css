@@ -46,6 +46,11 @@ body {
     padding: 0;
 }
 
+.navbar-toggle {
+    float: left;
+    margin-left: 15px;
+    margin-right: 0px;
+}
 /* Media Queries for Navbar desktop login form */
 @media screen and (max-width: 900px) {
     #desktop-login-form {

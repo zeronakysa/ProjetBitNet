@@ -1,0 +1,266 @@
+/* ---------------------------------------------------------------------*/
+/*  COLOR INFORMATION :
+
+    Dark Orange : #C02425 / rgb(192, 36, 37)
+    Bright Yellow : #F0CB35 / rgb(240, 203, 53)
+    Very Light grey : #d6d6d6
+
+*/
+/* ---------------------------------------------------------------------*/
+
+/* HTML and Body Reset */
+html,
+body {
+    /*Google Font Css */
+    font-family: 'lato', 'Helvetica', 'Arial', 'sans-serif';
+    font-weight: 200;
+    letter-spacing: 1px;
+    height: 100%;
+    width: 100%;
+}
+
+/* ---------------------------------------------------------------------*/
+/* --- NavBar Css --- */
+/* ---------------------------------------------------------------------*/
+
+.navbar{
+    margin-bottom: 0;
+    border: 0;
+    /*border-bottom: 1px solid white;*/
+}
+
+/* Color of BiNet Navbar Name Hover */
+.navbar-default .navbar-header .navbar-brand:hover{
+    color: #C02425;
+}
+
+/* Navbar Hover Link */
+#navbarContainer li a:hover{
+    background-color: white;
+    color: #C02425;
+    transition: all 0.2s;
+}
+
+.navbar-right {
+    margin: 0;
+    padding: 0;
+}
+
+/* Media Queries for Navbar desktop login form */
+@media screen and (max-width: 900px) {
+    #desktop-login-form {
+        display:none;
+    }
+}
+
+/* Media Queries for Collapse Navbar login form*/
+@media screen and (min-width: 900px) {
+    .dropdown .dropdown-toggle{
+        display:none;
+    }
+}
+
+/* Change color of input Focus */
+.form-control:focus {
+  border-color: #F0CB35;
+  box-shadow: inset 0 1px 1px rgba(192, 36, 37, 0.075), 0 0 8px rgba(192, 36, 37, 0.6);
+  transition: all 0.5s;
+}
+
+/* Login Desktop Input Css*/
+.input-sm {
+    border-radius: 20px;
+    border-color: #d6d6d6;
+    background-color: white;
+
+}
+
+/* Color of dropdown Menu */
+.dropdown-menu{
+    background-color: white;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-right: 20px;
+}
+
+.dropdown-input{
+    margin-bottom: 5px;
+}
+
+/* Dropdown Submit Button */
+#DropdownHomePageLoginButton{
+    border-radius: 20px;
+    color: #C02425;
+    background-color: white;
+    border-color: #d6d6d6;
+}
+
+#DropdownHomePageLoginButton:hover{
+    border-radius: 20px;
+    color: white;
+    background-color: #C02425;
+    border-color: #C02425;
+    transition: all 0.5s;
+}
+
+/* Desktop Submit button */
+#DesktopHomePageLoginButton{
+    margin: 5px;
+    border-radius: 20px;
+    color: #C02425;
+    background-color: white;
+    border-color: #d6d6d6;
+}
+
+/* Submit Button Hover */
+#DesktopHomePageLoginButton:hover{
+    margin: 5px;
+    border-radius: 20px;
+    color: white;
+    background-color: #C02425;
+    border-color: #C02425;
+    transition: all 0.5s;
+}
+.navbar-toggle {
+  position: relative;
+  float: left;
+  margin-right: 15px;
+}
+
+/* ---------------------------------------------------------------------*/
+/* --- Header Container Presentation --- */
+/* ---------------------------------------------------------------------*/
+
+header {
+  position: relative;
+  width: 100%;
+  min-height: auto;
+  overflow-y: hidden;
+  background: url("../img/background/bg-pattern.png"), #7b4397;
+
+  /* fallback for old browsers */
+  background: url("../img/background/bg-pattern.png"), -webkit-linear-gradient(to left, #F0CB35, #C02425);
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: url("../img/background/bg-pattern.png"), linear-gradient(to left, #F0CB35, #C02425);
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+}
+
+/* Header and Media Queries Css */
+
+header .header-content {
+  text-align: center;
+  padding: 150px 0 50px;
+  position: relative;
+}
+
+header .header-content .header-content-inner {
+  position: relative;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+header .header-content .header-content-inner h1 {
+  margin-top: 0;
+  margin-bottom: 30px;
+  font-size: 30px;
+}
+
+@media (min-width: 768px) {
+  header {
+    min-height: 100%;
+  }
+  header .header-content {
+    text-align: left;
+    padding: 0;
+    height: 100vh;
+  }
+  header .header-content .header-content-inner {
+    max-width: none;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  header .header-content .header-content-inner h1 {
+    font-size: 35px;
+  }
+ }
+
+ @media (min-width: 992px) {
+   header .header-content .header-content-inner h1 {
+     font-size: 50px;
+   }
+ }
+
+/* Button Tentez L'expérience */
+.btn-outline {
+  color: white;
+  border-color: white;
+  border: 1px solid;
+  background: transparent;
+  transition: all 0.5s;
+}
+
+.btn-outline:hover,
+.btn-outline:focus,
+.btn-outline:active,
+.btn-outline.active {
+  color: white;
+  background-color: #C02425;
+  border-color: #C02425;
+}
+
+.btn {
+  font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 300px;
+}
+.btn-xl {
+  padding: 15px 45px;
+  font-size: 11px;
+}
+
+/* ---------------------------------------------------------------------*/
+/* --- Container Services --- */
+/* ---------------------------------------------------------------------*/
+
+.bitnet-services{
+    padding: 50px 100px;
+}
+
+.bitnet-services p{
+    padding: 20px;
+}
+
+.bitnet-services .fa{
+    padding:10px;
+}
+
+
+/* ---------------------------------------------------------------------*/
+/* --- Container Team --- */
+/* ---------------------------------------------------------------------*/
+
+.bitnet-team{
+    padding: 50px 100px;
+}
+
+.bitnet-team h1{
+    margin-bottom: 50px;
+}
+
+.member {
+    border: 2px solid transparent;
+    margin-bottom: 25px;
+    width: auto;
+    height: auto;
+    opacity: 0.7;
+}
+
+.member:hover{
+    border-color: #ff7f00;
+}

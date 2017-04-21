@@ -121,11 +121,24 @@ body {
     border-color: #C02425;
     transition: all 0.5s;
 }
+
+/* Navbar Burger Position */
 .navbar-toggle {
   position: relative;
   float: left;
   margin-right: 15px;
 }
+
+/* NavBar Burger Hover color */
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus,
+.navbar-default .navbar-toggle:active,
+.navbar-default .navbar-toggle.active {
+
+    background-color: #d6d6d6;
+    transition: all 0.5s;
+}
+
 
 /* ---------------------------------------------------------------------*/
 /* --- Header Container Presentation --- */
@@ -232,12 +245,14 @@ header .header-content .header-content-inner h1 {
     padding: 50px 100px;
 }
 
+
 .bitnet-services p{
     padding: 20px;
 }
 
 .bitnet-services .fa{
     padding:10px;
+    color: #C02425;
 }
 
 
@@ -247,10 +262,16 @@ header .header-content .header-content-inner h1 {
 
 .bitnet-team{
     padding: 50px 100px;
+    background-color: #f2f2f2;
 }
 
 .bitnet-team h1{
     margin-bottom: 50px;
+}
+
+.bitnet-team strong{
+    font-size: 20px;
+    letter-spacing: 2px;
 }
 
 .member {
@@ -263,4 +284,17 @@ header .header-content .header-content-inner h1 {
 
 .member:hover{
     border-color: #ff7f00;
+}
+
+/* ---------------------------------------------------------------------*/
+/* --- Footer--- */
+/* ---------------------------------------------------------------------*/
+
+.bitnet-footer .contact{
+    padding: 50px 100px;
+}
+
+.footer-rights{
+    padding: 20px;
+    background-color: #d6d6d6;
 }

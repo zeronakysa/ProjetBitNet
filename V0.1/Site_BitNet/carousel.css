@@ -24,6 +24,8 @@ a:hover {
 }
 
 .text {
+  border-radius: 6px;
+  background: rgba(0,0,0, .3);
   color: #ED7D31;
 }
 
@@ -68,6 +70,7 @@ a:hover {
 .login {
   font-size:20px;
   margin-top: 5px;
+  margin-right: 5px;
 }
 
 @media screen and (max-height: 450px) {

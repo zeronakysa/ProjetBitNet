@@ -7,12 +7,12 @@
 	    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	    <meta name="description" content="Projet annuel BitNet">
 	    <meta name="author" content="">
-	    <link rel="icon" href="favicon.ico">
+	    <link rel="icon" href="logo_bitnet.ico">
 
 	    <title>BitNet</title>
 
 	    <!-- Bootstrap core CSS -->
-	    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+	    <link href="dist/css/bootstrap.css" rel="stylesheet">
 
 	    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	    <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
@@ -33,7 +33,7 @@
 	    <script src='https://www.google.com/recaptcha/api.js'></script>
  	</head>
  	<body>
- 		<header>
+ 		<header  class="navbar-fixed-top">
 		  	<div id="mySidenav" class="sidenav">
 			    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 			    <a href="#">En savoir plus</a>
@@ -45,8 +45,8 @@
 	  		<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; <a href="index.php">BitNet</a></span>
 
 	  		<div class="pull-right login">
-	  			<a href="connection.php">Connexion</a>
-				<a href="createUser.php">Inscription</a>
+          <a class="btn btn-lg btn-primary" href="connection.php" role="button">Connexion</a>
+          <a class="btn btn-lg btn-primary" href="createUser.php" role="button">Inscription</a>
 			</div>
 
 	 	</header>

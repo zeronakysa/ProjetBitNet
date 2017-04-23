@@ -25,7 +25,7 @@
 	<?php
 		session_start();
 		require 'conf.inc.php';
-		
+
 		if ($_GET['id'] == 0 || $_GET['id'] == 1) {
 			if ($_GET['id'] == 0) {
 				echo "Ce pseudo ou cet email est déjà utilisé, veuillez réessayer";
@@ -79,6 +79,15 @@
 	    }
 	?>
 	<a href="index.php">Retourner sur la page d'accueil</a>
+
+	<script type="text/javascript">
+        $(function() {
+            $('#reload_captcha').click(function(){
+                $('img').attr('src', 'captcha.php?cache=' + new Date().getTime());
+            });
+        });
+    </script>
+    
 	</body>
 	<?php
 	    //Supprimer les variables de session permettant

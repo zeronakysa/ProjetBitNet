@@ -30,7 +30,7 @@ for ($i=0; $i < $nbChar ; $i++) {
 	$textColor = $textColor + 3; //Permet de forcer le typage de la variable $textColor en entier afin que
                                  //valeurs ne soient plus négatives et ainsi reactiver l'antialiasing
 
-	imagettftext($image, rand(25, 50), rand(-20, 20), $i*45+15, rand(70, 90), $textColor, "aerial.ttf", $captcha[$i]);
+	imagettftext($image, rand(25, 50), rand(-20, 20), $i*45+15, rand(70, 90), $textColor, "Calibri.ttf", $captcha[$i]);
 	imagerectangle($image, rand(0, 300), rand(0, 300), rand(0, 150), rand(0, 150), $textColor);
 	imageellipse($image, rand(0, 300), rand(0, 150), rand(0, 150), rand(0, 150), $textColor);
 }

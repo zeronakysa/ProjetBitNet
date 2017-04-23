@@ -1,7 +1,7 @@
 <?php
     session_start();
     require "conf.inc.php";
-    require "lib.php";
+    require "fonctions.php";
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +16,7 @@
         <!-- Bootstrap Css Link -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <!-- Custom Css Link -->
-        <link rel="stylesheet" href="css/custom_css.css" />
+        <link rel="stylesheet" href="css/presentation.css" />
         <!-- Title -->
         <title>Bitnet</title>
 
@@ -112,27 +112,25 @@
                         <form role="form" action="register.php" method="POST">
                             <div class="form-group float-label-control">
                                 <label for="">Pseudo</label>
-                                <input class="form-control" type="text" name="pseudo" placeholder="Votre pseudo" required="required" rows="1"
-                                value="<?php echo (isset($_SESSION['form_post']['pseudo'])) ? $_SESSION['form_post']['pseudo']:'' ?>">
+                                <input class="form-control" type="text" name="pseudo" placeholder="Votre pseudo" required="required" value="<?php echo (isset($_SESSION['form_post']['pseudo'])) ? $_SESSION['form_post']['pseudo']:'' ?>">
                             </div>
                             <div class="form-group float-label-control">
                                 <label for="">Email</label>
-                                <input class="form-control" type="email" name="email" placeholder="Votre email" required="required" rows="1"
-                                value="<?php echo (isset($_SESSION['form_post']['email'])) ? $_SESSION['form_post']['email']:'' ?>" >
+                                <input class="form-control" type="email" name="email" placeholder="Votre email" required="required" value="<?php echo (isset($_SESSION['form_post']['email'])) ? $_SESSION['form_post']['email']:'' ?>" >
                             </div>
                             <div class="form-group float-label-control">
                                 <label for="">Mot de passe</label>
-                                <input class="form-control" type="password" name="pwd" placeholder="Votre mot de passe" required="required" rows="1">
+                                <input class="form-control" type="password" name="pwd" placeholder="Votre mot de passe" required="required">
                             </div>
                             <div class="form-group float-label-control">
                                 <label for="">Confirmation mot de passe</label>
-                                <input class="form-control" type="password" name="pwd2" placeholder="Confirmation" required="required" rows="1">
+                                <input class="form-control" type="password" name="pwd2" placeholder="Confirmation" required="required">
                             </div>
                             <div class="form-group float-label-control">
                                 <label for="">Captcha</label><br>
                                 <img src="captcha.php" alt="captcha">
                                 <input class='form-control' type="text" name="captcha" placeholder="Votre captcha" required="required"
-                                size="10" maxlength="6" rows="1">
+                                size="10" maxlength="6">
                                 <input type="button" id="reload_captcha" name="reload" value="Recharger captcha">                       
                             </div>
                             <div>

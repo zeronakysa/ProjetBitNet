@@ -1,4 +1,8 @@
 <!-- Temporaire -->
+<?php
+	session_start();
+	require 'conf.inc.php';
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,7 +15,7 @@
         <!-- Bootstrap Css Link -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <!-- Custom Css Link -->
-        <link rel="stylesheet" href="css/custom_css.css" />
+        <link rel="stylesheet" href="css/presentation.css" />
         <!-- Title -->
         <title>Bitnet</title>
 
@@ -23,9 +27,6 @@
     </head>
     <body>
 	<?php
-		session_start();
-		require 'conf.inc.php';
-
 		if ($_GET['id'] == 0 || $_GET['id'] == 1) {
 			if ($_GET['id'] == 0) {
 				echo "Ce pseudo ou cet email est déjà utilisé, veuillez réessayer";
@@ -70,9 +71,7 @@
 	<?php
 	    }elseif ($_GET['id'] == 2) {
 			echo "Félicitations vous êtes inscrits!";
-	?>
-			<a href="../Online-site/index.php">Se rendre sur le site</a>
-	<?php
+			echo "<a href='../Online-site/index.php'>Se rendre sur le site</a>";
 		}else{
 	        echo "Bien essayé";
 	        die();
@@ -87,7 +86,7 @@
             });
         });
     </script>
-    
+
 	</body>
 	<?php
 	    //Supprimer les variables de session permettant

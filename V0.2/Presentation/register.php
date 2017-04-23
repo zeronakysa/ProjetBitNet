@@ -1,7 +1,7 @@
 <?php
     session_start();
     require "conf.inc.php";
-    require "lib.php";
+    require "fonctions.php";
     $error = false;
     $listOfErrors = [];
 
@@ -52,12 +52,10 @@
             $listOfErrors[] = 6;
         }
 
-        print_r($_POST);
-        print_r($listOfErrors);
-        print_r($error);
-
         if (!$error) {
             $connection = dbConnect();
+            $query = null;
+            $results = null;
 
             //est ce que l'email existe?
             $query = $connection->prepare('SELECT id FROM MEMBRE WHERE email=:email AND id !=:id');
@@ -101,6 +99,8 @@
             }
         }
         else{
+            $query = null;
+
             $query = $connection->prepare("
                 INSERT INTO MEMBRE (pseudo, email, pwd)
                 VALUES (:pseudo, :email, :pwd)
@@ -113,6 +113,8 @@
                 'email' => $_POST['email'],
                 'pwd' => $pwd
                 ]);
+
+            $_SESSION['query'] = 'test ' . $query;
 
             header("Location: validation.php?id=2");
         }

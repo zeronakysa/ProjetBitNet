@@ -113,9 +113,10 @@
                 'email' => $_POST['email'],
                 'pwd' => $pwd
                 ]);
+
+            header("Location: validation.php?id=2");
         }
     }else{
-        print_r($_POST);
         echo "Bien essayé";
         die();
     }

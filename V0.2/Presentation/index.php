@@ -1,7 +1,7 @@
 <?php
     session_start();
     require "conf.inc.php";
-    require "lib.php";
+    require "fonctions.php";
 ?>
 
 <!DOCTYPE html>
@@ -110,8 +110,8 @@
                     </div>
                     <div class="modal-body">
                         <!-- Formulaire d'inscription -->
-                        <form class="form-group" role="form" action="register.php" method="POST">
 
+                        <form class="form-group" role="form" action="register.php" method="POST">
                             <label>Pseudo</label>
                             <input class="form-control" type="text" name="pseudo" placeholder="Votre pseudo" required="required" value="<?php echo (isset($_SESSION['form_post']['pseudo'])) ? $_SESSION['form_post']['pseudo']:'' ?>">
 

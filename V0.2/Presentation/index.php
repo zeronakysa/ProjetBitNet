@@ -2,12 +2,6 @@
     session_start();
     require "conf.inc.php";
     require "lib.php";
-
-    if (isset($_SESSION['form_errors'])) {
-        foreach ($_SESSION['form_errors'] as $error) {
-            echo "<li>".$errors[$error];
-        }
-    }
 ?>
 
 <!DOCTYPE html>
@@ -115,7 +109,7 @@
                     </div>
                     <div class="modal-body">
                         <!-- Formulaire d'inscription -->
-                        <form role="form" method="POST" action="saveUser.php">
+                        <form role="form" action="register.php" method="POST">
                             <div class="form-group float-label-control">
                                 <label for="">Pseudo</label>
                                 <input class="form-control" type="text" name="pseudo" placeholder="Votre pseudo" required="required" rows="1"
@@ -136,9 +130,10 @@
                             </div>
                             <div class="form-group float-label-control">
                                 <label for="">Captcha</label><br>
-                                <img id="captcha" src="securimage/securimage_show.php" alt="CAPTCHA Image">
-                                <a href="#" onclick="document.getElementById('captcha').src = 'securimage/securimage_show.php?' + Math.random(); return false">Nouvelle image</a>
-                                <input class="form-control" type="text" name="captcha_code" size="10" maxlength="6" rows="1">                       
+                                <img src="captcha.php" alt="captcha">
+                                <input class='form-control' type="text" name="captcha" placeholder="Votre captcha" required="required"
+                                size="10" maxlength="6" rows="1">
+                                <input type="button" id="reload_captcha" name="reload" value="Recharger captcha">                       
                             </div>
                             <div>
                                 <input type="submit" class="btn btn-default" value="S'enregistrer"> <br />
@@ -152,7 +147,6 @@
                 </div>
             </div>
         </div>
-
 
         <!-- Container Services -->
         <section class="bitnet-services">
@@ -251,5 +245,12 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <!-- Bootstrap JavaScript Link -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                $('#reload_captcha').click(function(){
+                    $('img').attr('src', 'captcha.php?cache=' + new Date().getTime());
+                });
+            });
+        </script>
     </body>
 </html>

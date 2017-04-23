@@ -61,7 +61,7 @@
 	                <img src="captcha.php" alt="captcha">
 	                <input class='form-control' type="text" name="captcha" placeholder="Votre captcha" required="required"
 	                size="10" maxlength="6">
-	                <input type="button" id="reload_captcha" name="reload" value="Recharger captcha">                       
+	                <input type="button" id="reload_captcha" name="reload" value="Recharger captcha">
 	            </div>
 	            <div>
 	                <input type="submit" class="btn btn-default" value="S'enregistrer"> <br />

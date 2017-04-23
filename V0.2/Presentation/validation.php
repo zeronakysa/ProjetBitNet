@@ -11,7 +11,7 @@
         <!-- Bootstrap Css Link -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <!-- Custom Css Link -->
-        <link rel="stylesheet" href="css/custom_css.css" />
+        <link rel="stylesheet" href="css/presentation.css" />
         <!-- Title -->
         <title>Bitnet</title>
 
@@ -60,7 +60,7 @@
 	                <img src="captcha.php" alt="captcha">
 	                <input class='form-control' type="text" name="captcha" placeholder="Votre captcha" required="required"
 	                size="10" maxlength="6">
-	                <input type="button" id="reload_captcha" name="reload" value="Recharger captcha">                       
+	                <input type="button" id="reload_captcha" name="reload" value="Recharger captcha">
 	            </div>
 	            <div>
 	                <input type="submit" class="btn btn-default" value="S'enregistrer"> <br />
@@ -87,7 +87,7 @@
             });
         });
     </script>
-    
+
 	</body>
 	<?php
 	    //Supprimer les variables de session permettant

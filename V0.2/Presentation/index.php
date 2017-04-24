@@ -1,13 +1,7 @@
 <?php
     session_start();
     require "conf.inc.php";
-    require "lib.php";
-
-    if (isset($_SESSION['form_errors'])) {
-        foreach ($_SESSION['form_errors'] as $error) {
-            echo "<li>".$errors[$error];
-        }
-    }
+    require "fonctions.php";
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +16,7 @@
         <!-- Bootstrap Css Link -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <!-- Custom Css Link -->
-        <link rel="stylesheet" href="css/custom_css.css" />
+        <link rel="stylesheet" href="css/presentation.css" />
         <!-- Title -->
         <title>Bitnet</title>
 
@@ -57,7 +51,8 @@
                         <li><a href="#presentation">Présentation</a></li>
                         <li><a href="#services">Nos Services</a></li>
                         <li><a href="#team">La Team</a></li>
-                        <!-- Dropdown collapse Login Link   -->
+                        <li><a href="#contact">Contact</a></li>
+                        <!-- Dropdown collapse Login Form   -->
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Login <span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -70,7 +65,7 @@
                                </form>
                             </ul>
                         </li>
-                        <!-- End of Dropdown Login Link -->
+                        <!-- End of Dropdown Login Form -->
                     </ul>
                     <!-- Desktop Navbar Login form -->
                     <form class="navbar-form navbar-right" id="desktop-login-form">
@@ -114,36 +109,38 @@
                         <h4 class="modal-title">Formulaire d'inscription</h4>
                     </div>
                     <div class="modal-body">
+
                         <!-- Formulaire d'inscription -->
-                        <form role="form" method="POST" action="saveUser.php">
-                            <div class="form-group float-label-control">
-                                <label for="">Pseudo</label>
-                                <input class="form-control" type="text" name="pseudo" placeholder="Votre pseudo" required="required" rows="1"
-                                value="<?php echo (isset($_SESSION['form_post']['pseudo'])) ? $_SESSION['form_post']['pseudo']:'' ?>">
-                            </div>
-                            <div class="form-group float-label-control">
-                                <label for="">Email</label>
-                                <input class="form-control" type="email" name="email" placeholder="Votre email" required="required" rows="1"
-                                value="<?php echo (isset($_SESSION['form_post']['email'])) ? $_SESSION['form_post']['email']:'' ?>" >
-                            </div>
-                            <div class="form-group float-label-control">
-                                <label for="">Mot de passe</label>
-                                <input class="form-control" type="password" name="pwd" placeholder="Votre mot de passe" required="required" rows="1">
-                            </div>
-                            <div class="form-group float-label-control">
-                                <label for="">Confirmation mot de passe</label>
-                                <input class="form-control" type="password" name="pwd2" placeholder="Confirmation" required="required" rows="1">
-                            </div>
-                            <div class="form-group float-label-control">
-                                <label for="">Captcha</label><br>
-                                <img id="captcha" src="securimage/securimage_show.php" alt="CAPTCHA Image">
-                                <a href="#" onclick="document.getElementById('captcha').src = 'securimage/securimage_show.php?' + Math.random(); return false">Nouvelle image</a>
-                                <input class="form-control" type="text" name="captcha_code" size="10" maxlength="6" rows="1">                       
-                            </div>
-                            <div>
-                                <input type="submit" class="btn btn-default" value="S'enregistrer"> <br />
-                                <small class="form-text text-muted">Aucune information ne sera partagée sur d'autres sites</small>
-                            </div>
+                        <form class="form-group" role="form" action="register.php" method="POST">
+                            <!-- Pseudo -->
+                            <label>Pseudo</label>
+                            <input class="form-control" type="text" name="pseudo" placeholder="Votre pseudo" required="required" value="<?php echo (isset($_SESSION['form_post']['pseudo'])) ? $_SESSION['form_post']['pseudo']:'' ?>">
+
+                            <!-- Adresse Email -->
+                            <label>Adresse e-mail</label>
+                            <input class="form-control" type="email" name="email" placeholder="Votre email" required="required"
+                            value="<?php echo (isset($_SESSION['form_post']['email'])) ? $_SESSION['form_post']['email']:'' ?>" >
+
+                            <!-- Mot de passe -->
+                            <label>Mot de passe</label>
+                            <input class="form-control" type="password" name="pwd" placeholder="Votre mot de passe" required="required">
+
+                            <!-- Verification Mot de passe -->
+                            <label>Vérification du mot de passe</label>
+                            <input class="form-control" type="password" name="pwd2" placeholder="Confirmation" required="required">
+
+                            <!-- Captcha -->
+                            <label>Captcha</label><br>
+                            <img src="captcha/captcha.php" alt="captcha">
+                            <!-- Reload Captcha Button -->
+                            <label>Recharger Captcha</label>
+                            <button id="reload_captcha" class="btn btn-default"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+
+                            <input class='form-control' type="text" name="captcha" placeholder="Votre captcha" required="required">
+
+                            <!-- Button Submit -->
+                            <input type="submit" class="btn btn-default" value="S'enregistrer"> <br />
+                            <small class="form-text text-muted">Aucune information ne sera partagée sur d'autres sites</small>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -155,11 +152,11 @@
 
 
         <!-- Container Services -->
-        <section class="bitnet-services">
-            <div id="services" class="container-fluid text-center">
-                <h1>Nos Services</h1>
+        <section id="services" class="bitnet-services">
+            <div  class="container-fluid text-center">
+                <h1><strong>Nos Services</strong></h1>
                 <!-- First Row -->
-                <div class="row">
+                <div class="row services-first-row">
                     <div class="col-md-4">
                         <h2>CodeLive</h2>
                         <i class="fa fa-code fa-5x" aria-hidden="true"></i>
@@ -184,7 +181,7 @@
                 </div>
 
                 <!-- Second Row -->
-                <div class="row">
+                <div class="row services-second-row">
                     <div class="col-md-4">
                         <h2>Espace Personnel</h2>
                         <i class="fa fa-id-card-o fa-5x" aria-hidden="true"></i>
@@ -211,45 +208,92 @@
         </section>
 
         <!-- Container Team -->
-        <section class="bitnet-team">
+        <section id="team" class="bitnet-team">
             <div class="container-fluid text-center">
-                <h1> Notre équipe </h1>
+                <h1><strong>Notre équipe</strong></h1>
                 <div class="row">
                     <div class="col-md-4">
                         <p class="text-center"><strong>Aurélien Delagarde</strong></p>
-                        <a href="#aurelien" data-toggle="collapse"><img src="img/team/aurelien.jpg" class="img-circle member" alt="aurelien-photo" /></a>
+                        <a href="#aurelien" data-toggle="collapse"><img src="img/team/aurelien2.jpg" class="img-circle member" alt="aurelien-photo" /></a>
                         <div id="aurelien" class="collapse">
                             <p>Codeur et poseur de question à plein temps</p>
                             <p>Aime les balades sur la plage</p>
                             <p>Membre du projet depuis 2017</p>
-                        </div>
+                        </div> <br />
+                        <a href="https://www.linkedin.com/in/aur%C3%A9lien-delagarde-758a24a5/" target="_blank"><i class="fa fa-linkedin-square fa-3x" aria-hidden="true"></i></a>
                     </div>
                     <div class="col-md-4">
-                        <p class="text-center"><strong>Aurélien Delagarde</strong></p>
+                        <p class="text-center"><strong>Quentin Hermiteau</strong></p>
                         <a href="#quentin" data-toggle="collapse"><img src="img/team/quentin.jpg" class="img-circle member" alt="quentin-photo" /></a>
                         <div id="quentin" class="collapse">
                             <p>Codeur incurvé</p>
                             <p>Aime les mangas et les belles courbes</p>
                             <p>Membre du projet depuis 2017</p>
-                        </div>
+                        </div> <br />
+                        <a href="https://www.linkedin.com/in/quentin-hermiteau-ba2a9912a/" target="_blank"><i class="fa fa-linkedin-square fa-3x" aria-hidden="true"></i></a>
                     </div>
                     <div class="col-md-4">
-                        <p class="text-center"><strong>Aurélien Delagarde</strong></p>
-                        <a href="#steven" data-toggle="collapse"><img src="img/team/steven.jpg" class="img-circle member" alt="steven-photo" /></a>
+                        <p class="text-center"><strong>Steven Cantagrel</strong></p>
+                        <a href="#steven" data-toggle="collapse"><img src="img/team/steven2.jpg" class="img-circle member" alt="steven-photo" /></a>
                         <div id="steven" class="collapse">
                             <p>Codeur calme</p>
                             <p>Aime la vape et les beaux nuages</p>
                             <p>Membre du projet depuis 2017</p>
-                        </div>
+                        </div> <br />
+                        <a href="https://www.linkedin.com/in/steven-cantagrel-7171758b/" target="_blank"><i class="fa fa-linkedin-square fa-3x" aria-hidden="true"></i></a>
                     </div>
+                </div>
+                <div class="row team-text">
+                    <p class="text-muted">
+                        Actuellement étudiant en premier année d'alternance à l'ESGI. <br />
+                        Nous sommes une équipe composée de trois membres passionnés travaillant sur Bitnet depuis Mars 2017. <br />
+                        Bitnet est née de notre envie de créer une plateforme communautaire destinée aux developpeurs regroupant tous les outils nécessaires répondant à leur besoins.
+                    </p>
+                </div>
+                <div class="row team-esgi-logo">
+                    <a href="http://www.esgi.fr/ecole-informatique.html" target="_blank"><img src="img/team/esgi.png" alt="esgi" /></a>
                 </div>
             </div>
         </section>
+
+        <!-- Footer -->
+        <footer id="contact" class="bitnet-footer">
+            <div class="container-fluid">
+                <div class="row footer-main">
+                    <div class="col-md-4 contact">
+                        <h4>Nous contacter</h4>
+                        <form action="mailto:stevencantagrel.contact@gmail.com" method="POST">
+                            <div class="form-group">
+                                <input class="form-control" type="text" placeholder="Nom" />
+                                <input class="form-control" type="text" placeholder="Prénom" />
+                                <input class="form-control" type="email" placeholder="Adresse e-mail" />
+                                <textarea class="form-control" placeholder="Votre message..."></textarea>
+                                <input class="btn btn-default btn-sm" type="submit" value="Envoyer" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row footer-rights">
+                    <div class="text-center">
+                        <p>© Bitnet, 2017 - Tous droits réservés</p>
+                    </div>
+                </div>
+            </div>
+
+        </footer>
 
 
         <!-- Bootstrap Jquery Link -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <!-- Bootstrap JavaScript Link -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!-- Script Reload Captcha -->
+        <script type="text/javascript">
+            $(function() {
+                $('#reload_captcha').click(function(){
+                    $('img').attr('src', 'captcha/captcha.php?cache=' + new Date().getTime());
+                });
+            });
+        </script>
     </body>
 </html>

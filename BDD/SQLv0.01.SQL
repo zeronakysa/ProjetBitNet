@@ -1,6 +1,8 @@
 #------------------------------------------------------------
-#        Script MySQL.
+#        Script MySQL. Création BDD projet_BitNet.
 #------------------------------------------------------------
+
+CREATE DATABASE projet_BitNet CHARACTER SET 'utf8';
 
 #------------------------------------------------------------
 # Table: CODELIVE

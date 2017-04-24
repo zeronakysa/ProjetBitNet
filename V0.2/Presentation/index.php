@@ -1,7 +1,7 @@
 <?php
     session_start();
     require "conf.inc.php";
-    require "lib.php";
+    require "fonctions.php";
 ?>
 
 <!DOCTYPE html>
@@ -109,26 +109,34 @@
                         <h4 class="modal-title">Formulaire d'inscription</h4>
                     </div>
                     <div class="modal-body">
+
                         <!-- Formulaire d'inscription -->
                         <form class="form-group" role="form" action="register.php" method="POST">
-
+                            <!-- Pseudo -->
                             <label>Pseudo</label>
                             <input class="form-control" type="text" name="pseudo" placeholder="Votre pseudo" required="required" value="<?php echo (isset($_SESSION['form_post']['pseudo'])) ? $_SESSION['form_post']['pseudo']:'' ?>">
 
+                            <!-- Adresse Email -->
                             <label>Adresse e-mail</label>
                             <input class="form-control" type="email" name="email" placeholder="Votre email" required="required"
                             value="<?php echo (isset($_SESSION['form_post']['email'])) ? $_SESSION['form_post']['email']:'' ?>" >
 
+                            <!-- Mot de passe -->
                             <label>Mot de passe</label>
                             <input class="form-control" type="password" name="pwd" placeholder="Votre mot de passe" required="required">
 
+                            <!-- Verification Mot de passe -->
                             <label>Vérification du mot de passe</label>
                             <input class="form-control" type="password" name="pwd2" placeholder="Confirmation" required="required">
 
+                            <!-- Captcha -->
                             <label>Captcha</label><br>
                             <img src="captcha/captcha.php" alt="captcha">
+                            <!-- Reload Captcha Button -->
+                            <label>Recharger Captcha</label>
+                            <button id="reload_captcha" class="btn btn-default"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+
                             <input class='form-control' type="text" name="captcha" placeholder="Votre captcha" required="required">
-                            <input class="btn btn-default" id="reload_captcha" name="reload" value="Recharger captcha">
 
                             <!-- Button Submit -->
                             <input type="submit" class="btn btn-default" value="S'enregistrer"> <br />

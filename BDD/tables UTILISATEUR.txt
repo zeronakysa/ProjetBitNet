@@ -1,0 +1,13 @@
+ID 
+email 
+mot_de_passe
+pseudo
+nom
+prenom
+date_naissance
+CP
+date_creation
+date_update
+is_deleted
+xp
+profile_picture

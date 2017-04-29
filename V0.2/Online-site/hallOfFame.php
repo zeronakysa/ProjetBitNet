@@ -2,15 +2,9 @@
   include "header.php";
   include "navBar.php";
 ?>
-sdfs
-sdf
-sdf
-sdf
-s
-sdf
-sdf
-sdf
-sdf
+
+Work In progress (Hall Of Fame)
+
 <?php
   include "footer.php";
 ?>

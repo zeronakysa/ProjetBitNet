@@ -71,6 +71,7 @@
                            <input type="text" class="form-control input-sm" placeholder="Adresse e-mail" />
                            <input type="password" class="form-control input-sm" placeholder="Mot de passe" />
                            <input id="DesktopHomePageLoginButton" type="submit" class="btn btn-default btn-sm" value="Login"/>
+                           <button id="DesktopHomePageRegisterButton" type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">S'inscrire</button>
                        </div>
                    </form>
                 </div>
@@ -133,14 +134,14 @@
                             <!-- Reload Captcha Button -->
                             <label>Recharger Captcha</label>
                             <button id="reload_captcha" class="btn btn-default"><i class="fa fa-refresh" aria-hidden="true"></i></button>
-
+                            <br /><br />
                             <input class='form-control' type="text" name="captcha" placeholder="Votre captcha" required="required">
 
-                            <label>Accepter les <a href="cgu.html" target="_blank">Conditions Générales d'Utilisation</a></label>
-                            <input class="form-control" type="checkbox" name="CGU" />
-
+                            <input type="checkbox" name="CGU" />
+                            <label>J'ai lu et j'accepte les <a href="cgu.html" target="_blank">Conditions Générales d'Utilisation</a></label>
+                            <br />
                             <!-- Button Submit -->
-                            <input type="submit" class="btn btn-default" value="S'enregistrer"> <br />
+                            <input id="modalRegisterButton" type="submit" class="btn btn-default" value="S'enregistrer"> <br />
                             <small class="form-text text-muted">Aucune information ne sera partagée sur d'autres sites</small>
                         </form>
                     </div>

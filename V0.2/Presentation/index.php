@@ -12,7 +12,6 @@
         <!-- BootStrap Meta -->
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="">
-        <meta name="author" content="">
         <!-- Bootstrap Css Link -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <!-- Custom Css Link -->
@@ -51,7 +50,6 @@
                         <li><a href="#presentation">Présentation</a></li>
                         <li><a href="#services">Nos Services</a></li>
                         <li><a href="#team">La Team</a></li>
-                        <li><a href="#contact">Contact</a></li>
                         <!-- Dropdown collapse Login Form   -->
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Login <span class="caret"></span></a>
@@ -109,26 +107,37 @@
                         <h4 class="modal-title">Formulaire d'inscription</h4>
                     </div>
                     <div class="modal-body">
-                        <!-- Formulaire d'inscription -->
 
+                        <!-- Formulaire d'inscription -->
                         <form class="form-group" role="form" action="register.php" method="POST">
+                            <!-- Pseudo -->
                             <label>Pseudo</label>
                             <input class="form-control" type="text" name="pseudo" placeholder="Votre pseudo" required="required" value="<?php echo (isset($_SESSION['form_post']['pseudo'])) ? $_SESSION['form_post']['pseudo']:'' ?>">
 
+                            <!-- Adresse Email -->
                             <label>Adresse e-mail</label>
                             <input class="form-control" type="email" name="email" placeholder="Votre email" required="required"
                             value="<?php echo (isset($_SESSION['form_post']['email'])) ? $_SESSION['form_post']['email']:'' ?>" >
 
+                            <!-- Mot de passe -->
                             <label>Mot de passe</label>
                             <input class="form-control" type="password" name="pwd" placeholder="Votre mot de passe" required="required">
 
+                            <!-- Verification Mot de passe -->
                             <label>Vérification du mot de passe</label>
                             <input class="form-control" type="password" name="pwd2" placeholder="Confirmation" required="required">
 
+                            <!-- Captcha -->
                             <label>Captcha</label><br>
                             <img src="captcha/captcha.php" alt="captcha">
+                            <!-- Reload Captcha Button -->
+                            <label>Recharger Captcha</label>
+                            <button id="reload_captcha" class="btn btn-default"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+
                             <input class='form-control' type="text" name="captcha" placeholder="Votre captcha" required="required">
-                            <input class="btn btn-default" type="button" id="reload_captcha" name="reload" value="Recharger captcha">
+
+                            <label>Accepter les <a href="cgu.html" target="_blank">Conditions Générales d'Utilisation</a></label>
+                            <input class="form-control" type="checkbox" name="CGU" />
 
                             <!-- Button Submit -->
                             <input type="submit" class="btn btn-default" value="S'enregistrer"> <br />
@@ -249,29 +258,14 @@
         </section>
 
         <!-- Footer -->
-        <footer id="contact" class="bitnet-footer">
+        <footer class="bitnet-footer">
             <div class="container-fluid">
-                <div class="row footer-main">
-                    <div class="col-md-4 contact">
-                        <h4>Nous contacter</h4>
-                        <form action="mailto:stevencantagrel.contact@gmail.com" method="POST">
-                            <div class="form-group">
-                                <input class="form-control" type="text" placeholder="Nom" />
-                                <input class="form-control" type="text" placeholder="Prénom" />
-                                <input class="form-control" type="email" placeholder="Adresse e-mail" />
-                                <textarea class="form-control" placeholder="Votre message..."></textarea>
-                                <input class="btn btn-default btn-sm" type="submit" value="Envoyer" />
-                            </div>
-                        </form>
-                    </div>
-                </div>
                 <div class="row footer-rights">
                     <div class="text-center">
-                        <p>© Bitnet, 2017 - Tous droits réservés</p>
+                        <p>© Bitnet, 2017 - Tous droits réservés - <a class="contact" href="mailto:stevencantagrel.contact@gmail.com" target="_top">Contact</a></p>
                     </div>
                 </div>
             </div>
-
         </footer>
 
 

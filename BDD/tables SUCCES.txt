@@ -1,0 +1,5 @@
+ID_succes
+nom
+xp_donner
+image_succes
+descirption

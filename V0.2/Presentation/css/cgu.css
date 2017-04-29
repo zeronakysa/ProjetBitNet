@@ -1,0 +1,26 @@
+html,
+body {
+    /*Google Font Css */
+    font-family: 'lato', 'Helvetica', 'Arial', 'sans-serif';
+    font-weight: 200;
+    letter-spacing: 1px;
+    height: 100%;
+    width: 100%;
+    background: url("../img/background/bg-pattern.png"), #7b4397;
+
+    /* fallback for old browsers */
+    background: url("../img/background/bg-pattern.png"), -webkit-linear-gradient(to left, #1CB5E0, #000046);
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: url("../img/background/bg-pattern.png"), linear-gradient(to left, #1CB5E0, #000046);
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: white;
+}
+
+.container-fluid h2{
+    margin-bottom: 50px;
+}
+.container-fluid{
+    padding: 50px 100px;
+}

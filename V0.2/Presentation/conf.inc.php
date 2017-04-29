@@ -13,12 +13,12 @@ $listOfStatus = [
 		  ];
 
 $errors = [
-	1 => "Erreur: veuillez entrer un pseudo entre 3 et 36 caractères s'il vous plait.<br>",
-	2 => "Erreur: Le format de votre adresse email est invalide.<br>",
-	3 => "Erreur: Veuilleur choisir un mot de passe entre 6 et 36 caractères.<br>",
-	4 => "Erreur: Le mot de passe ne peut pas être identique au pseudo.<br>",
-	5 => "Erreur: Le mot de passe de confirmation doit être identique au premier mot de passe.<br>",
-	6 => "Erreur: Le captcha n'est pas correcte",
-	7 => "L'email existe déjà<br>",
-	8 => "Le pseudo existe déjà"
+	1 => "Le pseudo doit contenir entre 3 et 36 caractères.<br>",
+	2 => "Le format de votre adresse email est invalide.<br>",
+	3 => "Le mot de passe doit contenir entre 6 et 36 caractères.<br>",
+	4 => "Le mot de passe ne peut pas être identique au pseudo.<br>",
+	5 => "Le mot de passe de confirmation doit être identique au premier mot de passe.<br>",
+	6 => "Le captcha n'est pas correct.",
+	7 => "L'email existe déjà.<br>",
+	8 => "Le pseudo existe déjà."
 ];

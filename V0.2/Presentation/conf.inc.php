@@ -1,7 +1,7 @@
 <?php
 
 define("HOST", "localhost");
-define("DBNAME", "projet");
+define("DBNAME", "projet_bitnet");
 define("DBUSER", "root");
 define("DBPWD", "");
 
@@ -18,7 +18,8 @@ $errors = [
 	3 => "Le mot de passe doit contenir entre 6 et 36 caractères.<br>",
 	4 => "Le mot de passe ne peut pas être identique au pseudo.<br>",
 	5 => "Le mot de passe de confirmation doit être identique au premier mot de passe.<br>",
-	6 => "Le captcha n'est pas correct.",
-	7 => "L'email existe déjà.<br>",
-	8 => "Le pseudo existe déjà."
+	6 => "Le captcha n'est pas correct.<br>",
+	7 => "Les conditions générales d'utilisations n'ont pas été acceptés.<br>",
+	8 => "L'email existe déjà.<br>",
+	9 => "Le pseudo existe déjà."
 ];

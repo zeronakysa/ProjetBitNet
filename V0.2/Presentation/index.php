@@ -7,24 +7,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <!-- BootStrap Meta -->
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="">
-        <!-- Bootstrap Css Link -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-        <!-- Custom Css Link -->
-        <link rel="stylesheet" href="css/presentation.css" />
-        <!-- Title -->
-        <title>Bitnet</title>
-
-        <!-- Custom font -->
-        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-
-        <!-- Css Plugin -->
-        <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
+        <title>BitNet</title>
+        <?php
+            require "header.php";
+        ?>
     </head>
+
 
     <!-- Spy Scroll -->
     <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -108,42 +96,9 @@
                         <h4 class="modal-title">Formulaire d'inscription</h4>
                     </div>
                     <div class="modal-body">
-
-                        <!-- Formulaire d'inscription -->
-                        <form class="form-group" role="form" action="register.php" method="POST">
-                            <!-- Pseudo -->
-                            <label>Pseudo</label>
-                            <input class="form-control" type="text" name="pseudo" placeholder="Votre pseudo" required="required" value="<?php echo (isset($_SESSION['form_post']['pseudo'])) ? $_SESSION['form_post']['pseudo']:'' ?>">
-
-                            <!-- Adresse Email -->
-                            <label>Adresse e-mail</label>
-                            <input class="form-control" type="email" name="email" placeholder="Votre email" required="required"
-                            value="<?php echo (isset($_SESSION['form_post']['email'])) ? $_SESSION['form_post']['email']:'' ?>" >
-
-                            <!-- Mot de passe -->
-                            <label>Mot de passe</label>
-                            <input class="form-control" type="password" name="pwd" placeholder="Votre mot de passe" required="required">
-
-                            <!-- Verification Mot de passe -->
-                            <label>Vérification du mot de passe</label>
-                            <input class="form-control" type="password" name="pwd2" placeholder="Confirmation" required="required">
-
-                            <!-- Captcha -->
-                            <label>Captcha</label><br>
-                            <img src="captcha/captcha.php" alt="captcha">
-                            <!-- Reload Captcha Button -->
-                            <label>Recharger Captcha</label>
-                            <button id="reload_captcha" class="btn btn-default"><i class="fa fa-refresh" aria-hidden="true"></i></button>
-                            <br /><br />
-                            <input class='form-control' type="text" name="captcha" placeholder="Votre captcha" required="required">
-
-                            <input type="checkbox" name="CGU" />
-                            <label>J'ai lu et j'accepte les <a href="cgu.html" target="_blank">Conditions Générales d'Utilisation</a></label>
-                            <br />
-                            <!-- Button Submit -->
-                            <input id="modalRegisterButton" type="submit" class="btn btn-default" value="S'enregistrer"> <br />
-                            <small class="form-text text-muted">Aucune information ne sera partagée sur d'autres sites</small>
-                        </form>
+                        <?php
+                            require "register_form.php";
+                        ?>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
@@ -275,12 +230,6 @@
         <!-- Bootstrap JavaScript Link -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <!-- Script Reload Captcha -->
-        <script type="text/javascript">
-            $(function() {
-                $('#reload_captcha').click(function(){
-                    $('img').attr('src', 'captcha/captcha.php?cache=' + new Date().getTime());
-                });
-            });
-        </script>
+        <script src="function.js"></script>
     </body>
 </html>

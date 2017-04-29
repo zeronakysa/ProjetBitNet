@@ -21,5 +21,6 @@ $errors = [
 	6 => "Le captcha n'est pas correct.<br>",
 	7 => "Les conditions générales d'utilisations n'ont pas été acceptés.<br>",
 	8 => "L'email existe déjà.<br>",
-	9 => "Le pseudo existe déjà."
+	9 => "Le pseudo existe déjà.<br>",
+	10 => "Identifiants incorrects."
 ];

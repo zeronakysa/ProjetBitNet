@@ -1,9 +1,17 @@
 <!-- Temporaire -->
 <?php
 	session_start();
-	require 'conf.inc.php';
-	require "header.php";
+	require '../global/conf.inc.php';
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Validation</title>
+	<?php
+		require "header.php";
+	?>
+</head>
 
     <body>
 	<?php
@@ -15,13 +23,12 @@
 		            	echo "<li>".$errors[$error];
 		        }
 		    }
-
 				require "register_form.php";
-
-
 	    }elseif ($_GET['id'] == 1) {
-			echo "Félicitations vous êtes inscrits!";
-			echo "<a href='../Online-site/index.php'>Se rendre sur le site</a>";
+			echo "Félicitations vous êtes inscrits!<br>";
+		}elseif ($_GET['id'] == 2) {
+			echo "Les identifiants sont incorrects";
+			require "connectionForm.php";
 		}else{
 	        echo "Bien essayé";
 	        die();
@@ -29,13 +36,7 @@
 	?>
 	<a href="index.php">Retourner sur la page d'accueil</a>
 
-	<script type="text/javascript">
-        $(function() {
-            $('#reload_captcha').click(function(){
-                $('img').attr('src', 'captcha.php?cache=' + new Date().getTime());
-            });
-        });
-    </script>
+	<script src="functions.php"></script>
 
 	</body>
 	<?php

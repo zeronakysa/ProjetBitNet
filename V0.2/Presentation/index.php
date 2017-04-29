@@ -12,7 +12,6 @@
         <!-- BootStrap Meta -->
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="">
-        <meta name="author" content="">
         <!-- Bootstrap Css Link -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <!-- Custom Css Link -->
@@ -51,7 +50,6 @@
                         <li><a href="#presentation">Présentation</a></li>
                         <li><a href="#services">Nos Services</a></li>
                         <li><a href="#team">La Team</a></li>
-                        <li><a href="#contact">Contact</a></li>
                         <!-- Dropdown collapse Login Form   -->
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Login <span class="caret"></span></a>
@@ -137,6 +135,9 @@
                             <button id="reload_captcha" class="btn btn-default"><i class="fa fa-refresh" aria-hidden="true"></i></button>
 
                             <input class='form-control' type="text" name="captcha" placeholder="Votre captcha" required="required">
+
+                            <label>Accepter les <a href="cgu.html" target="_blank">Conditions Générales d'Utilisation</a></label>
+                            <input class="form-control" type="checkbox" name="CGU" />
 
                             <!-- Button Submit -->
                             <input type="submit" class="btn btn-default" value="S'enregistrer"> <br />
@@ -257,29 +258,14 @@
         </section>
 
         <!-- Footer -->
-        <footer id="contact" class="bitnet-footer">
+        <footer class="bitnet-footer">
             <div class="container-fluid">
-                <div class="row footer-main">
-                    <div class="col-md-4 contact">
-                        <h4>Nous contacter</h4>
-                        <form action="mailto:stevencantagrel.contact@gmail.com" method="POST">
-                            <div class="form-group">
-                                <input class="form-control" type="text" placeholder="Nom" />
-                                <input class="form-control" type="text" placeholder="Prénom" />
-                                <input class="form-control" type="email" placeholder="Adresse e-mail" />
-                                <textarea class="form-control" placeholder="Votre message..."></textarea>
-                                <input class="btn btn-default btn-sm" type="submit" value="Envoyer" />
-                            </div>
-                        </form>
-                    </div>
-                </div>
                 <div class="row footer-rights">
                     <div class="text-center">
-                        <p>© Bitnet, 2017 - Tous droits réservés</p>
+                        <p>© Bitnet, 2017 - Tous droits réservés - <a class="contact" href="mailto:stevencantagrel.contact@gmail.com" target="_top">Contact</a></p>
                     </div>
                 </div>
             </div>
-
         </footer>
 
 

@@ -48,7 +48,7 @@ CREATE TABLE MEMBRE(
         date_update     Datetime,
         is_deleted      Boolean DEFAULT FALSE,
         succes_reussi   Int,
-        role            Int,
+        role            Varchar (255) DEFAULT "user",
         profile_picture Varchar (255),
         PRIMARY KEY (ID_membre, email)
 );

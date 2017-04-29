@@ -1,7 +1,7 @@
 <?php
     session_start();
     require "conf.inc.php";
-    require "fonctions.php";
+    require "functions.php";
     $error = false;
     $listOfErrors = [];
 
@@ -10,7 +10,7 @@
         !empty($_POST['pwd']) &&
         !empty($_POST['pwd2']) &&
         !empty($_POST['captcha']) &&
-        count($_POST) == 5)
+        count($_POST) >= 5 && count($_POST) <=6)
     {
 
         $_POST['pseudo'] = trim($_POST['pseudo']);
@@ -52,31 +52,18 @@
             $listOfErrors[] = 6;
         }
 
+        if (!isset($_POST['CGU'])){
+            $error = true;
+            $listOfErrors[] = 7;
+        }
+
         if (!$error) {
             $connection = dbConnect();
-            $query = null;
-            $results = null;
 
             //est ce que l'email existe?
-            $query = $connection->prepare('SELECT id FROM MEMBRE WHERE email=:email AND id !=:id');
+            $query = $connection->prepare('SELECT email FROM membre WHERE email=:email');
 
-            $id = (empty($_GET['id'])) ? -1 : $_GET['id'];
-
-            $query->execute(['email'=>$_POST['email'], 'id'=>$id]);
-
-            $results = $query->fetch();
-
-            if (!empty($results)) {
-                $error = true;
-                $listOfErrors[] = 7;
-            }
-
-            //est ce que le pseudo existe?
-            $query = $connection->prepare('SELECT id FROM MEMBRE WHERE pseudo=:pseudo AND id !=:id');
-
-            $id = (empty($_GET['id'])) ? -1 : $_GET['id'];
-
-            $query->execute(['pseudo'=>$_POST['pseudo'], 'id'=>$id]);
+            $query->execute(['email'=>$_POST['email']]);
 
             $results = $query->fetch();
 
@@ -85,25 +72,35 @@
                 $listOfErrors[] = 8;
             }
 
-            header("Location: validation.php?id=0");
+            $query = null;
+
+            //est ce que le pseudo existe?
+            $query = $connection->prepare('SELECT pseudo FROM membre WHERE pseudo=:pseudo');
+
+            $query->execute(['pseudo'=>$_POST['pseudo']]);
+
+            $results = $query->fetch();
+
+            if (!empty($results)) {
+                $error = true;
+                $listOfErrors[] = 9;
+            }
         }
 
         if ($error) {
             $_SESSION['form_post'] = $_POST;
             $_SESSION['form_errors'] = $listOfErrors;
 
-            if (empty($_GET['id'])) {
-                header("Location: validation.php?id=1");
-            }else{
-                header("Location: updateUser.php?id=" . $_GET['id']);
-            }
+            header("Location: validation.php?id=0");
+            
         }
         else{
+
             $query = null;
 
             $query = $connection->prepare("
-                INSERT INTO MEMBRE (pseudo, email, pwd)
-                VALUES (:pseudo, :email, :pwd)
+                INSERT INTO membre (pseudo, email, pwd, date_creation)
+                VALUES (:pseudo, :email, :pwd, NOW())
                 ");
 
             $pwd = password_hash($_POST['pwd'], PASSWORD_DEFAULT);
@@ -114,9 +111,7 @@
                 'pwd' => $pwd
                 ]);
 
-            $_SESSION['query'] = 'test ' . $query;
-
-            header("Location: validation.php?id=2");
+            header("Location: validation.php?id=1");
         }
     }else{
         echo "Bien essayé";

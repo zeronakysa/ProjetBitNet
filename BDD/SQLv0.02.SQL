@@ -13,7 +13,7 @@ CREATE TABLE CODELIVE(
         ID_session    int (11) Auto_increment  NOT NULL,
         nom_session   Varchar (255),
         nom_createur  Varchar (255),
-        date_creation Date,
+        date_creation Datetime,
         ID_fichier    Int,
         PRIMARY KEY (ID_session)
 );
@@ -26,7 +26,7 @@ CREATE TABLE PROJET(
         ID_projet     int (11) Auto_increment  NOT NULL,
         nom_projet    Varchar (255),
         nom_createur  Varchar (25),
-        date_creation Date,
+        date_creation Datetime,
         PRIMARY KEY (ID_projet)
 );
 
@@ -42,10 +42,10 @@ CREATE TABLE MEMBRE(
         nom             Varchar (150),
         prenom          Varchar (150),
         langages        Varchar (150),
-        date_naissance  Date,
+        date_naissance  Datetime,
         ville           Int,
-        date_creation   Date,
-        date_update     Date,
+        date_creation   Datetime,
+        date_update     Datetime,
         is_deleted      Boolean DEFAULT FALSE,
         succes_reussi   Int,
         role            Int,
@@ -62,7 +62,7 @@ CREATE TABLE FICHIER(
         chemin_fichier Varchar (255),
         langages       Varchar (25),
         visibilite     Boolean,
-        date_creation  Date,
+        date_creation  Datetime,
         PRIMARY KEY (ID_fichier)
 );
 

@@ -108,6 +108,20 @@ CREATE TABLE succes_reussi(
         PRIMARY KEY (email, ID_succes)
 );
 
+#------------------------------------------------------------
+# Table: SHOUTBOX
+#------------------------------------------------------------
+
+CREATE TABLE SHOUTBOX_MESSAGE(
+        ID_shoutbox_message int (11) Auto_increment NOT NULL,
+        pseudo              Varchar (255) NOT NULL,
+        PRIMARY KEY (ID_shoutbox_message)
+);
+
+#------------------------------------------------------------
+# Contraintes:
+#------------------------------------------------------------
+
 ALTER TABLE CODELIVE ADD CONSTRAINT FK_CODELIVE_ID_fichier FOREIGN KEY (ID_fichier) REFERENCES FICHIER(ID_fichier);
 ALTER TABLE creation_projet ADD CONSTRAINT FK_creation_projet_email FOREIGN KEY (email) REFERENCES MEMBRE(email);
 ALTER TABLE creation_projet ADD CONSTRAINT FK_creation_projet_ID_projet FOREIGN KEY (ID_projet) REFERENCES PROJET(ID_projet);

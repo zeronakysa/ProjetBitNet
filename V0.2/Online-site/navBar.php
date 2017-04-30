@@ -15,31 +15,42 @@
 
         <!-- Navbar Link  (Work when collapse)-->
         <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav">
-            <li><a href="codeLive.php">CodeLive</a></li>
-            <li><a href="espacePersonnel.php">Espace Personnel</a></li>
-            <li><a href="hallOfFame.php">Hall Of Fame</a></li>
-            <li><a href="ShoutBox.php">ShoutBox</a></li>
-            <li><a href="Succes.php">Succès</a></li>
+            <ul class="nav navbar-nav">
+                <li><a href="codeLive.php">CodeLive</a></li>
+                <li><a href="hallOfFame.php">Hall Of Fame</a></li>
+                <li><a href="ShoutBox.php">ShoutBox</a></li>
+                <li><a href="Succes.php">Succès</a></li>
                 <!-- Dropdown collapse Login Link   -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Compte <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <form class="navbar-form navbar-right">
-                           <div class="form-group">
-                             <li><a href="">Paramètres</a></li>
-                             <li><a href="">Deconnexion</a></li>
-                           </div>
-                       </form>
+                            <div class="form-group">
+                                <li><a href="">Paramètres</a></li>
+                                <li><a href="">Deconnexion</a></li>
+                            </div>
+                        </form>
                     </ul>
                 </li>
                 <!-- End of Dropdown Login Link -->
             </ul>
             <!-- Desktop Navbar Login form -->
-            <form class="navbar-form navbar-right" id="desktop-login-form">
-               <div class="form-group">
-              </div>
-           </form>
+            <div class="nav navbar-nav navbar-right">
+                <?php
+                    $connection = dbConnect();
+
+                    $query = $connection->prepare('SELECT pseudo FROM membre WHERE email=:email');
+
+                    $query->execute(['email' => $_SESSION['email']]);
+
+                    $results = $query->fetch();
+
+                    $_SESSION['pseudo'] = $results;
+                ?>
+                <a id="infoCompte" href="espacePersonnel.php">Vous êtes connectés en tant que: <em><b><?php echo $_SESSION['pseudo']['pseudo']; ?></b></em></a>
+                <br>
+                <p align="right"><a href="deconnection.php">Se déconnecter</a></p>
+            </div>
         </div>
     </div>
 </nav>

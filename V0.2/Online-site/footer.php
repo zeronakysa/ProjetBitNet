@@ -1,20 +1,12 @@
 <!-- Footer -->
-<footer id="contact" class="bitnet-footer">
+<footer class="bitnet-footer">
     <div class="container-fluid">
-        <div class="row footer-main">
-            <div class="col-md-4 contact">
-                <h4>Nous contacter</h4>
-                <form action="mailto:stevencantagrel.contact@gmail.com" method="POST">
-                </form>
-            </div>
-        </div>
         <div class="row footer-rights">
             <div class="text-center">
-                <p>© Bitnet, 2017 - Tous droits réservés</p>
+                <p>© Bitnet, 2017 - Tous droits réservés - <a class="contact" href="mailto:stevencantagrel.contact@gmail.com" target="_top">Contact</a></p>
             </div>
         </div>
     </div>
-
 </footer>
 
 <!-- Bootstrap Jquery Link -->

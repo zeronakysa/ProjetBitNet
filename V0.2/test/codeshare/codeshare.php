@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <title>ShoutBox</title>
-        <link rel="stylesheet" href="shoutbox.css" />
+        <link rel="stylesheet" href="codeshare.css" />
     </head>
     <body>
         <div class="shoutbox_border">
@@ -14,17 +14,16 @@
                     die('Erreur :' .$e->getMessage());
                 }
 
-                $rep = $connection->query('SELECT pseudo, message FROM shoutbox_message ORDER BY ID_shoutbox_message');
+                $rep = $connection->query('SELECT message FROM test ORDER BY ID_test');
 
                 while($data = $rep->fetch()){
-                    echo '<p><strong>' .$data['pseudo'] .'</strong> :' .$data['message'] .'</p>';
+                    echo '<p><strong>'  .'</strong> :' .$data['message'] .'</p>';
                 }
             ?>
         </div>
         <br />
-        <div class="shoutbox_input">
-            <form action="shoutbox_validation.php" method="POST">
-                <input type="text" name="pseudo" placeholder="Votre pseudo..." />
+        <div class="codeshare_input">
+            <form action="codeshare_validation.php" method="POST">
                 <input type="text" name="msg" placeholder="Votre message..." />
                 <input type="submit" value="Envoyer" />
             </form>

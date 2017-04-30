@@ -8,7 +8,7 @@ try{
 }
 
 // Insert message in bdd
-$req = $connection->prepare('INSERT INTO shoutbox_message(pseudo, message) VALUES(:pseudo, :message)');
-$req->execute(['pseudo'=>$_POST["pseudo"], 'message'=>$_POST["msg"]]);
+$req = $connection->prepare('INSERT INTO test(message) VALUES(:message)');
+$req->execute([ 'message'=>$_POST["msg"]]);
 
-header("Location: shoutbox.php");
+header("Location: codeshare.php");

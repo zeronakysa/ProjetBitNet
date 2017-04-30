@@ -1,7 +1,7 @@
 <?php
     session_start();
-    require "conf.inc.php";
-    require "functions.php";
+    require "../global/conf.inc.php";
+    require "../global/functions.php";
 ?>
 
 <!DOCTYPE html>
@@ -42,10 +42,10 @@
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Login <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <form class="navbar-form navbar-right">
-                                   <div class="form-group">
-                                       <input type="text" class="form-control input-sm dropdown-input" placeholder="Adresse e-mail" />
-                                       <input type="password" class="form-control input-sm dropdown-input" placeholder="Mot de passe" />
+                                <form class="navbar-form navbar-right" action="connection.php" method="POST">
+                                   <div class="form-group" meth>
+                                       <input type="email" class="form-control input-sm dropdown-input" placeholder="Adresse e-mail" name="email" />
+                                       <input type="password" class="form-control input-sm dropdown-input" placeholder="Mot de passe" name="pwd" />
                                    </div>
                                    <input id="DropdownHomePageLoginButton" type="submit" class="btn btn-default btn-sm" value="Login"/>
                                </form>
@@ -54,10 +54,10 @@
                         <!-- End of Dropdown Login Form -->
                     </ul>
                     <!-- Desktop Navbar Login form -->
-                    <form class="navbar-form navbar-right" id="desktop-login-form">
+                    <form class="navbar-form navbar-right" id="desktop-login-form" action="connection.php" method="POST">
                        <div class="form-group">
-                           <input type="text" class="form-control input-sm" placeholder="Adresse e-mail" />
-                           <input type="password" class="form-control input-sm" placeholder="Mot de passe" />
+                           <input type="email" class="form-control input-sm" placeholder="Adresse e-mail" name="email" />
+                           <input type="password" class="form-control input-sm" placeholder="Mot de passe" name="pwd" />
                            <input id="DesktopHomePageLoginButton" type="submit" class="btn btn-default btn-sm" value="Login"/>
                            <button id="DesktopHomePageRegisterButton" type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">S'inscrire</button>
                        </div>
@@ -230,6 +230,6 @@
         <!-- Bootstrap JavaScript Link -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <!-- Script Reload Captcha -->
-        <script src="function.js"></script>
+        <script src="functions.js"></script>
     </body>
 </html>

@@ -13,13 +13,15 @@
 	<?php
   		include "navBar.php";
 	?>
-	jfdgdfg
-	fgdfgdfg
-	fdgdfdf
-	dfgdgdf
-	dfgdfgdf
-	fdgdfg
-	dgf
+	<h1>
+		jfdgdfg
+		fgdfgdfg
+		fdgdfdf
+		dfgdgdf
+		dfgdfgdf
+		fdgdfg
+		dgf
+	</h1>
 	<?php
   		include "footer.php";
 	?>

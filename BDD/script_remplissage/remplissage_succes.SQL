@@ -1,0 +1,11 @@
+INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`) VALUES ('1', 'Test 1', 'Test 1', '1000');
+INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`) VALUES ('2', 'Test 2', 'Test 2', '1000');
+INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`) VALUES ('3', 'Test 3', 'Test 3', '1000');
+INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`) VALUES ('4', 'Test 4', 'Test 4', '1000');
+INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`) VALUES ('5', 'Test 5', 'Test 5', '1000');
+INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`) VALUES ('6', 'Test 6', 'Test 6', '1000');
+INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`) VALUES ('7', 'Test 7', 'Test 7', '1000');
+INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`) VALUES ('8', 'Test 8', 'Test 8', '1000');
+INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`) VALUES ('9', 'Test 9', 'Test 9', '1000');
+INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`) VALUES ('10', 'Test 10', 'Test 10', '1000');
+INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`) VALUES ('11', 'Test 11', 'Test 11', '1000');

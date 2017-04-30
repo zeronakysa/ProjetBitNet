@@ -48,6 +48,8 @@
                                        <input type="password" class="form-control input-sm dropdown-input" placeholder="Mot de passe" name="pwd" />
                                    </div>
                                    <input id="DropdownHomePageLoginButton" type="submit" class="btn btn-default btn-sm" value="Login"/>
+                                   <button id="DesktopHomePageRegisterButton" type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">S'inscrire</button>
+
                                </form>
                             </ul>
                         </li>

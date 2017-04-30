@@ -17,18 +17,7 @@
 
 </footer>
 
-
 <!-- Bootstrap Jquery Link -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Bootstrap JavaScript Link -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!-- Script Reload Captcha -->
-<script type="text/javascript">
-    $(function() {
-        $('#reload_captcha').click(function(){
-            $('img').attr('src', 'captcha/captcha.php?cache=' + new Date().getTime());
-        });
-    });
-</script>
-</body>
-</html>

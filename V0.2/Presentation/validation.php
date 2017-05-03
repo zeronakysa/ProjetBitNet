@@ -16,9 +16,6 @@
 
     <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">   
 	<?php
-		//NavBar
-		require "navbar.php";
-
 		if ($_GET['id'] == 0) {
 			echo "Erreur lors de la tentative d'inscription, veuillez réessayer:";
 
@@ -27,7 +24,7 @@
 		            	echo "<li>".$errors[$error];
 		        }
 		    }
-				require "register_form.php";
+				require "registerForm.php";
 	    }elseif ($_GET['id'] == 1) {
 			echo "Félicitations vous êtes inscrits!<br>";
 		}elseif ($_GET['id'] == 2) {

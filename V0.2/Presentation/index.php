@@ -53,7 +53,7 @@
                     </div>
                     <div class="modal-body">
                         <?php
-                            require "register_form.php";
+                            require "registerForm.php";
                         ?>
                     </div>
                     <div class="modal-footer">

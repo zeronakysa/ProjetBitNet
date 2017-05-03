@@ -232,6 +232,6 @@
         <!-- Bootstrap JavaScript Link -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <!-- Script Reload Captcha -->
-        <script src="functions.js"></script>
+        <script src="../global/functions.js"></script>
     </body>
 </html>

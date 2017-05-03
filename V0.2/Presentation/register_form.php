@@ -22,7 +22,7 @@
     <img src="captcha/captcha.php" alt="captcha">
     <!-- Reload Captcha Button -->
     <label>Recharger Captcha</label>
-    <button id="reload_captcha" class="btn btn-default"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+    <button type="button" id="reload_captcha" class="btn btn-default"><i class="fa fa-refresh" aria-hidden="true"></i></button>
     <br /><br />
     <input class='form-control' type="text" name="captcha" placeholder="Votre captcha" required="required">
 

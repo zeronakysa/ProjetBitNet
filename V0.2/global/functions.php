@@ -31,12 +31,12 @@
         $query->execute();
         $nomSucces = $query->fetch();
 
-        echo "Le succes <i>'".$nomSucces[0];
+        echo "Le succes <i>".$nomSucces[0];
         if ($result[0] == $_SESSION['email']){
-          echo "'</i> est réussi par l'utilisateur qui a pour email: '<i>".$_SESSION['email']."'</i><br />";
+          echo "</i> est réussi par l'utilisateur qui a pour email: '<i>".$_SESSION['email']."'</i><br />";
           }
         else{
-          echo "'</i> n'est pas réussi par l'utilisateur qui a pour email: '<i>".$_SESSION['email']."'</i><br />";
+          echo "</i> n'est pas réussi par l'utilisateur qui a pour email: '<i>".$_SESSION['email']."'</i><br />";
           }
         $result[0] = 0;
         }
@@ -51,14 +51,19 @@
         $result = $query->fetch();
         $email = $_SESSION['email'];
 
+        //Donne le nom du succes qui a pour ID $id_succes
+        $query = $connection->prepare('SELECT nom_succes FROM SUCCES WHERE ID_succes LIKE '.$id_succes);
+        $query->execute();
+        $nomSucces = $query->fetch();
+
         //passe le succes en reussi donc créer un ligne dans le table succes_reussi
         if ($result[0] != $_SESSION['email']){
           $query = $connection->prepare('INSERT INTO `succes_reussi` (`email`, `ID_succes`) VALUES (\''.$email.'\','.$id_succes.')');
       	  $query->execute(['email_membre'=>$_SESSION['email'],'new_succes'=>$id_succes]);
-          echo "Succes n°".$id_succes." réussi ! Bravo ! <br />";
+          echo "Succes </i>".$nomSucces[0]."</i> accompli ! Bravo ! <br />";
         }
         else {
-          echo "Succes n°".$id_succes." déjà réussie..<br />";
+          echo "Succes <i>".$nomSucces[0]."</i> déjà accompli..<br />";
         }
       }
 ?>

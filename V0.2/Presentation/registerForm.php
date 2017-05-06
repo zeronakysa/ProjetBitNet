@@ -19,7 +19,7 @@
 
 	<!-- Captcha -->
 	<label>Captcha</label><br>
-	<img src="captcha/captcha.php" alt="captcha">
+	<img id="captcha" src="captcha/captcha.php" alt="captcha">
 	<!-- Reload Captcha Button -->
 	<label>Recharger Captcha</label>
 	<button type="button" id="reload_captcha" class="btn btn-default"><i class="fa fa-refresh" aria-hidden="true"></i></button>

@@ -18,7 +18,7 @@
       $maxSucces = $query->fetch();
       $query = null;
 
-      //boucle pour parcourir vériffier tout les succes du membre
+      //boucle pour parcourir et vérifier tous les succes du membre
       for ($i=1; $i <= $maxSucces[0]; $i++) {
 
         //Donne un email si le succes est reussi

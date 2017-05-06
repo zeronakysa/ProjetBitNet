@@ -24,3 +24,17 @@ $errors = [
 	9 => "Le pseudo existe déjà.<br>",
 	10 => "Identifiants incorrects."
 ];
+
+$listOfGender = [
+			"m" => "Homme",
+			"w" => "Femme",
+			"o" => "Autre"
+		  ];
+
+$defaultGender = "m";
+
+$listOfCountry = [
+					"fr" => "France",
+					"en" => "Anglais",
+					"pl" => "Pologne"
+				];

@@ -50,6 +50,7 @@ CREATE TABLE MEMBRE(
         succes_reussi   Int,
         role            Varchar (255) DEFAULT "user",
         profile_picture Varchar (255),
+        experience      Int DEFAULT "0",
         PRIMARY KEY (ID_membre, email)
 );
 

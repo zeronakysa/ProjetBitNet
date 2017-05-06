@@ -21,8 +21,9 @@
 	<!--// **  V0.02  ** // -->
 <?php
 $connection = dbConnect();
-$query = $connection->query("SELECT * FROM MEMBRE"); // écrit ainsi uniquement si une seule ligne
+$query = $connection->query("SELECT * FROM MEMBRE"); 
 $users =$query->fetchAll();
+
  ?>
 <!--<section>-->
 

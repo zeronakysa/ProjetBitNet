@@ -46,14 +46,6 @@ if (!empty($_POST['email']) &&
 	}else{
 		$_SESSION['email'] = $_POST['email'];
 		$_SESSION['online'] = 1;
-
-        $query = $connection->prepare('SELECT pseudo FROM membre WHERE email=:email');
-
-        $query->execute(['email' => $_SESSION['email']]);
-
-        $results = $query->fetch();
-
-        $_SESSION['pseudo'] = $results[0];
                       	
 		header("Location: ../Online-site/index.php");
 	}

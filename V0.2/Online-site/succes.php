@@ -12,6 +12,9 @@
 			etatSucces();
 			$id_succes = 4;
 			giveSucces($id_succes);
+			$exp = getExp($_SESSION['email']);
+			print_r($_SESSION);
+			print_r($exp);
 	?>
 
 	<p><br>

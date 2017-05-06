@@ -47,13 +47,12 @@ if (!empty($_POST['email']) &&
 		$_SESSION['email'] = $_POST['email'];
 		$_SESSION['online'] = 1;
 
-        $query = $connection->prepare('SELECT pseudo FROM membre WHERE email=:email');
-
-        $query->execute(['email' => $_SESSION['email']]);
-
-        $results = $query->fetch();
-
-        $_SESSION['pseudo'] = $results[0];
+		$query = null;
+      	$query = $connection->prepare('SELECT role, pseudo FROM MEMBRE WHERE email = :email');
+      	$query->execute(['email'=>$_SESSION['email']]);
+      	$result = $query->fetch();
+      	$_SESSION['role'] = $result[0];
+      	$_SESSION['pseudo'] = $result[1];
                       	
 		header("Location: ../Online-site/index.php");
 	}

@@ -1,6 +1,10 @@
 
 	<?php
 		include "header.php";
+
+		if ($_SESSION['role'] != 'administrateur') {
+			header('Location: ../Online-site/index.php');
+		}
 	?>
   <title>Page Administration</title>
 </head>
@@ -22,6 +26,10 @@ $i = $query->fetch();
 $query = null;
 $temp = $i[0];
 
+echo "<br />";
+echo $_SESSION['role'];
+echo "<br />";
+
 for ($temp; $temp > 0 ; $temp--) {
 	echo "<table>
 					<tr>
@@ -40,7 +48,7 @@ for ($temp; $temp > 0 ; $temp--) {
 						<th>Succes_reussi </th>
 						<th>Role </th>
 						<th>Profile_picture </th>
-						<th></th>
+						<th>Experience</th>
 						</tr>
 						<tr>";
   $query = $connection->prepare('SELECT * FROM membre where ID_membre LIKE '.$temp.';');

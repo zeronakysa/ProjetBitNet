@@ -45,7 +45,15 @@ if (!empty($_POST['email']) &&
     	header("Location: validation.php?id=2");
     }else{
         $_SESSION['email'] = $_POST['email'];
-	    $_SESSION['online'] = 1;       	
+	    $_SESSION['online'] = 1;
+
+      $query = null;
+      $query = $connection->prepare('SELECT role, pseudo FROM MEMBRE WHERE email = :email');
+      $query->execute(['email'=>$_SESSION['email']]);
+      $result = $query->fetch();
+      $_SESSION['role'] = $result[0];
+      $_SESSION['pseudo'] = $results[1];
+
     	header("Location: ../Online-site/index.php");
     }
 }else{

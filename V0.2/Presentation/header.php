@@ -3,11 +3,10 @@
 <!-- BootStrap Meta -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="">
-<meta name="author" content="">
 <!-- Bootstrap Css Link -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 <!-- Custom Css Link -->
-<link rel="stylesheet" href="css/custom_css.css" />
+<link rel="stylesheet" href="css/presentation.css" />
 
 <!-- Custom font -->
 <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">

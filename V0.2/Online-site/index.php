@@ -20,6 +20,9 @@
 		dgf
 	</h1>
 	<?php
+	echo "<br />";
+	print_r($_SESSION);
+	echo "<br />";
   		include "footer.php";
 	?>
 </body>

@@ -10,8 +10,7 @@
 	<?php
   		include "navBar.php";
 			etatSucces();
-			$id_succes = 4;
-			giveSucces($id_succes);
+			giveSucces(4);
 	?>
 
 	<p><br>

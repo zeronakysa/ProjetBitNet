@@ -52,7 +52,7 @@ if (!empty($_POST['email']) &&
       $query->execute(['email'=>$_SESSION['email']]);
       $result = $query->fetch();
       $_SESSION['role'] = $result[0];
-      $_SESSION['pseudo'] = $results[1];
+      $_SESSION['pseudo'] = $result[1];
 
     	header("Location: ../Online-site/index.php");
     }

@@ -10,10 +10,10 @@
 	<?php
   		include "navBar.php";
 			etatSucces();
-			$id_succes = 4;
-			giveSucces($id_succes);
-			giveExp($_SESSION['email'], 6);
+			$id_succes = 4;		
 			$exp = getExp($_SESSION['email']);
+			echo "<br>";
+			echo "Votre expérience: ";
 			print_r($exp);
 			print_r($_SESSION);
 	?>

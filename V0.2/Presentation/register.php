@@ -110,6 +110,7 @@
 				'email' => $_POST['email'],
 				'pwd' => $pwd
 				]);
+			$_SESSION['email'] = $_POST['email'];
 
 			header("Location: validation.php?id=1");
 		}

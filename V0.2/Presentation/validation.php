@@ -26,6 +26,7 @@
 		    }
 				require "registerForm.php";
 	    }elseif ($_GET['id'] == 1) {
+	    	giveSucces(1);
 			echo "Félicitations vous êtes inscrits!<br>";
 		}elseif ($_GET['id'] == 2) {
 			echo "Les identifiants sont incorrects";

@@ -22,7 +22,7 @@
 <?php
 $connection = dbConnect();
 $query = $connection->query("SELECT * FROM MEMBRE WHERE is_deleted=0;"); // écrit ainsi uniquement si une seule ligne
-$users =$query->fetchAll();
+$users = $query->fetchAll();
  ?>
 <!--<section>-->
 	<pre>

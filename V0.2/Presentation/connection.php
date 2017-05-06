@@ -7,39 +7,39 @@ $error = false;
 $listOfErrors = [];
 
 if (!empty($_POST['email']) &&
-    !empty($_POST['pwd']) &&
-    count($_POST) == 2) {
+	!empty($_POST['pwd']) &&
+	count($_POST) == 2) {
 
 	$connection = dbConnect();
 
-    //est ce que le compte existe?
-    $query = $connection->prepare('SELECT pwd FROM membre WHERE email=:email');
+	//est ce que le compte existe?
+	$query = $connection->prepare('SELECT pwd FROM membre WHERE email=:email');
 
-    $query->execute(['email' => $_POST['email']]);
+	$query->execute(['email' => $_POST['email']]);
 
-    $results = $query->fetch();
+	$results = $query->fetch();
 
-  	$pwd = $results;
+	$pwd = $results;
 
-  	$results = null;
+	$results = null;
 
-  	if (password_verify($_POST['pwd'], $pwd[0])) {
-  		$query = $connection->prepare('SELECT email, pwd FROM membre WHERE email=:email AND pwd=:pwd');
+	if (password_verify($_POST['pwd'], $pwd[0])) {
+		$query = $connection->prepare('SELECT email, pwd FROM membre WHERE email=:email AND pwd=:pwd');
 
-  		$password = $pwd[0];
+		$password = $pwd[0];
 
-      $query->execute(['email' => $_POST['email'], 'pwd' => $password]);
+		$query->execute(['email' => $_POST['email'], 'pwd' => $password]);
 
-      $results = $query->fetch();
+		$results = $query->fetch();
 
-      if (empty($results)) {
-          $error = true;
-          $listOfErrors[] = 10;
-    	}
-  	}else{
-  		$error = true;
-      $listOfErrors[] = 10;
-  	}
+		if (empty($results)) {
+				$error = true;
+				$listOfErrors[] = 10;
+		}
+	}else{
+		$error = true;
+		$listOfErrors[] = 10;
+	}
 
     if ($error) {
     	header("Location: validation.php?id=2");

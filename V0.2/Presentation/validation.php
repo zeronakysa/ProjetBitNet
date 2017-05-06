@@ -2,6 +2,7 @@
 <?php
 	session_start();
 	require '../global/conf.inc.php';
+	require "../global/functions.php";
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +14,7 @@
 	?>
 </head>
 
-    <body>
+    <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">   
 	<?php
 		if ($_GET['id'] == 0) {
 			echo "Erreur lors de la tentative d'inscription, veuillez réessayer:";
@@ -23,7 +24,7 @@
 		            	echo "<li>".$errors[$error];
 		        }
 		    }
-				require "register_form.php";
+				require "registerForm.php";
 	    }elseif ($_GET['id'] == 1) {
 			echo "Félicitations vous êtes inscrits!<br>";
 		}elseif ($_GET['id'] == 2) {
@@ -36,7 +37,12 @@
 	?>
 	<a href="index.php">Retourner sur la page d'accueil</a>
 
-	<script src="functions.php"></script>
+	<!-- Bootstrap Jquery Link -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Bootstrap JavaScript Link -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Script Reload Captcha -->
+    <script src="../global/functions.js"></script>
 
 	</body>
 	<?php

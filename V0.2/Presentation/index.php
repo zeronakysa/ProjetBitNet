@@ -1,83 +1,26 @@
 <?php
     session_start();
-    require "conf.inc.php";
-    require "fonctions.php";
+    require "../global/conf.inc.php";
+    require "../global/functions.php";
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <!-- BootStrap Meta -->
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <!-- Bootstrap Css Link -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-        <!-- Custom Css Link -->
-        <link rel="stylesheet" href="css/presentation.css" />
-        <!-- Title -->
-        <title>Bitnet</title>
-
-        <!-- Custom font -->
-        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-
-        <!-- Css Plugin -->
-        <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
+        <title>BitNet</title>
+        <?php
+            require "header.php";
+        ?>
     </head>
+
 
     <!-- Spy Scroll -->
     <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
 
         <!-- NavBar  -->
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <!-- NavBar Container -->
-            <div class="container-fluid" id="navbarContainer">
-                <div class="navbar-header">
-                    <!-- Navbar Button for Mobile - Burger -->
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <!-- NavBar Brand Name -->
-                    <a class="navbar-brand" href="#">BitNet</a>
-                </div>
-
-                <!-- Navbar Link  (Work when collapse)-->
-                <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav">
-                        <li><a href="#presentation">Présentation</a></li>
-                        <li><a href="#services">Nos Services</a></li>
-                        <li><a href="#team">La Team</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                        <!-- Dropdown collapse Login Form   -->
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Login <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <form class="navbar-form navbar-right">
-                                   <div class="form-group">
-                                       <input type="text" class="form-control input-sm dropdown-input" placeholder="Adresse e-mail" />
-                                       <input type="password" class="form-control input-sm dropdown-input" placeholder="Mot de passe" />
-                                   </div>
-                                   <input id="DropdownHomePageLoginButton" type="submit" class="btn btn-default btn-sm" value="Login"/>
-                               </form>
-                            </ul>
-                        </li>
-                        <!-- End of Dropdown Login Form -->
-                    </ul>
-                    <!-- Desktop Navbar Login form -->
-                    <form class="navbar-form navbar-right" id="desktop-login-form">
-                       <div class="form-group">
-                           <input type="text" class="form-control input-sm" placeholder="Adresse e-mail" />
-                           <input type="password" class="form-control input-sm" placeholder="Mot de passe" />
-                           <input id="DesktopHomePageLoginButton" type="submit" class="btn btn-default btn-sm" value="Login"/>
-                       </div>
-                   </form>
-                </div>
-            </div>
-        </nav>
+        <?php
+            require "navbar.php";
+        ?>
 
         <!-- Header -->
         <header id="presentation">
@@ -109,31 +52,9 @@
                         <h4 class="modal-title">Formulaire d'inscription</h4>
                     </div>
                     <div class="modal-body">
-                        <!-- Formulaire d'inscription -->
-
-                        <form class="form-group" role="form" action="register.php" method="POST">
-                            <label>Pseudo</label>
-                            <input class="form-control" type="text" name="pseudo" placeholder="Votre pseudo" required="required" value="<?php echo (isset($_SESSION['form_post']['pseudo'])) ? $_SESSION['form_post']['pseudo']:'' ?>">
-
-                            <label>Adresse e-mail</label>
-                            <input class="form-control" type="email" name="email" placeholder="Votre email" required="required"
-                            value="<?php echo (isset($_SESSION['form_post']['email'])) ? $_SESSION['form_post']['email']:'' ?>" >
-
-                            <label>Mot de passe</label>
-                            <input class="form-control" type="password" name="pwd" placeholder="Votre mot de passe" required="required">
-
-                            <label>Vérification du mot de passe</label>
-                            <input class="form-control" type="password" name="pwd2" placeholder="Confirmation" required="required">
-
-                            <label>Captcha</label><br>
-                            <img src="captcha/captcha.php" alt="captcha">
-                            <input class='form-control' type="text" name="captcha" placeholder="Votre captcha" required="required">
-                            <input class="btn btn-default" type="button" id="reload_captcha" name="reload" value="Recharger captcha">
-
-                            <!-- Button Submit -->
-                            <input type="submit" class="btn btn-default" value="S'enregistrer"> <br />
-                            <small class="form-text text-muted">Aucune information ne sera partagée sur d'autres sites</small>
-                        </form>
+                        <?php
+                            require "registerForm.php";
+                        ?>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
@@ -249,29 +170,14 @@
         </section>
 
         <!-- Footer -->
-        <footer id="contact" class="bitnet-footer">
+        <footer class="bitnet-footer">
             <div class="container-fluid">
-                <div class="row footer-main">
-                    <div class="col-md-4 contact">
-                        <h4>Nous contacter</h4>
-                        <form action="mailto:stevencantagrel.contact@gmail.com" method="POST">
-                            <div class="form-group">
-                                <input class="form-control" type="text" placeholder="Nom" />
-                                <input class="form-control" type="text" placeholder="Prénom" />
-                                <input class="form-control" type="email" placeholder="Adresse e-mail" />
-                                <textarea class="form-control" placeholder="Votre message..."></textarea>
-                                <input class="btn btn-default btn-sm" type="submit" value="Envoyer" />
-                            </div>
-                        </form>
-                    </div>
-                </div>
                 <div class="row footer-rights">
                     <div class="text-center">
-                        <p>© Bitnet, 2017 - Tous droits réservés</p>
+                        <p>© Bitnet, 2017 - Tous droits réservés - <a class="contact" href="mailto:stevencantagrel.contact@gmail.com" target="_top">Contact</a></p>
                     </div>
                 </div>
             </div>
-
         </footer>
 
 
@@ -280,12 +186,6 @@
         <!-- Bootstrap JavaScript Link -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <!-- Script Reload Captcha -->
-        <script type="text/javascript">
-            $(function() {
-                $('#reload_captcha').click(function(){
-                    $('img').attr('src', 'captcha/captcha.php?cache=' + new Date().getTime());
-                });
-            });
-        </script>
+        <script src="../global/functions.js"></script>
     </body>
 </html>

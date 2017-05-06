@@ -1,8 +1,8 @@
 <?php
 	session_start();
 	require "conf.inc.php";
-	require "lib.php";
-	include "header.php";
+	require "functions.php";
+	include "../Presentation/header.php";
 
 	/*
 		Vérifier le GET

@@ -19,15 +19,14 @@
 	<?php
   		include "navBar.php";
 	?>
-	<h1>
-		jfdgdfg
-		fgdfgdfg
-		fdgdfdf
-		dfgdgdf
-		dfgdfgdf
-		fdgdfg
-		dgf
-	</h1>
+	jfdgdfg
+	fgdfgdfg
+	fdgdfdf
+	dfgdgdf
+	dfgdfgdf
+	fdgdfg
+	dgf
+	Work In progress (Hall of Fame)
 	<?php
   		include "footer.php";
 	?>

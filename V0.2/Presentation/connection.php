@@ -41,23 +41,22 @@ if (!empty($_POST['email']) &&
 		$listOfErrors[] = 10;
 	}
 
-	if ($error) {
-		header("Location: validation.php?id=2");
-	}else{
-		$_SESSION['email'] = $_POST['email'];
-		$_SESSION['online'] = 1;
+    if ($error) {
+    	header("Location: validation.php?id=2");
+    }else{
+        $_SESSION['email'] = $_POST['email'];
+	    $_SESSION['online'] = 1;
 
-        $query = $connection->prepare('SELECT pseudo FROM membre WHERE email=:email');
+      $query = null;
+      $query = $connection->prepare('SELECT role, pseudo FROM MEMBRE WHERE email = :email');
+      $query->execute(['email'=>$_SESSION['email']]);
+      $result = $query->fetch();
+      $_SESSION['role'] = $result[0];
+      $_SESSION['pseudo'] = $results[1];
 
-        $query->execute(['email' => $_SESSION['email']]);
-
-        $results = $query->fetch();
-
-        $_SESSION['pseudo'] = $results[0];
-                      	
-		header("Location: ../Online-site/index.php");
-	}
+    	header("Location: ../Online-site/index.php");
+    }
 }else{
-	echo "Bien essayé";
-	die();
+    echo "Bien essayé";
+    die();
 }

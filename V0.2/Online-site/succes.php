@@ -1,6 +1,19 @@
 <?php
 		include "header.php";
 	?>
+<<<<<<< HEAD
+	<title>Succes</title>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+	<br />
+	<br />
+	<br />
+	<?php
+  		include "navBar.php";
+			etatSucces();
+			giveSucces(4);
+	?>
+=======
 		<title>Succes</title>
 	</head>
 	<body>
@@ -16,6 +29,7 @@
 				print_r($_SESSION);
 				print_r($exp);
 		?>
+>>>>>>> refs/remotes/origin/master
 
 		<p><br>
 			Work In progress (Succes)

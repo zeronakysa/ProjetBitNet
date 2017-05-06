@@ -22,12 +22,12 @@
 		for ($i=1; $i <= $maxSucces[0]; $i++) {
 
 			//Donne un email si le succes est reussi
-			$query = $connection->prepare('SELECT email FROM succes_reussi WHERE succes_reussi.email LIKE email AND succes_reussi.ID_succes LIKE '.$i);
+			$query = $connection->prepare('SELECT email FROM succes_reussi WHERE succes_reussi.email=:email AND succes_reussi.ID_succes = '.$i);
 			$query->execute(['email'=>$_SESSION['email']]);
 			$result = $query->fetch();
 
 			//Donne le nom du succes qui a pour ID $i
-			$query = $connection->prepare('SELECT nom_succes FROM SUCCES WHERE ID_succes LIKE '.$i);
+			$query = $connection->prepare('SELECT nom_succes FROM SUCCES WHERE ID_succes = '.$i);
 			$query->execute();
 			$nomSucces = $query->fetch();
 
@@ -46,13 +46,13 @@
 	function giveSucces($id_succes){
 		$connection = dbConnect();
 		//verrifie si le succes est déjà reussi. Retourne un email si il l'est.
-		$query = $connection->prepare('SELECT email FROM succes_reussi WHERE succes_reussi.email LIKE email AND succes_reussi.ID_succes LIKE '.$id_succes);
+		$query = $connection->prepare('SELECT email FROM succes_reussi WHERE succes_reussi.email=:email AND succes_reussi.ID_succes = '.$id_succes);
 		$query->execute(['email'=>$_SESSION['email']]);
 		$result = $query->fetch();
 		$email = $_SESSION['email'];
 
 		//Donne le nom du succes qui a pour ID $id_succes
-		$query = $connection->prepare('SELECT nom_succes FROM SUCCES WHERE ID_succes LIKE '.$id_succes);
+		$query = $connection->prepare('SELECT nom_succes FROM SUCCES WHERE ID_succes = '.$id_succes);
 		$query->execute();
 		$nomSucces = $query->fetch();
 
@@ -87,17 +87,18 @@
 
 		$query = $connection->prepare('SELECT xp_donnee FROM SUCCES WHERE ID_succes=:id_succes');
 		$query->execute(['id_succes'=>$id_succes]);
-		$result=$query->fetch();
+		$result = $query->fetch();
 
 		$exp_donnee = $result[0];
-		$_SESSION['exp'] = $exp_donnee;
-
+		
 		$result = null;
 
 		$exp = $expMembre + $exp_donnee;
 
 		$query = $connection->prepare('UPDATE MEMBRE SET experience ='.$exp.'WHERE email=:email');
 		$query->execute(['email'=>$email]);
-		$result=$query->fetch();
+		$result = $query->fetch();
+
+		$_SESSION['exp'] = $query;
 	}
 ?>

@@ -38,6 +38,8 @@ if (!empty($_POST['email']) &&
       $result = $query->fetch();
       $_SESSION['role'] = $result[0];
       $_SESSION['pseudo'] = $result[1];
+      unset($_SESSION['captcha']);
+      giveSucces(2);
     	header("Location: ../Online-site/index.php");
     }
 }else{

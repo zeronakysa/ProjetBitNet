@@ -49,7 +49,7 @@
 	function giveSucces($id_succes){
 		$connection = dbConnect();
 		//verrifie si le succes est déjà reussi. Retourne un email si il l'est.
-		$query = $connection->prepare('SELECT email FROM succes_reussi WHERE succes_reussi.email=:email AND succes_reussi.ID_succes = :$id_succes');
+		$query = $connection->prepare('SELECT email FROM succes_reussi WHERE succes_reussi.email=:email AND succes_reussi.ID_succes = :id_succes');
 		$query->execute([
 			'email' => $_SESSION['email'],
 			'id_succes' => $id_succes

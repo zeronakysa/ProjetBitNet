@@ -22,7 +22,7 @@
 <?php
 $connection = dbConnect();
 $query = $connection->query("SELECT * FROM MEMBRE");
-$users =$query->fetchAll();
+$users = $query->fetchAll();
 
  ?>
 <!--<section>-->
@@ -85,7 +85,6 @@ SIMPLE VISU + BOUTON
 </pre>
 
 TEST MODIFICATION
-<form method="POST" action="test.php">
 <pre>
 	<table>
 		<thead>
@@ -111,6 +110,7 @@ TEST MODIFICATION
 <?php
 
 		foreach ($users as $user) {?>
+			<form method="POST" action="test.php">
 			<tr><?php
 			echo "<td>".$user["ID_membre"]."</td>";
 			echo "<td>".$user["email"]."</td>";?>

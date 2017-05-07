@@ -38,3 +38,10 @@ $listOfCountry = [
 					"en" => "Anglais",
 					"pl" => "Pologne"
 				];
+
+$listOfRole = [
+							"user",
+							"admin",
+							"??",
+							"ban"
+						  ];

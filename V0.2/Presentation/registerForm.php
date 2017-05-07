@@ -9,9 +9,6 @@
 	<body>
 
 		<div class="container-fluid">
-			<div class="row text-center">
-				<h1> Erreur lors de l'inscription</h1>
-			</div>
 			<div class="row">
 				<div id="registerForm" class="col-md-8 col-md-offset-2">
 					<form class="form-group" role="form" action="register.php" method="POST">
@@ -50,7 +47,12 @@
 					</form>
 				</div>
 			</div>
+			<div class="row text-center">
+				<a href="index.php">Retourner sur la page d'accueil</a>
+			</div>
 		</div>
+
+
 		<!-- Formulaire d'inscription -->
 
 		<!-- Footer -->

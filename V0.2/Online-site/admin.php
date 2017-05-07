@@ -85,7 +85,7 @@ SIMPLE VISU + BOUTON
 </pre>
 
 TEST MODIFICATION
-
+<form method="POST" action="test.php">
 <pre>
 	<table>
 		<thead>
@@ -110,8 +110,8 @@ TEST MODIFICATION
 
 <?php
 
-		foreach ($users as $user) {
-			echo "<tr>";
+		foreach ($users as $user) {?>
+			<tr><?php
 			echo "<td>".$user["ID_membre"]."</td>";
 			echo "<td>".$user["email"]."</td>";?>
 			<td><input value="<?php echo ($user["pseudo"])?$user["pseudo"]:"";?>" type="text" name="pseudo" placeholder="pseudo" required="required"></td>
@@ -124,14 +124,9 @@ TEST MODIFICATION
 			<td><input type="date" name="date_update" placeholder="Date d'update'" value="<?php echo date('Y-m-d', strtotime($user["date_update"]))?>"></td>
 			<td><input type="checkbox" name="is_Deleted" <?php if ($user["is_deleted"] == 1){echo "checked=\"checked\"";}else{};?>/></td>
 			<td><input type="text" name="succes_reussi" value="<?php echo ($user["succes_reussi"])?$user["succes_reussi"]:"";?>" placeholder="ID_succes,..."></td>
-			<td><select name="role"><?php
-						foreach ($listOfRole as $key => $value) {
-							 if ($user["role"] == $key){$selected = "selected='selected'";}
-							else {$selected = "";}
-							echo $key;
-							echo "<option value='".$key."' ".$selected.">".$value."</option>";
-						}
-					?></select></td>
+			<td><select name="role"><?php foreach ($listOfRole as $value) {
+							if ($user["role"] == $value){$selected = "selected='selected'";}
+							else {$selected = "";}echo $value;echo "<option value='".$value."' ".$selected.">".$value."</option>";}?></select></td>
 			<td><input type="text" name="profile_picture" value="<?php echo ($user["profile_picture"])?$user["profile_picture"]:"";?>" placeholder="Chemin our URL"></td>
 			<td><input type="text" name="experience" value="<?php echo ($user["experience"])?$user["experience"]:"";?>" placeholder="Expérience"></td>
 <!--	 Créer un lien en fin de ligne vers ce fichier

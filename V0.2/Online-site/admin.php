@@ -94,6 +94,7 @@ $users = $query->fetchAll();
 </table>
 </pre>
 
+Pannel administrateur (modification de compte actif uniquement NB:A VENIR)
 <pre>
 	<table>
 		<thead>

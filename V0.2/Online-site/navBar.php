@@ -20,6 +20,9 @@
                 <li><a href="hallOfFame.php">Hall Of Fame</a></li>
                 <li><a href="ShoutBox.php">ShoutBox</a></li>
                 <li><a href="Succes.php">Succès</a></li>
+                <?php if ($_SESSION['role'] == "admin"):?>
+                    <li><a href="admin.php">Administration</a></li>
+                <?php endif;?>
                 <!-- Dropdown collapse Login Link   -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Compte <span class="caret"></span></a>

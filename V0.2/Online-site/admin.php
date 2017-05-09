@@ -8,15 +8,14 @@
 	?>
   <title>Page Administration</title>
 </head>
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+<body>
 	<?php
   		include "navBar.php";
 	?>
   <br />
   <br />
   <br />
-  <br />
-  <br />
+
 
 	<!--// **  V0.02  ** // -->
 <?php
@@ -27,7 +26,7 @@ $users = $query->fetchAll();
  ?>
 <!--<section>-->
 
-SIMPLE VISU + BOUTON
+ Visuel complet + bouton deleteUser/unDeleteUser.
 
 <pre>
 <table>
@@ -76,15 +75,25 @@ SIMPLE VISU + BOUTON
 //			echo "<td>".$listOfStatus[$user["statut"]]."</td>";
 		// Créer un lien en fin de ligne vers ce fichier
 		// Envoyer en GET l'id de l'user
-		echo "<td><a href='updateUser.php?id=".$user["ID_membre"]."'>Modifier </a></td>";
-		echo "<td><a href='deleteUser.php?id=".$user["ID_membre"]."'>Supprimer </a></td>";
+
+		echo "<td><form method=\"POST\" action='test.php?id=".$user["ID_membre"]."'></td>";
+		?><form>
+			<input type="hidden" name="action" value="deleteUser"/>
+		<td><input type="submit" value="Supprimer"></td>
+		</form><?php
+
+		echo "<td><form method=\"POST\" action='test.php?id=".$user["ID_membre"]."'></td>";
+		?><form>
+			<input type="hidden" name="action" value="unDeleteUser"/>
+		<td><input type="submit" value="Dé-Supprimer"></td>
+		</form><?php
+
 		echo "</tr>";
 	}
 ?>
 </table>
 </pre>
 
-TEST MODIFICATION
 <pre>
 	<table>
 		<thead>
@@ -99,7 +108,7 @@ TEST MODIFICATION
 				<th>Date_naissance </th>
 				<th>Date_creation </th>
 				<th>Date_update </th>
-				<th>Is_deleted </th>
+<!--				<th>Is_deleted </th> -->
 				<th>Succes_reussi </th>
 				<th>Role </th>
 				<th>Profile_picture </th>
@@ -108,10 +117,8 @@ TEST MODIFICATION
 		</thead>
 
 <?php
-
-		foreach ($users as $user) {?>
-			<form method="POST" action="test.php">
-			<tr><?php
+		foreach ($users as $user) {
+			echo "<form method=\"POST\" action='test.php?id=".$user["ID_membre"]."'><tr>"; /* id=".$user["ID_membre"].", */
 			echo "<td>".$user["ID_membre"]."</td>";
 			echo "<td>".$user["email"]."</td>";?>
 			<td><input value="<?php echo ($user["pseudo"])?$user["pseudo"]:"";?>" type="text" name="pseudo" placeholder="pseudo" required="required"></td>
@@ -122,7 +129,7 @@ TEST MODIFICATION
 			<td><input type="date" name="date_naissance" placeholder="Date de naissance" value="<?php echo date('Y-m-d', strtotime($user["date_naissance"]))?>"></td>
 			<td><input type="date" name="date_creation" placeholder="Date de creation" value="<?php echo date('Y-m-d', strtotime($user["date_creation"]))?>"></td>
 			<td><input type="date" name="date_update" placeholder="Date d'update'" value="<?php echo date('Y-m-d', strtotime($user["date_update"]))?>"></td>
-			<td><input type="checkbox" name="is_Deleted" <?php if ($user["is_deleted"] == 1){echo "checked=\"checked\"";}else{};?>/></td>
+<!--			<td><input type="checkbox" name="is_Deleted" <?php if ($user["is_deleted"] == 1){echo "checked=\"checked\"";}else{};?>/></td> -->
 			<td><input type="text" name="succes_reussi" value="<?php echo ($user["succes_reussi"])?$user["succes_reussi"]:"";?>" placeholder="ID_succes,..."></td>
 			<td><select name="role"><?php foreach ($listOfRole as $value) {
 							if ($user["role"] == $value){$selected = "selected='selected'";}
@@ -131,8 +138,9 @@ TEST MODIFICATION
 			<td><input type="text" name="experience" value="<?php echo ($user["experience"])?$user["experience"]:"";?>" placeholder="Expérience"></td>
 <!--	 Créer un lien en fin de ligne vers ce fichier
 			 Envoyer en GET l'id de l'user									-->
+			 <input type="hidden" name="action" value="adminUser"/>
 			<td><input type="submit" value="Modifier"></td>
-			<td><a href='deleteUser.php?id=".$user["ID_membre"]."'>Supprimer </a></td>
+			</form>
 			</tr><?php
 		}
 ?>

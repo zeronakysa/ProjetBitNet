@@ -17,7 +17,7 @@
 	  $user = $query->fetch();
 ?>
 <section>
-	<form method="POST" action="test.php">
+	<form method="POST" action="test.php?action=updateUser">
 		<?php
 			echo "<b>E-mail: </b>".$user["email"]."<br />";?>
 			<b>Pseudo: </b><input value="<?php echo ($user["pseudo"])?$user["pseudo"]:"";?>" type="text" name="pseudo" placeholder="pseudo" required="required"><br />
@@ -27,8 +27,6 @@
 			<b>Code postale: </b><input type="text" name="ville" value="<?php echo ($user["ville"])?$user["ville"]:"";?>" placeholder="Code Postale"><br />
 			<b>Date de naissance: </b><input type="date" name="date_naissance" placeholder="Date de naissance" value="<?php echo date('Y-m-d', strtotime($user["date_naissance"]))?>"><br />
 			<b>Image de profile: </b><input type="text" name="profile_picture" value="<?php echo ($user["profile_picture"])?$user["profile_picture"]:"";?>" placeholder="Chemin our URL"><br />
-			<!--	 Créer un lien en fin de ligne vers ce fichier
-					 	 Envoyer en GET l'id de l'user									-->
 			<input type="submit" value="Mettre à jour">
 		</form>
 	</section>

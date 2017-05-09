@@ -74,7 +74,7 @@
 			if ($succesExist) {
 				giveExp($_SESSION['email'], $id_succes);
 			}
-			
+
 			echo "Succes </i>".$nomSucces[0]."</i> accompli ! Bravo ! <br />";
 		}
 		else {
@@ -85,7 +85,7 @@
 	//Récupère l'exp actuel d'un membre
 	function getExp($email){
 		$connection = dbConnect();
-		
+
 		$query = $connection->prepare('SELECT experience FROM MEMBRE WHERE email=:email');
 		$query->execute(['email'=>$email]);
 		$result=$query->fetch();
@@ -104,7 +104,7 @@
 		$result = $query->fetch();
 
 		$exp_donnee = $result[0];
-		
+
 		$result = null;
 
 		$exp = $expMembre + $exp_donnee;
@@ -115,4 +115,108 @@
 			'email' => $email
 			]);
 	}
+
+	/*
+			Trois fonction sont mise en place pour gérer les infos membre dans BDD,
+			la première,
+			deleteUser(ID_membre);
+			deleteUser est accessible depuis admin.php
+			ell passe is_deleted à 1 soit compte inactif/supprimé
+			?? accessible depuis l'user par "supprimer mon compte" ?
+
+			updateUser();
+			updateUser met à jour les informations d'un utilisateur qui a le role 'user'
+			met à jour les infos suivante de façon libre:
+			pseudo, nom, prenom, code postale, langages, date de naisance, profile_picture
+			débloque un succes lors de la première modification
+			des vérification de sécurité sont à faire sur les entrées
+
+			adminUser(ID_membre);
+			adminUser est accessible depuis la page admin.php
+			la fonction adminUser permet de manage tout les user, hors email et ID
+			n'est accessible que avec le role 'admin'
+			PAS DE VERIFICATION faite sur les entrées
+
+	*/
+	function updateUser(){
+		//verification pas encore faite
+		//ATTENTION
+		$connection=dbConnect();
+		$query=$connection->prepare("UPDATE membre SET
+			pseudo = :pseudo,
+			nom = :nom,
+			prenom = :prenom,
+			langages = :langages,
+			date_naissance = :date_naissance,
+			date_update = NOW(),
+			profile_picture = :profile_picture
+			WHERE email=:email");
+		 $query->execute([
+			"pseudo" => $_POST["pseudo"],
+			"nom" => $_POST["nom"],
+			"prenom" => $_POST["prenom"],
+			"langages" => $_POST["langages"],
+			"date_naissance" => $_POST["date_naissance"],
+			"profile_picture" => $_POST["profile_picture"],
+			"email" => $_SESSION["email"]
+		]);
+		header('Location: espacePersonnel.php');
+	}
+
+	function deleteUser($id){
+		$connection=dbConnect();
+		$query=$connection->prepare("UPDATE MEMBRE SET is_deleted=1 WHERE ID_membre=:id"); //les deux points mettent la donnée de l'execute
+		$query->execute(["id" => $id]);
+		header("Location: admin.php");
+		}
+		function unDeleteUser($id){
+			$connection=dbConnect();
+			$query=$connection->prepare("UPDATE MEMBRE SET is_deleted=0 WHERE ID_membre=:id"); //les deux points mettent la donnée de l'execute
+			$query->execute(["id" => $id]);
+			header("Location: admin.php");
+			}
+
+	function adminUser($id){
+		$connection=dbConnect();
+		$query=$connection->prepare("UPDATE membre SET
+			pseudo = :pseudo,
+			nom = :nom,
+			prenom = :prenom,
+			langages = :langages,
+			date_naissance = :date_naissance,
+			date_creation = :date_creation,
+			date_update = NOW(),
+			/*succes_reussi = :succes_reussi,*/
+			role = :role,
+			profile_picture = :profile_picture,
+			experience = :experience
+			WHERE ID_membre=:id");
+
+		 $_SESSION["test"] = $query->execute([
+			 "id" => $_GET["id"],
+			"pseudo" => $_POST["pseudo"],
+			"nom" => $_POST["nom"],
+			"prenom" => $_POST["prenom"],
+			"langages" => $_POST["langages"],
+			"date_naissance" => $_POST["date_naissance"],
+			"date_creation" => $_POST["date_creation"],
+			/*"succes_reussi" => $_POST["succes_reussi"],*/
+			"role" => $_POST["role"],
+			"profile_picture" => $_POST["profile_picture"],
+			"experience" => $_POST["experience"]
+		]);
+ /* DEBUG
+		print_r ($_SESSION);
+		echo "<br />";
+		print_r ($_GET);
+		echo "<br />";
+		print_r ($_POST);
+		echo "<br />";
+		var_dump($connection);
+		echo "<br />";
+DEBUG */
+		header("Location: admin.php");
+	}
+
+
 ?>

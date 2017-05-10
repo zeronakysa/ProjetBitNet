@@ -75,6 +75,7 @@
 			  	matchTags: {bothTags: true},
 			  	autoCloseTags: true,
 			  	autoCloseBrackets: true,
+			  	fullScreen: true,
 			  	extraKeys: {
 			        "F11": function(cm) {
 			          cm.setOption("fullScreen", !cm.getOption("fullScreen"));

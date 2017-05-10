@@ -47,7 +47,7 @@ CREATE TABLE MEMBRE(
         date_creation   Datetime,
         date_update     Datetime,
         is_deleted      Boolean DEFAULT FALSE,
-        succes_reussi   Int,
+        succes_reussi   Varchar (255),
         role            Varchar (255) DEFAULT "user",
         profile_picture Varchar (255),
         experience      Int DEFAULT "0",

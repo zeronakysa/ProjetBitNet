@@ -20,6 +20,9 @@
                 <li><a href="hallOfFame.php">Hall Of Fame</a></li>
                 <li><a href="ShoutBox.php">ShoutBox</a></li>
                 <li><a href="Succes.php">Succès</a></li>
+                <?php if ($_SESSION['role'] == "admin"):?>
+                    <li><a href="admin.php">Administration</a></li>
+                <?php endif;?>
                 <!-- Dropdown collapse Login Link   -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Compte <span class="caret"></span></a>
@@ -35,19 +38,8 @@
                 <!-- End of Dropdown Login Link -->
             </ul>
             <!-- Desktop Navbar Login form -->
-            <div class="nav navbar-nav navbar-right">
-                <?php
-                    $connection = dbConnect();
-
-                    $query = $connection->prepare('SELECT pseudo FROM membre WHERE email=:email');
-
-                    $query->execute(['email' => $_SESSION['email']]);
-
-                    $results = $query->fetch();
-
-                    $_SESSION['pseudo'] = $results;
-                ?>
-                <a id="infoCompte" href="espacePersonnel.php">Vous êtes connectés en tant que: <em><b><?php echo $_SESSION['pseudo']['pseudo']; ?></b></em></a>
+            <div class="nav navbar-nav navbar-right">                
+                <a id="infoCompte" href="espacePersonnel.php">Vous êtes connectés en tant que: <em><b><?php echo $_SESSION['pseudo']; ?></b></em></a>
                 <br>
                 <p align="right"><a href="deconnection.php">Se déconnecter</a></p>
             </div>

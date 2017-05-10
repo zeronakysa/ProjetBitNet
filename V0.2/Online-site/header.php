@@ -1,3 +1,17 @@
+<?php
+	session_start();
+	require '../global/functions.php';
+	require '../global/conf.inc.php';
+
+	if (!isset($_SESSION['email']) && !isset($_SESSION['pseudo']) && !isset($_SESSION['online'])) {
+		header('Location: ../Presentation/index.php');
+	}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+  
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <!-- BootStrap Meta -->

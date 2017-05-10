@@ -1,6 +1,6 @@
-INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`) VALUES ('1', 'Test 1', 'Test 1', '1000');
-INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`) VALUES ('2', 'Test 2', 'Test 2', '1000');
-INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`) VALUES ('3', 'Test 3', 'Test 3', '1000');
+INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`) VALUES ('1', 'Creation!', 'Vous avez valide(e) votre compte.', '100');
+INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`) VALUES ('2', 'Connexion!', 'Vous avez reussi votre premiere connexion.', '100');
+INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`) VALUES ('3', 'Franchise', 'Vous avez payer votre franchise en nous donnant vous informations personnels. Merci.', '500');
 INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`) VALUES ('4', 'Test 4', 'Test 4', '1000');
 INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`) VALUES ('5', 'Test 5', 'Test 5', '1000');
 INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`) VALUES ('6', 'Test 6', 'Test 6', '1000');

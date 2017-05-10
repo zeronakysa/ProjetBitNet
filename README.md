@@ -4,15 +4,6 @@
 Projet BitNet
 -------------
 
-<<<<<<< HEAD:READMEXD.md
-Steven, 
-Quentin, 
-Aurelien, 
-
-
-BMAMBMA bloubliu
-=======
-
 Projet Annuel 1A2 ESGI
 
 Participants : Steven, Quentin, Aurélien.
@@ -35,4 +26,4 @@ Participants : Steven, Quentin, Aurélien.
         Repeat & Enjoy !
 
 ----------------------
->>>>>>> refs/remotes/origin/master:README.md
+

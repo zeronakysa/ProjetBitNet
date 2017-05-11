@@ -13,6 +13,7 @@ $nbChar = 6;
 $charAuthorized = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 $charAuthorized = str_shuffle($charAuthorized); // créé un captcha à 6 caractères aléatoire
 $captcha = substr($charAuthorized, 0, $nbChar);
+//md5 captcha
 $_SESSION['captcha'] = $captcha;
 
 //$fontsFiles = array_diff(scandir("fonts/"), [".", ".."]); // scandir récupère les fichiers dans le dossier précisé et les placent dans un tableau

@@ -8,9 +8,39 @@
 			include "navBar.php";
 		?>
 
-		<div id="codeMirror" style="margin-top:58px;">
-
+		<div style="margin-top:58px;">
+			<textarea id="codeMirror"></textarea>
 		</div>
+
+		<div>
+			Hello
+			<select onchange="changeOption('theme', this)">
+				<option selected="true" disabled="disabled">Votre thême</option>
+				<?php
+					foreach (new DirectoryIterator('codemirror/theme') as $fileInfo) {
+					    if($fileInfo->isDot()) continue;
+
+					    $name = $fileInfo->getFilename();
+
+					    echo "<option value='". $name . "'>" . $name . "</option>";
+					}
+				?>
+			</select>
+
+			<select onchange="changeOption('language', this)">
+				<option selected="true" disabled="disabled">Votre language</option>
+				<option value="text/x-csrc">C</option>
+				<option value="text/x-c++src">C++</option>
+				<option value="text/html">HTML</option>
+				<option value="XML">XML</option>
+				<option value="CSS">CSS</option>
+				<option value="javascript">Javascript</option>
+				<option value="text/x-php">PHP</option>
+				<option value="text/x-java">Java</option>
+			</select>
+		</div>
+
+
 
 		<?php
 	  		include "footer.php";
@@ -23,10 +53,10 @@
 		<!-- addon/search -->
 		<script src="codemirror/addon/search/search.js"></script>
 		<script src="codemirror/addon/search/searchcursor.js"></script>
-		<script src="codemirror/addon/search/match-highlighter.js"></script>
 
 		<!-- addon/scroll -->
 		<script src="codemirror/addon/scroll/simplescrollbars.js"></script>
+		<script src="codemirror/addon/scroll/annotatescrollbar.js"></script>
 
 		<!-- addon/edit -->
 		<script src="codemirror/addon/edit/matchBrackets.js"></script>
@@ -45,46 +75,19 @@
 		<script src="codemirror/addon/display/fullscreen.js"></script>
 		
 		<!-- modes codemirror -->
+		<script src="codemirror/mode/clike/clike.js"></script>
 		<script src="codemirror/mode/javascript/javascript.js"></script>
 		<script src="codemirror/mode/xml/xml.js"></script>
 		<script src="codemirror/mode/css/css.js"></script>
 		<script src="codemirror/mode/htmlmixed/htmlmixed.js"></script>
+		<script src="codemirror/mode/php/php.js"></script>
 
 		<!-- css codemirror -->
-		<link rel="stylesheet" href="codemirror/lib/codemirror.css">
+		<link rel="stylesheet" href="codemirror/lib/codemirror.css"/>
 		<link rel="stylesheet" href="codemirror/addon/scroll/simplescrollbars.css">
 		<link rel="stylesheet" href="codemirror/addon/display/fullscreen.css">
-		<link rel="stylesheet" href="codemirror/theme/monokai.css">
-
-		<script>
-			var myCodeMirror = CodeMirror(document.getElementById("codeMirror"),{
-				mode: "text/html",
-				placeholder: "Work In progress (codelive)",
-				theme: "monokai",
-				styleActiveLine: true,
-				matchBrackets: true,
-				lineWrapping: true,
-				lineNumbers: true,
-				smartIndent: true,
-				onCursorActivity: function() {
-			    	editor.matchHighlight("CodeMirror-matchhighlight");
-			  	},
-			  	scrollbarStyle: "overlay",
-			  	showCursorWhenSelecting: true,
-			  	autofocus: true,
-			  	matchTags: {bothTags: true},
-			  	autoCloseTags: true,
-			  	autoCloseBrackets: true,
-			  	fullScreen: true,
-			  	extraKeys: {
-			        "F11": function(cm) {
-			          cm.setOption("fullScreen", !cm.getOption("fullScreen"));
-			        },
-			        "Esc": function(cm) {
-			          if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
-			        }
-			    }			  	
-			});
-		</script>
+	
+		<!-- Créé l'éditeur de texte -->
+		<script src="codelive.js"></script>
 	</body>
 </html>

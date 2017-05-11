@@ -1,4 +1,4 @@
-<?php
+ <?php
 	session_start();
 	require '../global/functions.php';
 	require '../global/conf.inc.php';
@@ -28,3 +28,14 @@
 
 <!-- Css Plugin -->
 <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
+
+<!-- css theme -->
+<?php
+	foreach (new DirectoryIterator('codemirror/theme') as $fileInfo) {
+	    if($fileInfo->isDot()) continue;
+
+	    $name = $fileInfo->getFilename();
+
+	    echo '<link rel="stylesheet" type="text/css" href="codemirror/theme/' . $name .'">';
+	}
+?>

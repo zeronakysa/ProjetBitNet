@@ -41,7 +41,7 @@
             <div class="nav navbar-nav navbar-right">                
                 <a id="infoCompte" href="espacePersonnel.php">Vous êtes connectés en tant que: <em><b><?php echo $_SESSION['pseudo']; ?></b></em></a>
                 <br>
-                <p align="right"><a href="deconnection.php">Se déconnecter</a></p>
+                <span style="float: right"><a href="deconnection.php">Se déconnecter</a></span>
             </div>
         </div>
     </div>

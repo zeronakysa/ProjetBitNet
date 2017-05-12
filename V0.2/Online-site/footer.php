@@ -1,5 +1,5 @@
 <!-- Footer -->
-<footer class="bitnet-footer">
+<footer class="bitnet-footer navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="row footer-rights">
             <div class="text-center">

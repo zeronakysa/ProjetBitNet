@@ -35,7 +35,7 @@ body {
 }
 
 /* Navbar Hover Link */
-#navbarContainer li a:hover{
+#navbarContainer li a:hover, .tab span:hover {
     background-color: white;
     color: #C02425;
     transition: all 0.2s;
@@ -219,6 +219,21 @@ header .header-content .header-content-inner h1 {
   border-color: #C02425;
 }
 
+/* Button Sauvegarder*/
+.btn-save {
+  color: black;
+  background: transparent;
+  transition: all 0.5s;
+}
+
+.btn-save:hover,
+.btn-save:focus,
+.btn-save:active,
+.btn-save.active {
+  color: white;
+  background-color: black;
+}
+
 .btn {
   font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
   text-transform: uppercase;
@@ -275,8 +290,37 @@ header .header-content .header-content-inner h1 {
 /* --- Footer Container --- */
 /* ---------------------------------------------------------------------*/
 
-.footer{
+footer {
+  background-color: #fff;
+}
+footer p {
+  margin: 10px;
+}
 
+#footer_menu {
+    bottom: 40px;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    z-index: 1000;
+}
+.tab {
+    padding: 5px 5px 0;
+    background-color: transparent;
+}
+.tab span {
+  background-color: #fff;
+    padding: 5px 50px 5px 50px;
+    border-radius: 5px 5px 0 0;
+    cursor: pointer;
+}
+
+.options {
+    text-align: center;
+    display: none;
+    background-color: #e7e7e7;
+    padding: 5px;
 }
 
 /* ---------------------------------------------------------------------*/

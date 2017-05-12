@@ -29,19 +29,13 @@
 	    	giveSucces(1);
 			echo "Félicitations vous êtes inscrits!<br>";
 		}elseif ($_GET['id'] == 2) {
-			echo "Les identifiants sont incorrects";
 			require "connectionForm.php";
 		}else{
 	        echo "Bien essayé";
 	        die();
 	    }
 	?>
-	<a href="index.php">Retourner sur la page d'accueil</a>
 
-	<!-- Bootstrap Jquery Link -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Bootstrap JavaScript Link -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- Script Reload Captcha -->
     <script src="../global/functions.js"></script>
 

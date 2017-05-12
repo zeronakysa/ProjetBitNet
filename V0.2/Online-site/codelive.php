@@ -8,44 +8,47 @@
 			include "navBar.php";
 		?>
 
-		<div style="margin-top:58px;">
+		<div style="margin-top:40px;">
 			<textarea id="codeMirror"></textarea>
 		</div>
 
-		<div>
-			Hello
-			<select onchange="changeOption('theme', this)">
-				<option selected="true" disabled="disabled">Votre thême</option>
-				<?php
-					foreach (new DirectoryIterator('codemirror/theme') as $fileInfo) {
-					    if($fileInfo->isDot()) continue;
+		<div id="footer_menu">
+			<div class="tab"><span>Options</span></div>
+			<div class="options">
+				<select onchange="changeOption('theme', this)">
+					<option selected="true" disabled="disabled">Votre thême</option>
+					<?php
+						foreach (new DirectoryIterator('codemirror/theme') as $fileInfo) {
+						    if($fileInfo->isDot()) continue;
 
-					    $name = $fileInfo->getFilename();
+						    $name = $fileInfo->getFilename();
 
-					    echo "<option value='". $name . "'>" . $name . "</option>";
-					}
-				?>
-			</select>
+						    echo "<option value='". $name . "'>" . $name . "</option>";
+						}
+					?>
+				</select>
 
-			<select onchange="changeOption('language', this)">
-				<option selected="true" disabled="disabled">Votre language</option>
-				<option value="text/x-csrc">C</option>
-				<option value="text/x-c++src">C++</option>
-				<option value="text/html">HTML</option>
-				<option value="XML">XML</option>
-				<option value="CSS">CSS</option>
-				<option value="javascript">Javascript</option>
-				<option value="text/x-php">PHP</option>
-				<option value="text/x-java">Java</option>
-			</select>
+				<select onchange="changeOption('language', this)">
+					<option selected="true" disabled="disabled">Votre language</option>
+					<option value="text/x-csrc">C</option>
+					<option value="text/x-c++src">C++</option>
+					<option value="text/html">HTML</option>
+					<option value="text/xml">XML</option>
+					<option value="CSS">CSS</option>
+					<option value="javascript">Javascript</option>
+					<option value="text/x-php">PHP</option>
+					<option value="text/x-java">Java</option>
+				</select>
+
+				<button type="button" class="btn btn-save fa fa-floppy-o" onclick="save()"
+				data-toggle="tooltip" data-placement="right" title="Sauvegarder"></button>
+			</div>
 		</div>
-
-
 
 		<?php
 	  		include "footer.php";
 		?>
-		
+
 		<!-- JS codemirror -->
 		<script src="codemirror/lib/codemirror.js"></script>
 
@@ -89,5 +92,12 @@
 	
 		<!-- Créé l'éditeur de texte -->
 		<script src="codelive.js"></script>
+
+		<!-- Tooltip script -->
+		<script>
+			$(document).ready(function(){
+			    $('[data-toggle="tooltip"]').tooltip();   
+			});
+		</script>
 	</body>
 </html>

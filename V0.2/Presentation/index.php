@@ -56,20 +56,28 @@
 						<form class="form-group" role="form" action="register.php" method="POST">
 							<!-- Pseudo -->
 							<label>Pseudo</label>
-							<input class="form-control col-4" type="text" name="pseudo" placeholder="Votre pseudo" required="required" value="<?php echo (isset($_SESSION['form_post']['pseudo'])) ? $_SESSION['form_post']['pseudo']:'' ?>">
+							<i class="fa fa-user"></i>
+							<input class="form-control" type="text" name="pseudo" placeholder="Votre pseudo" 
+							required="required" data-toggle="tooltip" data-placement="bottom" title="Pseudo entre 3 et 36 caractères!"
+							value="<?php echo (isset($_SESSION['form_post']['pseudo'])) ? $_SESSION['form_post']['pseudo']:'' ?>">
 
 							<!-- Adresse Email -->
 							<label>Adresse e-mail</label>
-							<input class="form-control col-4" type="email" name="email" placeholder="Votre email" required="required"
+							<i class="fa fa-at"></i>
+							<input class="form-control" type="email" name="email" placeholder="Votre email" required="required"
 							value="<?php echo (isset($_SESSION['form_post']['email'])) ? $_SESSION['form_post']['email']:'' ?>" >
 
 							<!-- Mot de passe -->
 							<label>Mot de passe</label>
-							<input class="form-control" type="password" name="pwd" placeholder="Votre mot de passe" required="required">
+							<i class="fa fa-lock"></i>
+							<input class="form-control" type="password" name="pwd" placeholder="Votre mot de passe" required="required"
+							data-toggle="tooltip" data-placement="bottom" title="Le mot de passe doit contenir entre 6 et 36 caractères">
 
 							<!-- Verification Mot de passe -->
 							<label>Vérification du mot de passe</label>
-							<input class="form-control" type="password" name="pwd2" placeholder="Confirmation" required="required">
+							<i class="fa fa-lock"></i>
+							<input class="form-control" type="password" name="pwd2" placeholder="Confirmation" required="required"
+							data-toggle="tooltip" data-placement="bottom" title="La confirmation du mot de passe doit être identique au mot de passe">
 
 							<!-- Captcha -->
 							<label>Captcha</label><br>
@@ -211,13 +219,19 @@
 				</div>
 			</div>
 		</footer>
-
-
+		
 		<!-- Bootstrap Jquery Link -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<!-- Bootstrap JavaScript Link -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<!-- Script Reload Captcha -->
 		<script src="../global/functions.js"></script>
+
+		<!-- Tooltip script -->
+		<script>
+			$(document).ready(function(){
+			    $('[data-toggle="tooltip"]').tooltip();   
+			});
+		</script>
 	</body>
 </html>

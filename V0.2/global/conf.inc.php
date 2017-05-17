@@ -31,3 +31,14 @@ $listOfRole = [
 	"??",
 	"ban"
  ];
+
+$listOfLanguages = [
+	"C",
+	"C++",
+	"HTML",
+	"XML",
+	"CSS",
+	"JavaScript",
+	"PHP",
+	"Java"
+];

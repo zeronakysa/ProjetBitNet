@@ -3,6 +3,7 @@
 	require '../global/functions.php';
 	require '../global/conf.inc.php';
 
+	//Empêche d'accéder au online-site si on n'est pas connecté
 	if (!isset($_SESSION['email']) && !isset($_SESSION['pseudo']) && !isset($_SESSION['online'])) {
 		header('Location: ../Presentation/index.php');
 	}
@@ -28,14 +29,3 @@
 
 <!-- Css Plugin -->
 <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
-
-<!-- css theme -->
-<?php
-	foreach (new DirectoryIterator('codemirror/theme') as $fileInfo) {
-	    if($fileInfo->isDot()) continue;
-
-	    $name = $fileInfo->getFilename();
-
-	    echo '<link rel="stylesheet" type="text/css" href="codemirror/theme/' . $name .'">';
-	}
-?>

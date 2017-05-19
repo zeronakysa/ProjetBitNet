@@ -28,6 +28,9 @@
 	    }elseif ($_GET['id'] == 1) {
 	    	giveSucces(1);
 			echo "Félicitations vous êtes inscrits!<br>";
+			?>
+			<a href="index.php">Retourner sur la page d'accueil</a>
+			<?php
 		}elseif ($_GET['id'] == 2) {
 			require "connectionForm.php";
 		}else{

@@ -121,7 +121,7 @@
 			la première,
 			deleteUser(ID_membre);
 			deleteUser est accessible depuis admin.php
-			ell passe is_deleted à 1 soit compte inactif/supprimé
+			elle passe is_deleted à 1 soit compte inactif/supprimé
 			?? accessible depuis l'user par "supprimer mon compte" ?
 
 			updateUser();
@@ -129,13 +129,13 @@
 			met à jour les infos suivante de façon libre:
 			pseudo, nom, prenom, code postale, langages, date de naisance, profile_picture
 			débloque un succes lors de la première modification
-			des vérification de sécurité sont à faire sur les entrées
+			des vérifications de sécurité sont à faire sur les entrées
 
 			adminUser(ID_membre);
 			adminUser est accessible depuis la page admin.php
 			la fonction adminUser permet de manage tout les user, hors email et ID
 			n'est accessible que avec le role 'admin'
-			PAS DE VERIFICATION faite sur les entrées
+			PAS DE VERIFICATION faites sur les entrées
 
 	*/
 	function updateUser(){
@@ -160,6 +160,8 @@
 			"profile_picture" => $_POST["profile_picture"],
 			"email" => $_SESSION["email"]
 		]);
+		 
+		$_SESSION['pseudo'] = $_POST['pseudo'];
 		header('Location: espacePersonnel.php');
 	}
 

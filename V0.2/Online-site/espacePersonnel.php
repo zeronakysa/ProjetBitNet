@@ -22,7 +22,7 @@
 			<form method="POST" action="test.php">
 				<?php
 					echo "<b>E-mail: </b>".$user["email"]."<br />";?>
-					<b>Pseudo: </b><input value="<?php echo ($user["pseudo"])?$user["pseudo"]:"";?>" type="text" name="pseudo" placeholder="pseudo" required="required"><i>NB:Pour que le pseudo soit mis à jour dans la navBar il faut déco/reco.</i><br />
+					<b>Pseudo: </b><input value="<?php echo ($user["pseudo"])?$user["pseudo"]:"";?>" type="text" name="pseudo" placeholder="pseudo" required="required"><br />
 					<b>Nom: </b><input type="text" name="nom" value="<?php echo ($user["nom"])?$user["nom"]:"";?>" placeholder="Nom"><br />
 					<b>Prenom: </b><input type="text" name="prenom" value="<?php echo ($user["prenom"])?$user["prenom"]:"";?>" placeholder="Prénom"><br />
 					<b>Languages</b><input type="text" name="langages" value="<?php echo ($user["langages"])?$user["langages"]:"";?>" placeholder="langages"><br />

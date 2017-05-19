@@ -49,13 +49,41 @@ function changeOption(option, element){
 	}
 }
 
-//Sauvegarde le contenu de codemirror
-function save(){
-	var content = editor.getValue();
-	console.log(content);
-}
-
 //Transition pour afficher les options
 $('div.tab span').on('click', function() {
 	$('div.options').slideToggle('fast');
 });
+
+//création de la requête pour toutes versions de navigateur
+function newXMLHttpRequest() {
+	//Pour les navigateurs à jours
+	if (window.XMLHttpRequest){
+		return new XMLHttpRequest();
+	}
+	//Pour les anciennes versions d'IE
+	return new ActiveXObject("Microsoft.XMLHTTP");
+}
+
+//Sauvegarde le contenu de codemirror
+function save(element){
+	var content = editor.getValue();
+	var request = newXMLHttpRequest();
+	var donnees = "content=" + content + "&token=" + $(element).data('token');
+
+	request.onreadystatechange = function() {
+		if (request.readyState == 4 && request.status == 200) {
+			//alert(request.responseText);
+			//Affiche pop up confirmation
+			var confirm_save = document.getElementById('saved');
+			confirm_save.innerHTML = "Fichier sauvegardé!";
+			//Attend 2000ms soit 2sec et efface la pop up
+			setTimeout(function(){
+		        confirm_save.innerHTML = "";
+		    }, 2000);
+		}
+	}
+
+	request.open('POST', 'saveCodeMirror.php');
+	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	request.send(donnees);
+}

@@ -10,12 +10,13 @@ use projet_BitNet;
 #------------------------------------------------------------
 
 CREATE TABLE CODELIVE(
-        ID_session    int (11) Auto_increment  NOT NULL,
-        nom_session   Varchar (255),
+        ID_codelive int(11) Auto_increment,
+        token_session    char (6),
         nom_createur  Varchar (255),
-        date_creation Datetime,
+        last_update Datetime DEFAULT CURRENT_TIMESTAMP,
         ID_fichier    Int,
-        PRIMARY KEY (ID_session)
+        contenu_codelive Text,
+        PRIMARY KEY (ID_codelive, token_session)
 );
 
 #------------------------------------------------------------
@@ -60,6 +61,7 @@ CREATE TABLE MEMBRE(
 
 CREATE TABLE FICHIER(
         ID_fichier     int (11) Auto_increment  NOT NULL,
+        nom_fichier    Varchar (255),
         chemin_fichier Varchar (255),
         langages       Varchar (25),
         visibilite     Boolean,

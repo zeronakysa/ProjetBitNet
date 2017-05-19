@@ -1,6 +1,65 @@
 <?php
-		include "header.php";
-	?>
+	session_start();
+	require '../global/functions.php';
+	require '../global/conf.inc.php';
+
+	if (!isset($_SESSION['email']) && !isset($_SESSION['pseudo']) && !isset($_SESSION['online'])) {
+		header('Location: ../Presentation/index.php');
+	}
+
+	//Si le token n'existe pas -> on le créé et on redirige
+	if (!isset($_SESSION['token'])) {
+		$token_key = md5(uniqid(rand(), true));
+		$token = '';
+
+		for ($i=0; $i < 6; $i++) {
+			$charIndex = rand(0, 22); 
+			$token .=  $token_key[$charIndex]; 
+		}
+
+		$_SESSION['token'] = $token;
+		
+		header("Location: codelive.php?token=" . $token);
+	}
+
+	//si le token existe mais qu'il n'est pas dans l'url, on redirige
+	if ($_GET['token'] == null) {
+		header("Location: codelive.php?token=" . $_SESSION['token']);
+	}
+
+?>
+
+	<!DOCTYPE html>
+
+	<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!-- BootStrap Meta -->
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<!-- Bootstrap Css Link -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+		<!-- Custom Css Link -->
+		<link rel="stylesheet" href="css/custom_css.css" />
+
+		<!-- Custom font -->
+		<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+		<!-- Css Plugin -->
+		<link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
+
+		<!-- css theme codemirror -->
+		<?php
+			foreach (new DirectoryIterator('codemirror/theme') as $fileInfo) {
+			    if($fileInfo->isDot()) continue;
+
+			    $name = $fileInfo->getFilename();
+
+			    echo '<link rel="stylesheet" type="text/css" href="codemirror/theme/' . $name .'">';
+			}
+		?>
 		<title>CodeLive</title>
 	</head>
 	<body>
@@ -40,8 +99,9 @@
 					<option value="text/x-java">Java</option>
 				</select>
 
-				<button type="button" class="btn btn-save fa fa-floppy-o" onclick="save()"
-				data-toggle="tooltip" data-placement="right" title="Sauvegarder"></button>
+				<button type="button" class="btn btn-save fa fa-floppy-o" onclick="save(this)"
+				data-toggle="tooltip" data-placement="top" data-token="<?php echo $_SESSION['token'] ?>" title="Sauvegarder"></button>
+				<span id="saved"></span>
 			</div>
 		</div>
 
@@ -96,8 +156,11 @@
 		<!-- Tooltip script -->
 		<script>
 			$(document).ready(function(){
-			    $('[data-toggle="tooltip"]').tooltip();   
+			    $('[data-toggle="tooltip"]').tooltip(); 
 			});
+	
+			
+	
 		</script>
 	</body>
 </html>

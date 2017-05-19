@@ -18,10 +18,9 @@ if ($results != null) {
 	$date = new DateTime(null, new DateTimeZone('Europe/Paris'));
 	$date = $date->format('Y-m-d H:i:s');
 
-	$query = $connection->prepare('UPDATE codelive SET token_session = :token_session, nom_createur = :nom_createur, last_update = :last_update, contenu_codelive = :contenu_codelive WHERE token_session = :token_session');
+	$query = $connection->prepare('UPDATE codelive SET token_session = :token_session, last_update = :last_update, contenu_codelive = :contenu_codelive WHERE token_session = :token_session');
 	$test = $query->execute([
 		'token_session'=> $token,
-		'nom_createur' => $_SESSION['pseudo'],
 		'last_update' => $date,
 		'contenu_codelive' => $content
 	]);

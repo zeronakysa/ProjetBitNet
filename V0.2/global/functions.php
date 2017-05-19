@@ -188,7 +188,7 @@
 			date_naissance = :date_naissance,
 			date_creation = :date_creation,
 			date_update = NOW(),
-			/*succes_reussi = :succes_reussi,*/
+			succes_reussi = :succes_reussi,
 			role = :role,
 			profile_picture = :profile_picture,
 			experience = :experience
@@ -202,7 +202,7 @@
 			"langages" => $_POST["langages"],
 			"date_naissance" => $_POST["date_naissance"],
 			"date_creation" => $_POST["date_creation"],
-			/*"succes_reussi" => $_POST["succes_reussi"],*/
+			"succes_reussi" => $_POST["succes_reussi"],
 			"role" => $_POST["role"],
 			"profile_picture" => $_POST["profile_picture"],
 			"experience" => $_POST["experience"]

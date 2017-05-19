@@ -16,10 +16,13 @@
         <!-- Navbar Link  (Work when collapse)-->
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li><a href="codeLive.php">CodeLive</a></li>
+                <li><a href="codeLive.php" >CodeLive</a></li>
                 <li><a href="hallOfFame.php">Hall Of Fame</a></li>
                 <li><a href="ShoutBox.php">ShoutBox</a></li>
                 <li><a href="Succes.php">Succès</a></li>
+                <?php if ($_SESSION['role'] == "admin"):?>
+                    <li><a href="admin.php">Administration</a></li>
+                <?php endif;?>
                 <!-- Dropdown collapse Login Link   -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Compte <span class="caret"></span></a>
@@ -38,7 +41,7 @@
             <div class="nav navbar-nav navbar-right">                
                 <a id="infoCompte" href="espacePersonnel.php">Vous êtes connectés en tant que: <em><b><?php echo $_SESSION['pseudo']; ?></b></em></a>
                 <br>
-                <p align="right"><a href="deconnection.php">Se déconnecter</a></p>
+                <span style="float: right"><a href="deconnection.php">Se déconnecter</a></span>
             </div>
         </div>
     </div>

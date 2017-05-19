@@ -25,23 +25,20 @@ $errors = [
 	10 => "Identifiants incorrects."
 ];
 
-$listOfGender = [
-			"m" => "Homme",
-			"w" => "Femme",
-			"o" => "Autre"
-		  ];
-
-$defaultGender = "m";
-
-$listOfCountry = [
-					"fr" => "France",
-					"en" => "Anglais",
-					"pl" => "Pologne"
-				];
-
 $listOfRole = [
-							"user",
-							"admin",
-							"??",
-							"ban"
-						  ];
+	"user",
+	"admin",
+	"??",
+	"ban"
+ ];
+
+$listOfLanguages = [
+	"C",
+	"C++",
+	"HTML",
+	"XML",
+	"CSS",
+	"JavaScript",
+	"PHP",
+	"Java"
+];

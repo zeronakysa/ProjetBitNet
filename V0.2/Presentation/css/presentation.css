@@ -406,7 +406,7 @@ header .header-content .header-content-inner h1 {
 /* ---------------------------------------------------------------------*/
 
 #registerForm{
-    padding: 50px 200px;
+    padding: 20px 200px;
 }
 
 #registerForm .form-control{
@@ -422,7 +422,7 @@ header .header-content .header-content-inner h1 {
 
 #connectionForm{
     background-color: white;
-    padding: 50px 200px;
+    padding: 20px 200px;
 }
 
 #connectionForm .form-control{

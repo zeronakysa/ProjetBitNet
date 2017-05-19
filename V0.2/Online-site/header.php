@@ -1,8 +1,9 @@
-<?php
+ <?php
 	session_start();
 	require '../global/functions.php';
 	require '../global/conf.inc.php';
 
+	//Empêche d'accéder au online-site si on n'est pas connecté
 	if (!isset($_SESSION['email']) && !isset($_SESSION['pseudo']) && !isset($_SESSION['online'])) {
 		header('Location: ../Presentation/index.php');
 	}

@@ -14,17 +14,24 @@
 	?>
 </head>
 
-    <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">   
+    <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
 	<?php
 		if ($_GET['id'] == 0) {
-			echo "Erreur lors de la tentative d'inscription, veuillez réessayer:";
 
 			if (isset($_SESSION['form_errors'])) {
+				echo "<h1 class='text-center'>Erreur lors de l'inscription</h1>";
+
+				echo "<div class='panel panel-danger'>";
+				echo "<div class='panel-heading'>Erreurs</div>";
 		        	foreach ($_SESSION['form_errors'] as $error) {
-		            	echo "<li>".$errors[$error];
+						echo 	"<div class='panel-body'>" .$errors[$error] ."</div>";
+		            	// echo "<li>".$errors[$error];
 		        }
+				echo "</div>";
 		    }
-				require "registerForm.php";
+
+			require "registerForm.php";
+
 	    }elseif ($_GET['id'] == 1) {
 	    	giveSucces(1);
 			echo "Félicitations vous êtes inscrits!<br>";

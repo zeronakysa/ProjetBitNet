@@ -16,7 +16,7 @@
         <!-- Navbar Link  (Work when collapse)-->
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li><a href="codeLive.php">CodeLive</a></li>
+                <li><a href="codeLive.php" >CodeLive</a></li>
                 <li><a href="hallOfFame.php">Hall Of Fame</a></li>
                 <li><a href="ShoutBox.php">ShoutBox</a></li>
                 <li><a href="Succes.php">Succès</a></li>

@@ -20,8 +20,8 @@ if (!empty($_POST['email']) &&
 		$query->execute(['email' => $_POST['email'], 'pwd' => $password]);
 		$results = $query->fetch();
 		if (empty($results)) {
-				$error = true;
-				$listOfErrors[] = 10;
+			$error = true;
+			$listOfErrors[] = 10;
 		}
 	}else{
 		$error = true;

@@ -50,7 +50,7 @@ CREATE TABLE MEMBRE(
         is_deleted      Boolean DEFAULT FALSE,
         succes_reussi   Varchar (255),
         role            Varchar (255) DEFAULT "user",
-        profile_picture Varchar (255),
+        profile_picture Varchar (512) DEFAULT "https://yt3.ggpht.com/-GwF5o-xhRg8/AAAAAAAAAAI/AAAAAAAAAAA/A5Mm8Rw8XeI/s900-c-k-no-mo-rj-c0xffffff/photo.jpg",
         experience      Int DEFAULT "0",
         PRIMARY KEY (ID_membre, email)
 );

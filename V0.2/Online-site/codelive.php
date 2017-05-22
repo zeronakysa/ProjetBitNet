@@ -99,7 +99,7 @@
 					<option value="text/x-java">Java</option>
 				</select>
 
-				<button type="button" class="btn btn-save fa fa-floppy-o" onclick="save(this)"
+				<button id= "button_token" type="button" class="btn btn-save fa fa-floppy-o" onclick="saveCodeMirrorContent()"
 				data-toggle="tooltip" data-placement="top" data-token="<?php echo $_SESSION['token'] ?>" title="Sauvegarder"></button>
 				<span id="saved"></span>
 			</div>

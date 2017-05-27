@@ -83,10 +83,10 @@ CREATE TABLE SUCCES(
 );
 
 #------------------------------------------------------------
-# Table: creation_projet
+# Table: participe_projet
 #------------------------------------------------------------
 
-CREATE TABLE creation_projet(
+CREATE TABLE participe_projet(
         email     Varchar (255) NOT NULL,
         ID_projet Int NOT NULL,
         PRIMARY KEY (email, ID_projet)
@@ -129,8 +129,8 @@ CREATE TABLE SHOUTBOX_MESSAGE(
 
 ALTER TABLE SHOUTBOX_MESSAGE ADD CONSTRAINT FK_SHOUTBOX_MESSAGE_pseudo FOREIGN KEY (pseudo) REFERENCES MEMBRE(pseudo);
 ALTER TABLE CODELIVE ADD CONSTRAINT FK_CODELIVE_ID_fichier FOREIGN KEY (ID_fichier) REFERENCES FICHIER(ID_fichier);
-ALTER TABLE creation_projet ADD CONSTRAINT FK_creation_projet_email FOREIGN KEY (email) REFERENCES MEMBRE(email);
-ALTER TABLE creation_projet ADD CONSTRAINT FK_creation_projet_ID_projet FOREIGN KEY (ID_projet) REFERENCES PROJET(ID_projet);
+ALTER TABLE participe_projet ADD CONSTRAINT FK_participe_projet_email FOREIGN KEY (email) REFERENCES MEMBRE(email);
+ALTER TABLE participe_projet ADD CONSTRAINT FK_participe_projet_ID_projet FOREIGN KEY (ID_projet) REFERENCES PROJET(ID_projet);
 ALTER TABLE creation_fichier ADD CONSTRAINT FK_creation_fichier_ID_fichier FOREIGN KEY (ID_fichier) REFERENCES FICHIER(ID_fichier);
 ALTER TABLE creation_fichier ADD CONSTRAINT FK_creation_fichier_ID_projet FOREIGN KEY (ID_projet) REFERENCES PROJET(ID_projet);
 ALTER TABLE succes_reussi ADD CONSTRAINT FK_reussi_email FOREIGN KEY (email) REFERENCES MEMBRE(email);

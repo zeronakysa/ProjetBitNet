@@ -80,9 +80,10 @@
 						foreach (new DirectoryIterator('codemirror/theme') as $fileInfo) {
 						    if($fileInfo->isDot()) continue;
 
-						    $name = $fileInfo->getFilename();
+						    $fileName = $fileInfo->getFilename();
+						    $name = explode('.', $fileName);
 
-						    echo "<option value='". $name . "'>" . $name . "</option>";
+						    echo "<option value='". $fileName . "'>" . $name[0] . "</option>";
 						}
 					?>
 				</select>

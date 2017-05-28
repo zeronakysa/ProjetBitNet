@@ -52,6 +52,18 @@ require '../global/conf.inc.php';
 				$id = $_GET["id"];
 				adminUser($id);
 			}
+			if ($_POST["action"]=="editProject" && is_numeric($_GET["id"])){
+				$id = $_GET["id"];
+				adminUser($id);
+			}
+			if ($_POST["action"]=="deleteProject" && is_numeric($_GET["id"])){
+				$id = $_GET["id"];
+				deleteProject($id);
+			}
+			if ($_POST["action"]=="createProject" && is_numeric($_GET["id"])){
+				$id = $_GET["id"];
+				createProject($id, $_POST["projectName"], $_POST["projetDescription"], $_SESSION["email"]);
+			}
 			include "footer.php";
 		?>
 	</body>

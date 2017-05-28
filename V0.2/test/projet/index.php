@@ -30,7 +30,7 @@
 <!-- Css Plugin -->
 
 
-<div id="projet">
+<div id="createProjet">
 <?php if(isset($_GET["ce"])){
         if ($_GET["ce"] == 1){
           echo 'Echec lors de la création du projet. Un projet portant le même nom existe déjà. Essayer avec un autre nom <br />';

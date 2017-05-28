@@ -2,7 +2,7 @@
 #        Script MySQL. Création BDD projet_BitNet
 #------------------------------------------------------------
 
-CREATE DATABASE projet_BitNet CHARACTER SET 'utf8';
+CREATE DATABASE projet_BitNet CHARACTER SET 'utf8_unicode_ci';
 use projet_BitNet;
 
 #------------------------------------------------------------
@@ -17,7 +17,7 @@ CREATE TABLE CODELIVE(
         ID_fichier          Int,
         contenu_codelive    Text,
         PRIMARY KEY (ID_codelive, token_session)
-);
+)ENGINE = InnoDB;
 
 #------------------------------------------------------------
 # Table: PROJET
@@ -30,7 +30,7 @@ CREATE TABLE PROJET(
         date_creation      Datetime,
         description_projet Varchar (255),
         PRIMARY KEY (ID_projet)
-);
+)ENGINE = InnoDB;
 
 #------------------------------------------------------------
 # Table: MEMBRE
@@ -54,7 +54,7 @@ CREATE TABLE MEMBRE(
         profile_picture Varchar (512) DEFAULT "https://yt3.ggpht.com/-GwF5o-xhRg8/AAAAAAAAAAI/AAAAAAAAAAA/A5Mm8Rw8XeI/s900-c-k-no-mo-rj-c0xffffff/photo.jpg",
         experience      Int DEFAULT "0",
         PRIMARY KEY (ID_membre, email)
-);
+)ENGINE = InnoDB;
 
 #------------------------------------------------------------
 # Table: FICHIER
@@ -68,7 +68,7 @@ CREATE TABLE FICHIER(
         visibilite     Boolean,
         date_creation  Datetime,
         PRIMARY KEY (ID_fichier)
-);
+)ENGINE = InnoDB;
 
 #------------------------------------------------------------
 # Table: SUCCES
@@ -80,7 +80,7 @@ CREATE TABLE SUCCES(
         description_succes Text,
         xp_donnee          Int,
         PRIMARY KEY (ID_succes)
-);
+)ENGINE = InnoDB;
 
 #------------------------------------------------------------
 # Table: creation_projet
@@ -90,7 +90,7 @@ CREATE TABLE creation_projet(
         email     Varchar (255) NOT NULL,
         ID_projet Int NOT NULL,
         PRIMARY KEY (email, ID_projet)
-);
+)ENGINE = InnoDB;
 
 #------------------------------------------------------------
 # Table: creation_fichier
@@ -100,7 +100,7 @@ CREATE TABLE creation_fichier(
         ID_fichier Int NOT NULL,
         ID_projet  Int NOT NULL,
         PRIMARY KEY (ID_fichier, ID_projet)
-);
+)ENGINE = InnoDB;
 
 #------------------------------------------------------------
 # Table: succes_reussi
@@ -110,7 +110,7 @@ CREATE TABLE succes_reussi(
         email     Varchar (255) NOT NULL ,
         ID_succes Int NOT NULL ,
         PRIMARY KEY (email, ID_succes)
-);
+)ENGINE = InnoDB;
 
 #------------------------------------------------------------
 # Table: SHOUTBOX
@@ -121,7 +121,7 @@ CREATE TABLE SHOUTBOX_MESSAGE(
         pseudo              Varchar (255) NOT NULL,
         message             text,
         PRIMARY KEY (ID_shoutbox_message)
-);
+)ENGINE = InnoDB;
 
 #------------------------------------------------------------
 # Contraintes:

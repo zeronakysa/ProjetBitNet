@@ -33,8 +33,9 @@
 <div id="projet">
 <?php if(isset($_GET["ce"])){
         if ($_GET["ce"] == 1){
-          echo 'Echec lors de la création du projet. Un projet portant le même nom existe déjà. Essayer avec un autre nom. <br />';}
-} ?>
+          echo 'Echec lors de la création du projet. Un projet portant le même nom existe déjà. Essayer avec un autre nom <br />';
+          }
+        } ?>
 
   <form method="post" action="phpProjet.php">
     <input type="text" name="projectName" id="projectName" placeholder="Nom de projet (50 caractères maximum)" maxlength="50" required="required"><br />

@@ -17,33 +17,6 @@ function dbConnect(){
   return $connection;
 }
 
-function listFiles( $from ){
-    if(! is_dir($from))
-        return false;
-    $files = array();
-    $dirs = array( $from);
-    while( NULL !== ($dir = array_pop( $dirs)))
-    {
-        if( $dh = opendir($dir))
-        {
-            while( false !== ($file = readdir($dh)))
-            {
-                if( $file == '.' || $file == '..')
-                    continue;
-                $path = $dir . '/' . $file;
-                if( is_dir($path)){
-                  $dirs[] = $path;
-                  $files[] = $path."/";
-                }else{
-                  $files[] = $path;
-                }
-            }
-            closedir($dh);
-        }
-    }
-    return $files;
-}
-
 function listFilesAndPrint( $from )
 {
   $length = strlen($from);
@@ -74,53 +47,64 @@ function listFilesAndPrint( $from )
     return true;
 }
 
-// print_r($_SESSION);
+//print_r($_SESSION);
 //echo '<br />';
 //print_r($_POST);
+//echo '<br />';
+
 $structure = "../PROJETS/".$_SESSION["ID_membre"]."/".$_POST["projectName"]."/";
 $racine = "../PROJETS/".$_SESSION["ID_membre"];
 $root = "../PROJETS/";
 
-if (file_exists($structure)){
-  $creationError = 1;
-}else{
-  $connection = dbConnect();
-  $query = $connection->prepare('INSERT INTO `projet` (`nom_projet`, `nom_createur`, `date_creation`, `description_projet`) VALUES (:nom_projet, :nom_createur, NOW(), :description_projet)');
-  $results = $query->execute([
-    'nom_projet'=>$_POST["projectName"],
-    'nom_createur'=>$_SESSION["ID_membre"],
-    'description_projet'=>$_POST["projetDescription"]
-  				]);
-  if($results == 1){
-    mkdir($structure, 0777, true);
-    echo '<br />Projet '.$_POST["projectName"].' créé avec succès.<br />';
-  }else{
-    $creationError = 1
-  }
-  $creationError = 0;
-}
-if ($creationError == 1) {
-
-// A REMETTRE EN LIVE
-//  header('Location: .php?ce=1');
-
-}
-echo "<B>Arborescence personnel</B><pre>";
-listFilesAndPrint($racine);
-echo "</pre>";
-
-echo "<B>Arborescence du projet ".$_POST["projectName"]."</B><pre>";
-listFilesAndPrint($structure);
-echo "</pre>";
-
 $connection = dbConnect();
-$query = $connection->prepare('INSERT INTO `projet` (`nom_projet`, `nom_createur`, `date_creation`, `description_projet`) VALUES (:nom_projet, :nom_createur, NOW(), :description_projet)');
-$results = $query->execute([
-  'nom_projet'=>$_POST["projectName"],
-  'nom_createur'=>$_SESSION["ID_membre"],
-  'description_projet'=>$_POST["projetDescription"]
-				]);
-print_r($results);
+
+  if (file_exists($structure)){
+    $creationError = 1;
+  }else{
+    $connection = dbConnect();
+    $query = $connection->prepare('INSERT INTO `projet` (`nom_projet`, `ID_createur`, `date_creation`, `description_projet`) VALUES (:nom_projet, :ID_createur, NOW(), :description_projet)');
+    $results = $query->execute([
+      'nom_projet'=>$_POST["projectName"],
+      'ID_createur'=>$_SESSION["ID_membre"],
+      'description_projet'=>$_POST["projetDescription"]
+    				]);
+    if($results == 1){
+      mkdir($structure, 0777, true);
+      echo 'Projet '.$_POST["projectName"].' créé avec succès.<br /><br />';
+      $query = $connection->prepare('SELECT ID_projet FROM PROJET WHERE ID_createur LIKE :ID_createur AND nom_projet LIKE :nom_projet' );
+      $getID = $query->execute([
+        'ID_createur'=>$_SESSION["ID_membre"],
+        'nom_projet'=>$_POST["projectName"]
+              ]);
+      $getID = $query->fetchAll();
+      $idProject = $getID["0"];
+      $idProject[0];
+
+      $query = $connection->prepare('INSERT INTO `participe_projet` (`email`, `ID_projet`) VALUES (:email, :ID_projet)');
+      $participe_projet = $query->execute([
+        'email'=>$_SESSION["email"],
+        'ID_projet'=>$idProject[0]
+              ]);
+//      $readme = fopen($structure.'/readme.txt', 'w+');
+//      fwrite($readme,$readmeText);
+//      fclose($readme);
+    }else{
+      $creationError = 1;
+    }
+    $creationError = 0;
+  }
+  if ($creationError == 1) {
+  // A REMETTRE EN LIVE
+  //  header('Location: .php?ce=1');
+  }
+  echo "<B>Arborescence personnel</B><pre>";
+  listFilesAndPrint($racine);
+  echo "</pre>";
+
+  echo "<B>Arborescence du projet ".$_POST["projectName"]."</B><pre>";
+  listFilesAndPrint($structure);
+  echo "</pre>";
+
 /* OLD
 
 

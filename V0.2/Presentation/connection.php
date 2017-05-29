@@ -34,12 +34,13 @@ if (!empty($_POST['email']) &&
         $_SESSION['email'] = $_POST['email'];
 	    $_SESSION['online'] = 1;
       $query = null;
-      $query = $connection->prepare('SELECT role, pseudo, profile_picture FROM MEMBRE WHERE email = :email');
+      $query = $connection->prepare('SELECT role, pseudo, profile_picture, ID_membre FROM MEMBRE WHERE email = :email');
       $query->execute(['email'=>$_SESSION['email']]);
       $result = $query->fetch();
       $_SESSION['role'] = $result[0];
       $_SESSION['pseudo'] = $result[1];
 			$_SESSION['profile_picture'] = $result[2];
+			$_SESSION['ID_membre'] = $result[3];
       unset($_SESSION['captcha']);
       giveSucces(2);
     	header("Location: ../Online-site/index.php");

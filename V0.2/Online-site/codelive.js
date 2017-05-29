@@ -66,12 +66,12 @@ function newXMLHttpRequest() {
 	return new ActiveXObject("Microsoft.XMLHTTP");
 }
 
-//Sauvegarde le contenu de codemirror
+//Sauvegarde le contenu de codemirror en appuyant sur le bouton
 function saveCodeMirrorContent(){
 	var content = editor.getValue();
 	var request = newXMLHttpRequest();
 	var element = document.getElementById('button_token');
-	var donnees = "content=" + content + "&token=" + $(element).data('token');
+	var data = "content=" + content + "&token=" + $(element).data('token');
 
 	request.onreadystatechange = function() {
 		if (request.readyState == 4 && request.status == 200) {
@@ -88,14 +88,31 @@ function saveCodeMirrorContent(){
 
 	request.open('POST', 'saveCodeMirror.php');
 	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	request.send(donnees);
+	request.send(data);
 }
 
-//Récupère le contenu de codeMirror
+//Sauvegarde automatiquement le contenu de codemirror toutes les 2secondes
+function autoSaveCodeMirrorContent(){
+	var content = editor.getValue();
+	var request = newXMLHttpRequest();
+	var data = "content=" + content + "&token=" + $(element).data('token');
+
+	request.onreadystatechange = function() {
+		if (request.readyState == 4 && request.status == 200) {
+			//alert(request.responseText);
+		}
+	}
+
+	request.open('POST', 'saveCodeMirror.php');
+	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	request.send(data);
+}
+
+//Récupère automatiquemernt le contenu de codeMirror toutes les 2 secondes
 function getCodeMirrorContent(){
 	var request = newXMLHttpRequest();
 	var element = document.getElementById('button_token');
-	var donnees = "token=" + $(element).data('token');
+	var data = "token=" + $(element).data('token');
 
 	request.onreadystatechange = function() {
 		if (request.readyState == 4 && request.status == 200) {
@@ -106,5 +123,5 @@ function getCodeMirrorContent(){
 
 	request.open('POST', 'getCodeMirror.php');
 	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	request.send(donnees);
+	request.send(data);
 }

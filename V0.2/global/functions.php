@@ -160,9 +160,9 @@
 			"profile_picture" => $_POST["profile_picture"],
 			"email" => $_SESSION["email"]
 		]);
-		 
+
 		$_SESSION['pseudo'] = $_POST['pseudo'];
-		header('Location: espacePersonnel.php');
+		header('Location: espacePersonnel.php#myModification');
 	}
 
 	function deleteUser($id){
@@ -220,5 +220,118 @@ DEBUG */
 		header("Location: admin.php");
 	}
 
+	function listFilesAndPrint( $from )
+	{
+	  $length = strlen($from);
+	    if(! is_dir($from))
+	        return false;
+	    $dirs = array( $from);
+	    while( NULL !== ($dir = array_pop( $dirs)))
+	    {
+	        if( $dh = opendir($dir))
+	        {
+	            while( false !== ($file = readdir($dh)))
+	            {
+	                if( $file == '.' || $file == '..')
+	                    continue;
+	                $path = $dir . '/' . $file;
+	                if( is_dir($path)){
+	                  $dirs[] = $path;
+	                  $path = substr($path, $length);
+	                  echo " ..".$path."/<br />";
+	                }else{
+	                  $path = substr($path, $length);
+	                  echo " ..".$path."<br />";
+	                }
+	            }
+	            closedir($dh);
+	        }
+	    }
+	    return true;
+	}
+
+	function dbAddParticipeProjet($idProject, $email, $role){
+		$connection = dbConnect();
+		$query = $connection->prepare('INSERT INTO `participe_projet` (`email`, `ID_projet`, `role_projet`) VALUES (:email, :ID_projet, :role_projet)');
+		$participe_projet = $query->execute([
+			'email'=>$email,
+	    'ID_projet'=>$idProject,
+			'role_projet'=>$role,
+						]);
+	  return $participe_projet;
+	}
+
+	function dbAddProjet($nameProject, $idCreateur, $desciptionProjet){
+		$connection = dbConnect();
+    $query = $connection->prepare('INSERT INTO `projet` (`nom_projet`, `ID_createur`, `date_creation`, `description_projet`) VALUES (:nom_projet, :ID_createur, NOW(), :description_projet)');
+    $results = $query->execute([
+      'nom_projet'=>$nameProject,
+      'ID_createur'=>$idCreateur,
+      'description_projet'=>$desciptionProjet
+    				]);
+		return $results;
+	}
+
+	function dbGetIdProject($idCreateur, $nameProject){
+	  $connection = dbConnect();
+	  $query = $connection->prepare('SELECT ID_projet FROM PROJET WHERE ID_createur LIKE :ID_createur AND nom_projet LIKE :nom_projet' );
+	  $getID = $query->execute([
+	    'ID_createur'=>$idCreateur,
+	    'nom_projet'=>$nameProject
+	          ]);
+	  $getID = $query->fetchAll();
+	  $idProject = $getID["0"];
+	  return $idProject[0];
+	}
+
+	function deleteProject($id){
+		$connection=dbConnect();
+		$query=$connection->prepare("UPDATE PROJET SET is_deleted=1 WHERE ID_projet=:id");
+		$query->execute(["id" => $id]);
+		$query = $connection->prepare('SELECT ID_createur, nom_projet FROM PROJET WHERE ID_projet=:id' );
+	 	$getInfos = $query->execute(["id" => $id]);
+	  $getInfos = $query->fetchAll();
+		$oldStructure = "../PROJETS/".$getInfos[0]["ID_createur"]."/".$getInfos[0]["nom_projet"];
+    $newStructure = "../PROJETS/".$getInfos[0]["ID_createur"]."/".$getInfos[0]["nom_projet"]."_old";
+    if (file_exists($newStructure)){
+      rmdir($newStructure);
+    }
+    rename ($oldStructure, $newStructure);
+		header('Location: espacePersonnel.php#myProject');
+
+	}
+
+	function createProject($idMembre, $projectName, $projetDescription, $email){
+		$structure = "../PROJETS/".$idMembre."/".$projectName."/";
+		$racine = "../PROJETS/".$idMembre;
+		$root = "../PROJETS/";
+
+		  if (file_exists($structure)){
+		    $creationError = 1;
+		  }else{
+		    if((dbAddProjet($projectName, $idMembre, $projetDescription)) == 1){
+		      mkdir($structure, 0777, true);
+		      echo 'Projet '.$projectName.' créé avec succès.<br /><br />';
+		      dbGetIdProject($idMembre, $projectName);
+		      dbAddParticipeProjet((dbGetIdProject($idMembre, $projectName)), $email, "owner");
+		    }else{
+		      $creationError = 1;
+		    }
+		    $creationError = 0;
+		  }
+		  if ($creationError == 1) {
+		    header('Location: espacePersonnel.php?ce=1');
+		  }
+		  else
+		    header('Location: espacePersonnel.php');
+
+			  echo "<B>Arborescence personnel</B><pre>";
+			  listFilesAndPrint($racine);
+			  echo "</pre>";
+
+			  echo "<B>Arborescence du projet ".$_POST["projectName"]."</B><pre>";
+			  listFilesAndPrint($structure);
+			  echo "</pre>";
+		}
 
 ?>

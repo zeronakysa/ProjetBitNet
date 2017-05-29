@@ -94,7 +94,7 @@
 					<option value="text/x-c++src">C++</option>
 					<option value="text/html">HTML</option>
 					<option value="text/xml">XML</option>
-					<option value="CSS">CSS</option>
+					<option value="text/css">CSS</option>
 					<option value="javascript">Javascript</option>
 					<option value="text/x-php">PHP</option>
 					<option value="text/x-java">Java</option>

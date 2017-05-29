@@ -36,15 +36,7 @@
 						<input type="submit" value="Mettre à jour">
 					</form>
 			</div>
-		<div id="projet">
-			<form>
-				<input type="text" name="projectName" id="projectName" placeholder="Nom du projet (25 caractères maximum)" maxlength="25" required="required"><br />
-					<textarea name="description" id="description" placeholder="Description du projet (255 caractères maximum)" maxlength="255" required="required"></textarea><br />
-					<button type="submit" id="submitProject" value="Créer le projet">
-						Créer le projet
-					</button><br />
-			</form>
-		</div>
+
 			</section>
 		<?php
 			include "footer.php";

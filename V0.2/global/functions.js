@@ -9,15 +9,3 @@ $(function() {
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
 });
-
-
-
-
-function onEnter(event){
-    var button = document.getElementById('sendButton');
-    if(event.keyCode == 13){
-        button.click();
-    }
-}
-
-// Script sendMsg() ShoutBox

@@ -33,4 +33,4 @@ if ($results != null) {
 	]);
 }
 
-//echo $test;
+echo $test;

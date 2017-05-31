@@ -58,16 +58,16 @@ $('div.tab span').on('click', function() {
 
 var request = newXMLHttpRequest();
 
-//Sauvegarde le contenu de codemirror en appuyant sur le bouton
+//Sauvegarde le contenu de codemirror
 function saveCodeMirrorContent(){
 	var content = editor.getValue();
 	var request = newXMLHttpRequest();
 	var element = document.getElementById('button_token');
-	var data = "content=" + content + "&token=" + $(element).data('token');
+	var donnees = "content=" + content + "&token=" + $(element).data('token');
 
 	request.onreadystatechange = function() {
 		if (request.readyState == 4 && request.status == 200) {
-			//alert(request.responseText);
+			alert(request.responseText);
 			//Affiche pop up confirmation
 			var confirm_save = document.getElementById('saved');
 			confirm_save.innerHTML = "Fichier sauvegardé!";
@@ -80,31 +80,14 @@ function saveCodeMirrorContent(){
 
 	request.open('POST', 'saveCodeMirror.php');
 	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	request.send(data);
+	request.send(donnees);
 }
 
-//Sauvegarde automatiquement le contenu de codemirror toutes les 2secondes
-function autoSaveCodeMirrorContent(){
-	var content = editor.getValue();
-	var request = newXMLHttpRequest();
-	var data = "content=" + content + "&token=" + $(element).data('token');
-
-	request.onreadystatechange = function() {
-		if (request.readyState == 4 && request.status == 200) {
-			//alert(request.responseText);
-		}
-	}
-
-	request.open('POST', 'saveCodeMirror.php');
-	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	request.send(data);
-}
-
-//Récupère automatiquemernt le contenu de codeMirror toutes les 2 secondes
+//Récupère le contenu de codeMirror
 function getCodeMirrorContent(){
 	var request = newXMLHttpRequest();
 	var element = document.getElementById('button_token');
-	var data = "token=" + $(element).data('token');
+	var donnees = "token=" + $(element).data('token');
 
 	request.onreadystatechange = function() {
 		if (request.readyState == 4 && request.status == 200) {

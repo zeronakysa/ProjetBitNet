@@ -9,3 +9,13 @@ $(function() {
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
 });
+
+//création de la requête pour toutes versions de navigateur
+function newXMLHttpRequest() {
+	//Pour les navigateurs à jours
+	if (window.XMLHttpRequest){
+		return new XMLHttpRequest();
+	}
+	//Pour les anciennes versions d'IE
+	return new ActiveXObject("Microsoft.XMLHTTP");
+}

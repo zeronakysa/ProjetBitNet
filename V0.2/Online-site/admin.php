@@ -147,7 +147,47 @@ Pannel administrateur (modification de compte actif uniquement NB:A VENIR)
 ?>
 </table>
 </pre>
-
+Pannel administrateur PROJETS
+<?php
+$connection = dbConnect();
+$query = $connection->prepare("SELECT * FROM PROJET ");
+$query->execute(['ID_membre' => $_SESSION["ID_membre"]]);
+$projects = $query->fetchAll();
+?>
+	<pre>
+		<table>
+			<thead>
+				<tr>
+					<th>ID projet </th>
+					<th>ID createur </th>
+					<th>Date de création </th>
+					<th>Nom Projet </th>
+					<th>Description </th>
+					<th>Is_deleted </th>
+				</tr>
+			</thead>
+	<?php
+			foreach ($projects as $project) {
+				echo "<form method=\"POST\" action='test.php?id=".$project["ID_projet"]."'><tr>"; /* id=".$user["ID_membre"].", */
+				echo "<td>".$project["ID_projet"]."</td>";
+				echo "<td>".$project["ID_createur"]."</td>";
+				echo "<td>".date('d F Y', strtotime($project["date_creation"]))." </td>";?>
+				<td><input type="text" name="nom_projet" value="<?php echo ($project["nom_projet"])?$project["nom_projet"]:"";?>" placeholder="Nom projet" required="required"></td>
+				<td><input type="text" name="description_projet" value="<?php echo ($project["description_projet"])?$project["description_projet"]:"";?>" placeholder="Description projet"></td>
+				<td><input type="checkbox" name="is_Deleted" <?php if ($project["is_deleted"] == 1){echo "checked=\"checked\"";}else{};?>/></td>
+				<td><input type="hidden" name="action" value="editProject"/></td>
+				<td><input type="submit" value="Modifier"></td>
+			</form><?php
+			echo "<td><form method=\"POST\" action='test.php?id=".$project["ID_projet"]."'></td>";
+			?><form>
+				<input type="hidden" name="action" value="adminProject"/>
+			<td><input type="submit" value="Supprimer"></td>
+			</form>
+			</tr><?php
+}
+?>
+</table>
+</pre>
   <?php
       include "footer.php";
   ?>

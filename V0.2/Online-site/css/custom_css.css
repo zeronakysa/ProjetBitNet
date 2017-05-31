@@ -331,10 +331,16 @@ footer p {
 #msg_container{
 	margin-top: 60px;
 	border: 2px solid #C02425;
+	border-radius: 2%;
 	height: 500px;
 }
 
 #msg{
+	margin-top: 10px;
+}
+
+#sendButton{
+	
 	margin-top: 10px;
 }
 /* ---------------------------------------------------------------------*/

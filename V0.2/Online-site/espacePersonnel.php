@@ -17,6 +17,12 @@
 				$query=$connection->prepare("SELECT * FROM MEMBRE WHERE email=:email");
 				$query->execute(['email' => $_SESSION['email']]);
 			  $user = $query->fetch();
+
+				if(isset($_SESSION["ID_project"])){
+					$_SESSION["ID_project"] = -1;
+				}else{
+					$_SESSION["ID_project"] = -1;
+				}
 		?>
 		<section>
 			<div id="myModification">
@@ -84,6 +90,11 @@
 								?><form>
 									<input type="hidden" name="action" value="deleteProject"/>
 								<td><input type="submit" value="Supprimer"></td>
+								</form>
+								<form method="POST" action="manageProject.php">
+									<input type="hidden" name="action" value="manageProject"/>
+									<input type="hidden" name="projectID" value="<?php echo $project["ID_projet"]; ?>">
+								<td><input type="submit" value="Gérer"></td>
 								</form>
 								</tr><?php
 							}

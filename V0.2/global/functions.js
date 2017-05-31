@@ -10,14 +10,12 @@ $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
 });
 
-
-
-
-function onEnter(event){
-    var button = document.getElementById('sendButton');
-    if(event.keyCode == 13){
-        button.click();
-    }
+//création de la requête pour toutes versions de navigateur
+function newXMLHttpRequest() {
+	//Pour les navigateurs à jours
+	if (window.XMLHttpRequest){
+		return new XMLHttpRequest();
+	}
+	//Pour les anciennes versions d'IE
+	return new ActiveXObject("Microsoft.XMLHTTP");
 }
-
-// Script sendMsg() ShoutBox

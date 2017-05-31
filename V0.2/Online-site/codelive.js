@@ -56,15 +56,7 @@ $('div.tab span').on('click', function() {
 	$('div.options').slideToggle('fast');
 });
 
-//création de la requête pour toutes versions de navigateur
-function newXMLHttpRequest() {
-	//Pour les navigateurs à jours
-	if (window.XMLHttpRequest){
-		return new XMLHttpRequest();
-	}
-	//Pour les anciennes versions d'IE
-	return new ActiveXObject("Microsoft.XMLHTTP");
-}
+var request = newXMLHttpRequest();
 
 //Sauvegarde le contenu de codemirror
 function saveCodeMirrorContent(){
@@ -106,5 +98,5 @@ function getCodeMirrorContent(){
 
 	request.open('POST', 'getCodeMirror.php');
 	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	request.send(donnees);
+	request.send(data);
 }

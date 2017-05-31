@@ -17,7 +17,6 @@
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2">
 					<!-- Input -->
-					<input id="pseudo" type="hidden" value="<?php echo isset($_SESSION['pseudo'])?$_SESSION['pseudo']:"";	?>"/>
 					<input class="form-control" id="msg" type="text" placeholder="Votre message" autofocus />
 					<input class="btn btn-default" id="sendButton" type="button" value="Envoyer" onclick="sendMsg()"/>
 				</div>

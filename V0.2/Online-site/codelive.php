@@ -13,12 +13,12 @@
 		$token = '';
 
 		for ($i=0; $i < 6; $i++) {
-			$charIndex = rand(0, 22); 
-			$token .=  $token_key[$charIndex]; 
+			$charIndex = rand(0, 22);
+			$token .=  $token_key[$charIndex];
 		}
 
 		$_SESSION['token'] = $token;
-		
+
 		header("Location: codelive.php?token=" . $token);
 	}
 
@@ -132,12 +132,12 @@
 		<script src="codemirror/addon/selection/mark-selection.js"></script>
 
 		<!-- addon/fold -->
-		<script src="codemirror/addon/fold/xml-fold.js"></script>	
+		<script src="codemirror/addon/fold/xml-fold.js"></script>
 
 		<!-- addon/display -->
 		<script src="codemirror/addon/display/placeholder.js"></script>
 		<script src="codemirror/addon/display/fullscreen.js"></script>
-		
+
 		<!-- modes codemirror -->
 		<script src="codemirror/mode/clike/clike.js"></script>
 		<script src="codemirror/mode/javascript/javascript.js"></script>
@@ -150,18 +150,19 @@
 		<link rel="stylesheet" href="codemirror/lib/codemirror.css"/>
 		<link rel="stylesheet" href="codemirror/addon/scroll/simplescrollbars.css">
 		<link rel="stylesheet" href="codemirror/addon/display/fullscreen.css">
-	
+
 		<!-- Créé l'éditeur de texte -->
 		<script src="codelive.js"></script>
+		<script src="../global/functions.js"></script>
 
 		<!-- Tooltip script -->
 		<script>
 			$(document).ready(function(){
-			    $('[data-toggle="tooltip"]').tooltip(); 
+			    $('[data-toggle="tooltip"]').tooltip();
 			});
-	
-			
-	
+
+
+
 		</script>
 	</body>
 </html>

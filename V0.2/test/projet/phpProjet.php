@@ -81,6 +81,79 @@ function listFilesAndPrint( $from )
     return true;
 }
 
+function addMultipleFiles($UploadFolder){
+  ?>
+  		<form method="post" enctype="multipart/form-data" name="formUploadFile">
+  			<label>Selectioné les fichiers à chargé:</label>
+  			<input type="file" value="Choisir fichiers" name="files[]" multiple="multiple" />
+  			<input type="submit" value="Uploader" name="btnSubmit"/>
+  		</form>
+  		<?php
+  			if(isset($_POST["btnSubmit"]))
+  			{
+  				$errors = array();
+  				$uploadedFiles = array();
+  				$extension = array("jpeg","jpg","png","gif");
+  				$bytes = 16384;
+  				$KB = 16384;
+  				$totalBytes = $bytes * $KB;
+  				$counter = 0;
+  				echo "<pre>";
+  				print_r ($_FILES);
+  				echo "</pre>";
+  				foreach($_FILES["files"]["tmp_name"] as $key=>$tmp_name){
+  					$temp = $_FILES["files"]["tmp_name"][$key];
+  					$name = $_FILES["files"]["name"][$key];
+  					if(empty($temp)){
+  						break;
+  					}
+  					$counter++;
+  					$UploadOk = true;
+  					if($_FILES["files"]["size"][$key] > $totalBytes){
+  						$UploadOk = false;
+  						array_push($errors, $name.", la de taille supérieur à 32 MB.");
+  					}
+  					$ext = pathinfo($name, PATHINFO_EXTENSION);
+  					if(in_array($ext, $extension) == false){
+  						$UploadOk = false;
+  						array_push($errors, $name." , le type de fichier n'est pas accepté.");
+  					}
+  					if(file_exists($UploadFolder."/".$name) == true){
+  						$UploadOk = false;
+  						array_push($errors, $name." , le fichier existe déjà.");
+  					}
+  					if($UploadOk == true){
+  						move_uploaded_file($temp,$UploadFolder."/".$name);
+  						array_push($uploadedFiles, $name);
+  					}
+  				}
+  				if($counter>0){
+  					if(count($errors)>0){
+  						echo "<b>Erreurs:</b>";
+  						echo "<br/><ul>";
+  						foreach($errors as $error){
+  							echo "<li>".$error."</li>";
+  						}
+  						echo "</ul><br/>";
+  					}
+  					if(count($uploadedFiles)>0){
+  						echo "<b>Fichier uploadé(s):</b>";
+  						echo "<br/><ul>";
+  						foreach($uploadedFiles as $fileName){
+  							echo "<li>".$fileName."</li>";
+  						}
+  						echo "</ul><br/>";
+  						echo count($uploadedFiles)." fichier(s) uploadé(s) avec succès.";
+  					}
+  				}
+  				else{
+  					echo "S'il vous plait, séléctionné les fichier(s) à uploader.";
+  				}
+  			}
+}
+
+
+
 //print_r($_SESSION);
 //echo '<br />';
 //print_r($_POST);
@@ -115,6 +188,7 @@ $root = "../PROJETS/";
 
   echo "<B>Arborescence du projet ".$_POST["projectName"]."</B><pre>";
   listFilesAndPrint($structure);
+
   echo "</pre>";
 
 /* OLD

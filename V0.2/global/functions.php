@@ -263,7 +263,7 @@ DEBUG */
 
 	function dbAddProjet($nameProject, $idCreateur, $desciptionProjet){
 		$connection = dbConnect();
-    $query = $connection->prepare('INSERT INTO `projet` (`nom_projet`, `ID_createur`, `date_creation`, `description_projet`) VALUES (:nom_projet, :ID_createur, NOW(), :description_projet)');
+    $query = $connection->prepare('INSERT INTO `projet` (`nom_projet`, `ID_createur`, `date_creation`, `date_update`, `description_projet`) VALUES (:nom_projet, :ID_createur, NOW(), NOW(), :description_projet)');
     $results = $query->execute([
       'nom_projet'=>$nameProject,
       'ID_createur'=>$idCreateur,
@@ -282,6 +282,22 @@ DEBUG */
 	  $getID = $query->fetchAll();
 	  $idProject = $getID["0"];
 	  return $idProject[0];
+	}
+	function updateProject($id){
+		//verification pas encore faite
+		//ATTENTION
+		$connection=dbConnect();
+		$query=$connection->prepare("UPDATE projet SET
+			nom_projet = :nom_projet,
+			description_projet = :description_projet,
+			date_update = NOW()
+			WHERE ID_project=:ID_project");
+		 $query->execute([
+			"nom_projet" => $_POST["nom_projet"],
+			"description_projet" => $_POST["description_projet"],
+			"ID_project" => $id
+		]);
+		header("Location: espacePersonnel.php#myProject");
 	}
 
 	function deleteProject($id){
@@ -333,5 +349,109 @@ DEBUG */
 			  listFilesAndPrint($structure);
 			  echo "</pre>";
 		}
+
+		function addMultipleFiles($UploadFolder){
+		  ?>
+		  		<form method="post" enctype="multipart/form-data" name="formUploadFile">
+		  			<label>Selectioné les fichiers à chargé:</label>
+		  			<input type="file" value="Choisir fichiers" name="files[]" multiple="multiple" />
+		  			<input type="submit" value="Uploader" name="btnSubmit"/>
+		  		</form>
+		  		<?php
+		  			if(isset($_POST["btnSubmit"]))
+		  			{
+		  				$errors = array();
+		  				$uploadedFiles = array();
+		  				$extension = array("jpeg","jpg","png","gif","",".c",".cpp",".html",".css",".js",".php",".txt");
+		  				$bytes = 16384;
+		  				$KB = 16384;
+		  				$totalBytes = $bytes * $KB;
+		  				$counter = 0;
+//		  				echo "<pre>";print_r ($_FILES);echo "</pre>";
+		  				foreach($_FILES["files"]["tmp_name"] as $key=>$tmp_name){
+		  					$temp = $_FILES["files"]["tmp_name"][$key];
+		  					$name = $_FILES["files"]["name"][$key];
+		  					if(empty($temp)){
+		  						break;
+		  					}
+		  					$counter++;
+		  					$UploadOk = true;
+		  					if($_FILES["files"]["size"][$key] > $totalBytes){
+		  						$UploadOk = false;
+		  						array_push($errors, $name.", la de taille supérieur à 32 MB.");
+		  					}
+		  					$ext = pathinfo($name, PATHINFO_EXTENSION);
+
+		  					/*if(in_array($ext, $extension) == false){
+		  						$UploadOk = false;
+		  						array_push($errors, $name." , le type de fichier n'est pas accepté.");
+		  					}
+								*/
+		  					if(file_exists($UploadFolder."/".$name) == true){
+		  						$UploadOk = false;
+		  						array_push($errors, $name." , le fichier existe déjà.");
+		  					}
+		  					if($UploadOk == true){
+									$contentFile = file_get_contents($temp);
+									$fileName = pathinfo($name, PATHINFO_FILENAME);
+									$connection = dbConnect();
+							    $query = $connection->prepare('INSERT INTO `fichier` (
+										`ID_projet`,
+										`chemin_fichier`,
+										`proprietaire`,
+										`nom_fichier`,
+										`extension`,
+										`date_creation`,
+										`date_modification`,
+									  `content`)
+									VALUES (
+										:ID_projet,
+										:chemin_fichier,
+										:proprietaire,
+										:nom_fichier,
+										:extension,
+										NOW(),
+										NOW(),
+										:content)');
+							    $results = $query->execute([
+							      'ID_projet'=>$_SESSION["ID_project"],
+										'chemin_fichier'=>$UploadFolder,
+							      'proprietaire'=>$_SESSION["ID_membre"],
+										'nom_fichier'=>$fileName,
+										'extension'=>$ext,
+										'content'=>$contentFile
+							    				]);
+									if($results != 1){
+										echo "Erreur add DB fichier";
+									}
+		  						move_uploaded_file($temp,$UploadFolder."/".$name);
+		  						array_push($uploadedFiles, $name);
+		  					}
+		  				}
+		  				if($counter>0){
+		  					if(count($errors)>0){
+		  						echo "<b>Erreurs:</b>";
+		  						echo "<br/><ul>";
+		  						foreach($errors as $error){
+		  							echo "<li>".$error."</li>";
+		  						}
+		  						echo "</ul><br/>";
+		  					}
+		  					if(count($uploadedFiles)>0){
+		  						echo "<b>Fichier uploadé(s):</b>";
+		  						echo "<br/><ul>";
+		  						foreach($uploadedFiles as $fileName){
+		  							echo "<li>".$fileName."</li>";
+		  						}
+		  						echo "</ul><br/>";
+		  						echo count($uploadedFiles)." fichier(s) uploadé(s) avec succès.";
+		  					}
+		  				}
+		  				else{
+		  					echo "S'il vous plait, séléctionné les fichier(s) à uploader.";
+		  				}
+		  			}
+		}
+
 
 ?>

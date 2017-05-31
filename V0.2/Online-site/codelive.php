@@ -80,9 +80,10 @@
 						foreach (new DirectoryIterator('codemirror/theme') as $fileInfo) {
 						    if($fileInfo->isDot()) continue;
 
-						    $name = $fileInfo->getFilename();
+						    $fileName = $fileInfo->getFilename();
+						    $name = explode('.', $fileName);
 
-						    echo "<option value='". $name . "'>" . $name . "</option>";
+						    echo "<option value='". $fileName . "'>" . $name[0] . "</option>";
 						}
 					?>
 				</select>
@@ -93,7 +94,7 @@
 					<option value="text/x-c++src">C++</option>
 					<option value="text/html">HTML</option>
 					<option value="text/xml">XML</option>
-					<option value="CSS">CSS</option>
+					<option value="text/css">CSS</option>
 					<option value="javascript">Javascript</option>
 					<option value="text/x-php">PHP</option>
 					<option value="text/x-java">Java</option>

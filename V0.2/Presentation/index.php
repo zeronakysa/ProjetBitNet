@@ -224,14 +224,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<!-- Bootstrap JavaScript Link -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<!-- Script Reload Captcha -->
-		<script src="../global/functions.js"></script>
-
-		<!-- Tooltip script -->
-		<script>
-			$(document).ready(function(){
-			    $('[data-toggle="tooltip"]').tooltip();   
-			});
-		</script>
+		<!-- Chargement fonctionnalités perso -->
+		<script src="../global/functions.js"></script>		
 	</body>
 </html>

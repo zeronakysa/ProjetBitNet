@@ -98,17 +98,5 @@ function getCodeMirrorContent(){
 
 	request.open('POST', 'getCodeMirror.php');
 	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-	request.send(donnees);
-=======
 	request.send(data);
->>>>>>> refs/remotes/origin/master
-=======
-	request.send(data);
->>>>>>> refs/remotes/origin/master
-=======
-	request.send(data);
->>>>>>> refs/remotes/origin/master
 }

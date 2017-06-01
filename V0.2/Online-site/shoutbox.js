@@ -1,3 +1,15 @@
+var input = document.getElementById('msg');
+var button = document.getElementById('sendButton');
+
+function inputOnEnter(event){
+    if(event.keyCode == 13) {
+        button.click();
+    }
+}
+
+input.addEventListener("keyup", inputOnEnter);
+
+
 // Script sendMsg() ShoutBox
 function sendMsg(){
     var msg = document.getElementById('msg').value;
@@ -15,7 +27,7 @@ function sendMsg(){
         request.onreadystatechange = function(){
             if(request.readyState == 4){
                 if(request.status == 200){
-                    container.innerHTML = request.responseText;
+                    // container.innerHTML = request.responseText;
                 }
             }
         }
@@ -24,6 +36,8 @@ function sendMsg(){
         request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         request.send(postData);
     }
+
+    document.getElementById('msg').value = '';
 }
 
 function displayMsg(){

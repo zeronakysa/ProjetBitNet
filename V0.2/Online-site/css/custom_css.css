@@ -329,10 +329,10 @@ footer p {
 /* ---------------------------------------------------------------------*/
 
 #msg_container{
-	margin-top: 60px;
-	border: 2px solid #C02425;
-	border-radius: 2%;
+	margin-top: 80px;
+	border: 10px solid #F0CB35;
 	height: 500px;
+	overflow-y: auto;
 }
 
 #msg{
@@ -340,7 +340,7 @@ footer p {
 }
 
 #sendButton{
-	
+
 	margin-top: 10px;
 }
 /* ---------------------------------------------------------------------*/

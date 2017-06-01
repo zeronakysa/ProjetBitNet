@@ -1,3 +1,11 @@
+
+// Keep Scroll At Bottom
+function updateScroll(){
+    var scroll = document.getElementById('msg_container');
+    scroll.scrollTop = scroll.scrollHeight;
+}
+
+// Send on Enter Key
 var input = document.getElementById('msg');
 var button = document.getElementById('sendButton');
 
@@ -55,6 +63,8 @@ function displayMsg(){
     }
     request.open('GET', url, true);
     request.send();
+
+    updateScroll();
 }
 
 setInterval(displayMsg, 1000);

@@ -56,7 +56,7 @@
 			'id_succes' => $id_succes
 			]);
 		$achievementsInfo = $query->fetch();
-
+		$query = null;
 		//Verify if success' already done.
 		$query = $connection->prepare('SELECT email, progression FROM succes_reussi WHERE email=:email AND ID_succes = :id_succes');
 		$query->execute([
@@ -64,8 +64,9 @@
 			'id_succes' => $id_succes
 			]);
 		$result = $query->fetch();
+		$query = null;
 
-		//If Achievement not started
+		//If Achievement not started add in DB
 		if ($result[0] != $_SESSION['email']){
 			$succesExist = true;
 			$query = $connection->prepare('INSERT INTO `succes_reussi` (`email`, `ID_succes`) VALUES (:email, :id_succes)');
@@ -73,19 +74,23 @@
 				'email'=>$_SESSION['email'],
 				'id_succes'=>$id_succes
 				]);
-
+			$query = null;
+				// Select new value
 				$query = $connection->prepare('SELECT email, progression FROM succes_reussi WHERE email=:email AND ID_succes = :id_succes');
 				$query->execute([
 					'email' => $_SESSION['email'],
 					'id_succes' => $id_succes
 					]);
 				$result = $query->fetch();
+				$query = null;
+			// If prog = goal achievement unlocked
 			if($result[0] == $_SESSION['email'] && $result[1] == $achievementsInfo[1]){
 				echo "Succès " .$achievementsInfo[0] ." accomplie <br />";
+			// If prog != goal display progression
 			} else {
 				echo "Succès " .$achievementsInfo[0] ." ".$result[1] ."/".$achievementsInfo[1] ."<br />";
 			}
-		//If Achievement started but not finish
+		//If Achievement started but not finish update progression
 		} else if($result[0] == $_SESSION['email'] && $result[1] < $achievementsInfo[1]){
 			$succesExist = true;
 			$query = $connection->prepare('UPDATE SUCCES_REUSSI SET progression = :prog WHERE email=:email ');
@@ -93,23 +98,26 @@
 				"email" => $_SESSION['email'],
 				"prog" => $result[1] + 1
 			]);
-
+			// Select new value
 			$query = $connection->prepare('SELECT email, progression FROM succes_reussi WHERE email=:email AND ID_succes = :id_succes');
 			$query->execute([
 				'email' => $_SESSION['email'],
 				'id_succes' => $id_succes
 				]);
 			$result = $query->fetch();
-
+			// if prog = goal achievement unlocked
 			if($result[0] == $_SESSION['email'] && $result[1] == $achievementsInfo[1]){
 				echo "Succès " .$achievementsInfo[0] ." accomplie<br />";
+			// if prog != goal display progression
 			} else {
 				echo "Succès " .$achievementsInfo[0] ." ".$result[1] ."/".$achievementsInfo[1];
 			}
+		// If achievement already unlocked
 		}else if($result[0] == $_SESSION['email'] && $result[1] == $achievementsInfo[1]) {
-			echo "Succès " .$achievementsInfo[0] ."déja accomplie";
+			echo "Succès " .$achievementsInfo[0] ."déja accomplie <br />";
 		}
 
+		// GiveExp to member
 		if ($succesExist) {
 			giveExp($_SESSION['email'], $id_succes);
 		}

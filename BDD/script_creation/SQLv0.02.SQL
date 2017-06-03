@@ -84,6 +84,7 @@ CREATE TABLE SUCCES(
         nom_succes         Varchar (150),
         description_succes Text,
         xp_donnee          Int,
+        goal               INT DEFAULT 1,
         PRIMARY KEY (ID_succes)
 );
 
@@ -115,6 +116,7 @@ CREATE TABLE creation_fichier(
 CREATE TABLE succes_reussi(
         email     Varchar (255) NOT NULL ,
         ID_succes Int NOT NULL ,
+        progression INT DEFAULT 1,
         PRIMARY KEY (email, ID_succes)
 );
 

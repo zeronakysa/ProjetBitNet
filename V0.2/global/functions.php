@@ -22,7 +22,7 @@
 		for ($i=1; $i <= $maxSucces[0]; $i++) {
 
 			//Donne un email si le succes est reussi
-			$query = $connection->prepare('SELECT email FROM succes_reussi WHERE succes_reussi.email = :email AND succes_reussi.ID_succes = :i');
+			$query = $connection->prepare('SELECT email FROM succes_reussi WHERE email = :email AND ID_succes = :i');
 			$query->execute([
 				'email' => $_SESSION['email'],
 				'i' => $i
@@ -47,38 +47,79 @@
 		}
 
 	function giveSucces($id_succes){
+		$succesExist = false;
 		$connection = dbConnect();
-		//verrifie si le succes est déjà reussi. Retourne un email si il l'est.
-		$query = $connection->prepare('SELECT email FROM succes_reussi WHERE succes_reussi.email=:email AND succes_reussi.ID_succes = :id_succes');
+
+		//Get name and goal from SUCCESS
+		$query = $connection->prepare('SELECT nom_succes, goal FROM SUCCES WHERE ID_succes = :id_succes');
+		$query->execute([
+			'id_succes' => $id_succes
+			]);
+		$achievementsInfo = $query->fetch();
+		$query = null;
+		//Verify if success' already done.
+		$query = $connection->prepare('SELECT email, progression FROM succes_reussi WHERE email=:email AND ID_succes = :id_succes');
 		$query->execute([
 			'email' => $_SESSION['email'],
 			'id_succes' => $id_succes
 			]);
 		$result = $query->fetch();
+		$query = null;
 
-		//Donne le nom du succes qui a pour ID $id_succes
-		$query = $connection->prepare('SELECT nom_succes FROM SUCCES WHERE ID_succes = :id_succes');
-		$query->execute([
-			'id_succes' => $id_succes
-			]);
-		$nomSucces = $query->fetch();
-
-		//passe le succes en reussi donc créer une ligne dans la table succes_reussi
+		//If Achievement not started add in DB
 		if ($result[0] != $_SESSION['email']){
+			$succesExist = true;
 			$query = $connection->prepare('INSERT INTO `succes_reussi` (`email`, `ID_succes`) VALUES (:email, :id_succes)');
-			$succesExist = $query->execute([
+			$query->execute([
 				'email'=>$_SESSION['email'],
 				'id_succes'=>$id_succes
 				]);
-
-			if ($succesExist) {
-				giveExp($_SESSION['email'], $id_succes);
+			$query = null;
+				// Select new value
+				$query = $connection->prepare('SELECT email, progression FROM succes_reussi WHERE email=:email AND ID_succes = :id_succes');
+				$query->execute([
+					'email' => $_SESSION['email'],
+					'id_succes' => $id_succes
+					]);
+				$result = $query->fetch();
+				$query = null;
+			// If prog = goal achievement unlocked
+			if($result[0] == $_SESSION['email'] && $result[1] == $achievementsInfo[1]){
+				echo "Succès " .$achievementsInfo[0] ." accomplie <br />";
+			// If prog != goal display progression
+			} else {
+				echo "Succès " .$achievementsInfo[0] ." ".$result[1] ."/".$achievementsInfo[1] ."<br />";
 			}
-
-			echo "Succes </i>".$nomSucces[0]."</i> accompli ! Bravo ! <br />";
+		//If Achievement started but not finish update progression
+		} else if($result[0] == $_SESSION['email'] && $result[1] < $achievementsInfo[1]){
+			$succesExist = true;
+			$query = $connection->prepare('UPDATE SUCCES_REUSSI SET progression = :prog WHERE email=:email ');
+			$succesExist = $query->execute([
+				"email" => $_SESSION['email'],
+				"prog" => $result[1] + 1
+			]);
+			// Select new value
+			$query = $connection->prepare('SELECT email, progression FROM succes_reussi WHERE email=:email AND ID_succes = :id_succes');
+			$query->execute([
+				'email' => $_SESSION['email'],
+				'id_succes' => $id_succes
+				]);
+			$result = $query->fetch();
+			// if prog = goal achievement unlocked
+			if($result[0] == $_SESSION['email'] && $result[1] == $achievementsInfo[1]){
+				echo "Succès " .$achievementsInfo[0] ." accomplie<br />";
+			// if prog != goal display progression
+			} else {
+				echo "Succès " .$achievementsInfo[0] ." ".$result[1] ."/".$achievementsInfo[1];
+			}
+		// If achievement already unlocked
+		}else if($result[0] == $_SESSION['email'] && $result[1] == $achievementsInfo[1]) {
+			echo "Succès " .$achievementsInfo[0] ."déja accomplie <br />";
 		}
-		else {
-			echo "Succes <i>".$nomSucces[0]."</i> déjà accompli..<br />";
+
+		// GiveExp to member
+		if ($succesExist) {
+			giveExp($_SESSION['email'], $id_succes);
 		}
 	}
 
@@ -103,11 +144,7 @@
 		$query->execute(['id_succes'=>$id_succes]);
 		$result = $query->fetch();
 
-		$exp_donnee = $result[0];
-
-		$result = null;
-
-		$exp = $expMembre + $exp_donnee;
+		$exp = $expMembre + $result[0];
 
 		$query = $connection->prepare('UPDATE MEMBRE SET experience = :exp WHERE email=:email');
 		$query->execute([
@@ -283,21 +320,19 @@ DEBUG */
 	  $idProject = $getID["0"];
 	  return $idProject[0];
 	}
-	function updateProject($id){
+	function updateProject($id, $description){
 		//verification pas encore faite
 		//ATTENTION
 		$connection=dbConnect();
 		$query=$connection->prepare("UPDATE projet SET
-			nom_projet = :nom_projet,
 			description_projet = :description_projet,
 			date_update = NOW()
-			WHERE ID_project=:ID_project");
-		 $query->execute([
-			"nom_projet" => $_POST["nom_projet"],
-			"description_projet" => $_POST["description_projet"],
-			"ID_project" => $id
+			WHERE ID_projet=:ID_projet");
+		 $result = $query->execute([
+			"description_projet" => $description,
+			"ID_projet" => $id
 		]);
-		header("Location: espacePersonnel.php#myProject");
+		header("Location: espacePersonnel.php#myProject".$result);
 	}
 
 	function deleteProject($id){
@@ -353,7 +388,7 @@ DEBUG */
 		function addMultipleFiles($UploadFolder){
 		  ?>
 		  		<form method="post" enctype="multipart/form-data" name="formUploadFile">
-		  			<label>Selectioné les fichiers à chargé:</label>
+		  			<label>Selectioné les fichiers à ajouter au projet:</label>
 		  			<input type="file" value="Choisir fichiers" name="files[]" multiple="multiple" />
 		  			<input type="submit" value="Uploader" name="btnSubmit"/>
 		  		</form>

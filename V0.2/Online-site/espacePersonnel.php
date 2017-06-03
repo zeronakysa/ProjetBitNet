@@ -80,8 +80,8 @@
 						<?php
 								foreach ($projects as $project) {
 									echo "<form method=\"POST\" action='test.php?id=".$project["ID_projet"]."'><tr>"; /* id=".$user["ID_membre"].", */
-									echo "<td>".date('d F Y', strtotime($project["date_creation"]))." </td>";?>
-									<td><input type="text" name="nom_projet" value="<?php echo ($project["nom_projet"])?$project["nom_projet"]:"";?>" placeholder="Nom projet" required="required"></td>
+									echo "<td>".date('d F Y', strtotime($project["date_creation"]))." </td>";
+									echo "<td>".$project["nom_projet"]." </td>";?>
 									<td><input type="text" name="description_projet" value="<?php echo ($project["description_projet"])?$project["description_projet"]:"";?>" placeholder="Description projet"></td>
 									<td><input type="hidden" name="action" value="editProject"/></td>
 									<td><input type="submit" value="Modifier"></td>

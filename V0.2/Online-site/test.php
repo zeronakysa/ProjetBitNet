@@ -54,7 +54,8 @@ require '../global/conf.inc.php';
 			}
 			if ($_POST["action"]=="editProject" && is_numeric($_GET["id"])){
 				$id = $_GET["id"];
-				updateProject($id);
+				$description = $_POST["description_projet"];
+				updateProject($id, $description);
 			}
 			if ($_POST["action"]=="deleteProject" && is_numeric($_GET["id"])){
 				$id = $_GET["id"];

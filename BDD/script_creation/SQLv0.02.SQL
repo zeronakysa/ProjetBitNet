@@ -71,7 +71,7 @@ CREATE TABLE FICHIER(
         extension         Varchar (25),
         date_creation     Datetime,
         date_modification Datetime,
-        content           text
+        content           text,
         PRIMARY KEY (ID_fichier)
 );
 

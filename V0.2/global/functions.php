@@ -312,21 +312,19 @@ DEBUG */
 	  $idProject = $getID["0"];
 	  return $idProject[0];
 	}
-	function updateProject($id){
+	function updateProject($id, $description){
 		//verification pas encore faite
 		//ATTENTION
 		$connection=dbConnect();
 		$query=$connection->prepare("UPDATE projet SET
-			nom_projet = :nom_projet,
 			description_projet = :description_projet,
 			date_update = NOW()
-			WHERE ID_project=:ID_project");
-		 $query->execute([
-			"nom_projet" => $_POST["nom_projet"],
-			"description_projet" => $_POST["description_projet"],
-			"ID_project" => $id
+			WHERE ID_projet=:ID_projet");
+		 $result = $query->execute([
+			"description_projet" => $description,
+			"ID_projet" => $id
 		]);
-		header("Location: espacePersonnel.php#myProject");
+		header("Location: espacePersonnel.php#myProject".$result);
 	}
 
 	function deleteProject($id){
@@ -382,7 +380,7 @@ DEBUG */
 		function addMultipleFiles($UploadFolder){
 		  ?>
 		  		<form method="post" enctype="multipart/form-data" name="formUploadFile">
-		  			<label>Selectioné les fichiers à chargé:</label>
+		  			<label>Selectioné les fichiers à ajouter au projet:</label>
 		  			<input type="file" value="Choisir fichiers" name="files[]" multiple="multiple" />
 		  			<input type="submit" value="Uploader" name="btnSubmit"/>
 		  		</form>

@@ -72,6 +72,7 @@ CREATE TABLE FICHIER(
         date_creation     Datetime,
         date_modification Datetime,
         content           text,
+        is_deleted        Boolean DEFAULT FALSE,
         PRIMARY KEY (ID_fichier)
 );
 

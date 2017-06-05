@@ -66,7 +66,7 @@
 		$result = $query->fetch();
 		$query = null;
 
-		//If Achievement not started add in DB
+		//If Achievement not started → add in DB
 		if ($result[0] != $_SESSION['email']){
 			$succesExist = true;
 			$query = $connection->prepare('INSERT INTO `succes_reussi` (`email`, `ID_succes`) VALUES (:email, :id_succes)');

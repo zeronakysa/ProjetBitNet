@@ -25,10 +25,10 @@ if ($results != null) {
 		'contenu_codelive' => $content
 	]);
 }else{
-	$query = $connection->prepare('INSERT INTO codelive (`token_session`, `ID_createur`, `contenu_codelive`) VALUES (:token_session, :nom_createur, :contenu_codelive)');
+	$query = $connection->prepare('INSERT INTO codelive (`token_session`, `nom_createur`, `contenu_codelive`) VALUES (:token_session, :nom_createur, :contenu_codelive)');
 	$test = $query->execute([
 		'token_session'=> $token,
-		'ID_createur' => $_SESSION['ID_membre'],
+		'nom_createur' => $_SESSION['pseudo'],
 		'contenu_codelive' => $content
 	]);
 }

@@ -29,9 +29,9 @@
 
 ?>
 
-<!DOCTYPE html>
+	<!DOCTYPE html>
 
-<html>
+	<html>
 	<head>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -100,7 +100,9 @@
 					<option value="text/x-java">Java</option>
 				</select>
 
-				<input id="token" type="hidden" value="<?php echo $_SESSION['token'] ?>">
+				<button id= "button_token" type="button" class="btn btn-save fa fa-floppy-o" onclick="saveCodeMirrorContent()"
+				data-toggle="tooltip" data-placement="top" data-token="<?php echo $_SESSION['token'] ?>" title="Sauvegarder"></button>
+				<span id="saved"></span>
 			</div>
 		</div>
 
@@ -158,12 +160,9 @@
 			$(document).ready(function(){
 			    $('[data-toggle="tooltip"]').tooltip();
 			});
-<<<<<<< HEAD
-=======
 
 
 
->>>>>>> eab8a59cb380ca02388cda218ae00d5f8f745650
 		</script>
 	</body>
 </html>

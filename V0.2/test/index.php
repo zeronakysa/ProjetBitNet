@@ -1,97 +1,60 @@
 <!DOCTYPE html>
-
-<!-- Fichier qui upload des images (extensions choisie dans $extension)
-	dans le dossier ($UploadFolder) selon $totalBytes
-	n'upload pas de doublons, le dis,
-	n'upload pas plus de la taille, le dis,
-	n'upload pas de types interdit, le dis,
-	compte le nombres de fichiers bien upload, le dis,
-	dis quelle erreurs sur quel fichier
-	les fonctions:
-	- isset()
-	- empty()
-	- in_array()
-	- array_push()
-	- pathinfo()
-	- file_exists()
-	- move_uploaded_file()
-	- count()
-	- echo
--->
-
 <html>
 	<head>
-		<title>PHP multiple upload</title>
+		<meta charset="utf-8">
+		<title>expo steven</title>
 	</head>
 	<body>
-		<form method="post" enctype="multipart/form-data" name="formUploadFile">
-			<label>Selectioné les fichiers à chargé:</label>
-			<input type="file" value="Choisir fichiers" name="files[]" multiple="multiple" />
-			<input type="submit" value="Uploader" name="btnSubmit"/>
-		</form>
 		<?php
-			if(isset($_POST["btnSubmit"]))
-			{
-				$errors = array();
-				$uploadedFiles = array();
-				$extension = array("jpeg","jpg","png","gif");
-				$bytes = 16384;
-				$KB = 16384;
-				$totalBytes = $bytes * $KB;
-				$UploadFolder = "UploadFolder";
-				$counter = 0;
-				echo "<pre>";
-				print_r ($_FILES);
-				echo "</pre>";
-				foreach($_FILES["files"]["tmp_name"] as $key=>$tmp_name){
-					$temp = $_FILES["files"]["tmp_name"][$key];
-					$name = $_FILES["files"]["name"][$key];
-					if(empty($temp)){
-						break;
-					}
-					$counter++;
-					$UploadOk = true;
-					if($_FILES["files"]["size"][$key] > $totalBytes){
-						$UploadOk = false;
-						array_push($errors, $name.", la de taille supérieur à 32 MB.");
-					}
-					$ext = pathinfo($name, PATHINFO_EXTENSION);
-					if(in_array($ext, $extension) == false){
-						$UploadOk = false;
-						array_push($errors, $name." , le type de fichier n'est pas accepté.");
-					}
-					if(file_exists($UploadFolder."/".$name) == true){
-						$UploadOk = false;
-						array_push($errors, $name." , le fichier existe déjà.");
-					}
-					if($UploadOk == true){
-						move_uploaded_file($temp,$UploadFolder."/".$name);
-						array_push($uploadedFiles, $name);
-					}
-				}
-				if($counter>0){
-					if(count($errors)>0){
-						echo "<b>Erreurs:</b>";
-						echo "<br/><ul>";
-						foreach($errors as $error){
-							echo "<li>".$error."</li>";
-						}
-						echo "</ul><br/>";
-					}
-					if(count($uploadedFiles)>0){
-						echo "<b>Fichier uploadé(s):</b>";
-						echo "<br/><ul>";
-						foreach($uploadedFiles as $fileName){
-							echo "<li>".$fileName."</li>";
-						}
-						echo "</ul><br/>";
-						echo count($uploadedFiles)." fichier(s) uploadé(s) avec succès.";
-					}
-				}
-				else{
-					echo "S'il vous plait, séléctionné les fichier(s) à uploader.";
-				}
+		define("HOST", "localhost");
+		define("DBNAME", "projet_bitnet");
+		define("DBUSER", "root");
+		define("DBPWD", "");
+		function dbConnect(){
+			//Se connecter à la bdd
+			try{
+					$connection = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBUSER, DBPWD);
+			}catch(Exception $e){
+					die("Erreur SQL".$e->getMessage());
 			}
-		?>
+
+			return $connection;
+		}
+		$_SESSION['email']="aureldenoel@hotmail.fr";
+		$connection=dbConnect();
+		 $id_succes = $i;
+
+COUNT nom_succes sFROM SUCCES
+
+		 $query = $connection->prepare('SELECT nom_succes, goal FROM SUCCES WHERE ID_succes = :id_succes');
+		 $query->execute([
+		 	'id_succes' => $id_succes
+		 	]);
+		 $achievementsInfo = $query->fetch();
+		 $query = null;
+		 //Verify if success' already done.
+		 $query = $connection->prepare('SELECT email, progression FROM succes_reussi WHERE email=:email AND ID_succes = :id_succes');
+		 $query->execute([
+		 	'email' => $_SESSION['email'],
+		 	'id_succes' => $id_succes
+		 	]);
+		 $result = $query->fetch();
+		 $query = null;
+
+		 //If Achievement not started add in DB
+		 	// If prog = goal achievement unlocked
+		 	if($result[0] == $_SESSION['email'] && $result[1] == $achievementsInfo[1]){
+		 		echo "<img src=\"1g.jpg\" />";
+		 	// If prog != goal display progression
+		 	} else {
+		 		echo "<img src=\"1.jpg\" />";
+			}
+
+		if ( 1 ==	 1) {
+			echo "string";
+		}
+
+
+		 ?>
 	</body>
 </html>

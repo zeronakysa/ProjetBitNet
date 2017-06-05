@@ -58,18 +58,6 @@ $('div.tab span').on('click', function() {
 
 var request = newXMLHttpRequest();
 
-<<<<<<< HEAD
-//Sauvegarde automatiquement le contenu de codemirror toutes les 2secondes
-function autoSaveCodeMirrorContent(){
-	var content = editor.getValue();
-	var request = newXMLHttpRequest();
-	var token = document.getElementById('token').value;
-	var data = "content=" + content + "&token=" + token;
-
-	request.onreadystatechange = function() {
-		if (request.readyState == 4 && request.status == 200) {
-			//alert(request.responseText);
-=======
 //Sauvegarde le contenu de codemirror
 function saveCodeMirrorContent(){
 	var content = editor.getValue();
@@ -87,23 +75,11 @@ function saveCodeMirrorContent(){
 			setTimeout(function(){
 		        confirm_save.innerHTML = "";
 		    }, 2000);
->>>>>>> eab8a59cb380ca02388cda218ae00d5f8f745650
 		}
 	}
 
 	request.open('POST', 'saveCodeMirror.php');
 	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-<<<<<<< HEAD
-	request.send(data);
-}
-
-//Récupère automatiquemernt le contenu de codeMirror toutes les 2 secondes
-function getCodeMirrorContent(){
-	var request = newXMLHttpRequest();
-	var element = document.getElementById('button_token');
-	var token = document.getElementById('token').value;
-	var data = "token=" + token;
-=======
 	request.send(donnees);
 }
 
@@ -112,13 +88,11 @@ function getCodeMirrorContent(){
 	var request = newXMLHttpRequest();
 	var element = document.getElementById('button_token');
 	var donnees = "token=" + $(element).data('token');
->>>>>>> eab8a59cb380ca02388cda218ae00d5f8f745650
 
 	request.onreadystatechange = function() {
 		if (request.readyState == 4 && request.status == 200) {
 			//alert(request.responseText);
 			editor.setValue(request.responseText);
-			editor.execCommand("goDocEnd");
 		}
 	}
 
@@ -126,9 +100,3 @@ function getCodeMirrorContent(){
 	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	request.send(data);
 }
-<<<<<<< HEAD
-
-setInterval(function() { autoSaveCodeMirrorContent() }, 500);
-setInterval(function() { getCodeMirrorContent() }, 5000);
-=======
->>>>>>> eab8a59cb380ca02388cda218ae00d5f8f745650

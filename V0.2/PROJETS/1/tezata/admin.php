@@ -76,13 +76,13 @@ $users = $query->fetchAll();
 		// Créer un lien en fin de ligne vers ce fichier
 		// Envoyer en GET l'id de l'user
 
-		echo "<td><form method=\"POST\" action='treatment.php?id=".$user["ID_membre"]."'></td>";
+		echo "<td><form method=\"POST\" action='test.php?id=".$user["ID_membre"]."'></td>";
 		?><form>
 			<input type="hidden" name="action" value="deleteUser"/>
 		<td><input type="submit" value="Supprimer"></td>
 		</form><?php
 
-		echo "<td><form method=\"POST\" action='treatment.php?id=".$user["ID_membre"]."'></td>";
+		echo "<td><form method=\"POST\" action='test.php?id=".$user["ID_membre"]."'></td>";
 		?><form>
 			<input type="hidden" name="action" value="unDeleteUser"/>
 		<td><input type="submit" value="Dé-Supprimer"></td>
@@ -119,7 +119,7 @@ Pannel administrateur (modification de compte actif uniquement NB:A VENIR)
 
 <?php
 		foreach ($users as $user) {
-			echo "<form method=\"POST\" action='treatment.php?id=".$user["ID_membre"]."'><tr>"; /* id=".$user["ID_membre"].", */
+			echo "<form method=\"POST\" action='test.php?id=".$user["ID_membre"]."'><tr>"; /* id=".$user["ID_membre"].", */
 			echo "<td>".$user["ID_membre"]."</td>";
 			echo "<td>".$user["email"]."</td>";?>
 			<td><input value="<?php echo ($user["pseudo"])?$user["pseudo"]:"";?>" type="text" name="pseudo" placeholder="pseudo" required="required"></td>
@@ -168,17 +168,17 @@ $projects = $query->fetchAll();
 			</thead>
 	<?php
 			foreach ($projects as $project) {
-				echo "<form method=\"POST\" action='treatment.php?id=".$project["ID_projet"]."'><tr>"; /* id=".$user["ID_membre"].", */
+				echo "<form method=\"POST\" action='test.php?id=".$project["ID_projet"]."'><tr>"; /* id=".$user["ID_membre"].", */
 				echo "<td>".$project["ID_projet"]."</td>";
 				echo "<td>".$project["ID_createur"]."</td>";
 				echo "<td>".date('d F Y', strtotime($project["date_creation"]))." </td>";?>
 				<td><input type="text" name="nom_projet" value="<?php echo ($project["nom_projet"])?$project["nom_projet"]:"";?>" placeholder="Nom projet" required="required"></td>
 				<td><input type="text" name="description_projet" value="<?php echo ($project["description_projet"])?$project["description_projet"]:"";?>" placeholder="Description projet"></td>
 				<td><input type="checkbox" name="is_Deleted" <?php if ($project["is_deleted"] == 1){echo "checked=\"checked\"";}else{};?>/></td>
-				<td><input type="hidden" name="action" value="adminEditProject"/></td>
+				<td><input type="hidden" name="action" value="editProject"/></td>
 				<td><input type="submit" value="Modifier"></td>
 			</form><?php
-			echo "<td><form method=\"POST\" action='treatment.php?id=".$project["ID_projet"]."'></td>";
+			echo "<td><form method=\"POST\" action='test.php?id=".$project["ID_projet"]."'></td>";
 			?><form>
 				<input type="hidden" name="action" value="adminProject"/>
 			<td><input type="submit" value="Supprimer"></td>

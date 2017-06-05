@@ -275,10 +275,39 @@ DEBUG */
 	                if( is_dir($path)){
 	                  $dirs[] = $path;
 	                  $path = substr($path, $length);
-	                  echo " ..".$path."/<br />";
+	                  echo " ..".$path."/";
 	                }else{
 	                  $path = substr($path, $length);
-	                  echo " ..".$path."<br />";
+
+										$nameFile = pathinfo($file, PATHINFO_FILENAME);
+										$connection=dbConnect();
+										$query=$connection->prepare("SELECT ID_fichier FROM FICHIER WHERE ID_projet = :ID_projet AND nom_fichier = :nom_fichier AND chemin_fichier = :chemin_fichier");
+										$query->execute(["ID_projet" => $_SESSION['ID_project'],
+																			"nom_fichier" => $nameFile,
+																			"chemin_fichier" => $dir
+									]);
+									  $id_file = $query->fetch();
+										?>
+										<div class="container-fluid">
+											<div id="projet_nameFile" class="col-lg-2">
+												..<?php echo $path ?>
+											</div>
+											<div id="projet_openCLBox" class="col-lg-1">
+												<form method="post" action="treatment.php">
+													<input type="hidden" name="action" value="openCodeLive"/>
+													<input type="hidden" name="idFile" value="<?php echo $id_file[0] ?>"/>
+											    <input type="submit" value="Ouvrir dans CodeLive">
+												</form>
+											</div>
+											<form method="post" action="treatment.php">
+												<div id="projet_deleteFileBox" class="col-lg-1">
+													<input type="hidden" name="action" value="deleteFile"/>
+													<input type="hidden" name="idFile" value="<?php echo $id_file[0] ?>"/>
+											    <input type="submit" value="Supprimer">
+												</div>
+										</form><br />
+									</div>
+										<?php
 	                }
 	            }
 	            closedir($dh);
@@ -332,7 +361,21 @@ DEBUG */
 			"description_projet" => $description,
 			"ID_projet" => $id
 		]);
-		header("Location: espacePersonnel.php#myProject".$result);
+		header("Location: espacePersonnel.php#myProject");
+	}
+	function adminUpdateProject($id, $description){
+		//verification pas encore faite
+		//ATTENTION
+		$connection=dbConnect();
+		$query=$connection->prepare("UPDATE projet SET
+			description_projet = :description_projet,
+			date_update = NOW()
+			WHERE ID_projet=:ID_projet");
+		 $result = $query->execute([
+			"description_projet" => $description,
+			"ID_projet" => $id
+		]);
+		header("Location: admin.php");
 	}
 
 	function deleteProject($id){
@@ -397,7 +440,7 @@ DEBUG */
 		  			{
 		  				$errors = array();
 		  				$uploadedFiles = array();
-		  				$extension = array("jpeg","jpg","png","gif","",".c",".cpp",".html",".css",".js",".php",".txt");
+		  				$extension = array("jpeg","jpg","png","gif","","c","cpp","html","css","js","php","txt");
 		  				$bytes = 16384;
 		  				$KB = 16384;
 		  				$totalBytes = $bytes * $KB;
@@ -417,14 +460,14 @@ DEBUG */
 		  					}
 		  					$ext = pathinfo($name, PATHINFO_EXTENSION);
 
-		  					/*if(in_array($ext, $extension) == false){
+		  					if(in_array($ext, $extension) == false){
 		  						$UploadOk = false;
-		  						array_push($errors, $name." , le type de fichier n'est pas accepté.");
+		  						array_push($errors, $name.", le type de fichier n'est pas accepté.");
 		  					}
-								*/
+
 		  					if(file_exists($UploadFolder."/".$name) == true){
 		  						$UploadOk = false;
-		  						array_push($errors, $name." , le fichier existe déjà.");
+		  						array_push($errors, $name.", le fichier existe déjà.");
 		  					}
 		  					if($UploadOk == true){
 									$contentFile = file_get_contents($temp);
@@ -438,7 +481,8 @@ DEBUG */
 										`extension`,
 										`date_creation`,
 										`date_modification`,
-									  `content`)
+									  `content`,
+									`is_deleted`)
 									VALUES (
 										:ID_projet,
 										:chemin_fichier,
@@ -447,17 +491,27 @@ DEBUG */
 										:extension,
 										NOW(),
 										NOW(),
-										:content)');
+										:content,
+										:is_deleted)');
 							    $results = $query->execute([
 							      'ID_projet'=>$_SESSION["ID_project"],
 										'chemin_fichier'=>$UploadFolder,
 							      'proprietaire'=>$_SESSION["ID_membre"],
 										'nom_fichier'=>$fileName,
 										'extension'=>$ext,
-										'content'=>$contentFile
+										'content'=>$contentFile,
+										'is_deleted'=>"0"
 							    				]);
+									// print_r($results);echo "<br />";
+									// print_r($query);echo "<br />";
+									// echo$_SESSION["ID_project"]."<br />";
+									// echo$UploadFolder."<br />";
+									// echo$_SESSION["ID_membre"]."<br />";
+									// echo$fileName."<br />";
+									// echo$ext."<br />";
+
 									if($results != 1){
-										echo "Erreur add DB fichier";
+										echo "Impossible d'ajouter en base de donnée.";
 									}
 		  						move_uploaded_file($temp,$UploadFolder."/".$name);
 		  						array_push($uploadedFiles, $name);
@@ -488,5 +542,10 @@ DEBUG */
 		  			}
 		}
 
+function deleteFile($id_file){
+	$connection=dbConnect();
+	$query=$connection->prepare("UPDATE FICHIER SET is_deleted=1 WHERE ID_fichier=::id_fichier");
+	$query->execute(["id_fichier" => $id_file]);
+}
 
 ?>

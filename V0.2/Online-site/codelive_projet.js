@@ -56,9 +56,16 @@ $('div.tab span').on('click', function() {
 	$('div.options').slideToggle('fast');
 });
 
-var request = newXMLHttpRequest();
+//création de la requête pour toutes versions de navigateur
+function newXMLHttpRequest() {
+	//Pour les navigateurs à jours
+	if (window.XMLHttpRequest){
+		return new XMLHttpRequest();
+	}
+	//Pour les anciennes versions d'IE
+	return new ActiveXObject("Microsoft.XMLHTTP");
+}
 
-<<<<<<< HEAD
 //Sauvegarde automatiquement le contenu de codemirror toutes les 2secondes
 function autoSaveCodeMirrorContent(){
 	var content = editor.getValue();
@@ -69,31 +76,11 @@ function autoSaveCodeMirrorContent(){
 	request.onreadystatechange = function() {
 		if (request.readyState == 4 && request.status == 200) {
 			//alert(request.responseText);
-=======
-//Sauvegarde le contenu de codemirror
-function saveCodeMirrorContent(){
-	var content = editor.getValue();
-	var request = newXMLHttpRequest();
-	var element = document.getElementById('button_token');
-	var donnees = "content=" + content + "&token=" + $(element).data('token');
-
-	request.onreadystatechange = function() {
-		if (request.readyState == 4 && request.status == 200) {
-			alert(request.responseText);
-			//Affiche pop up confirmation
-			var confirm_save = document.getElementById('saved');
-			confirm_save.innerHTML = "Fichier sauvegardé!";
-			//Attend 2000ms soit 2sec et efface la pop up
-			setTimeout(function(){
-		        confirm_save.innerHTML = "";
-		    }, 2000);
->>>>>>> eab8a59cb380ca02388cda218ae00d5f8f745650
 		}
 	}
 
 	request.open('POST', 'saveCodeMirror.php');
 	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-<<<<<<< HEAD
 	request.send(data);
 }
 
@@ -103,16 +90,6 @@ function getCodeMirrorContent(){
 	var element = document.getElementById('button_token');
 	var token = document.getElementById('token').value;
 	var data = "token=" + token;
-=======
-	request.send(donnees);
-}
-
-//Récupère le contenu de codeMirror
-function getCodeMirrorContent(){
-	var request = newXMLHttpRequest();
-	var element = document.getElementById('button_token');
-	var donnees = "token=" + $(element).data('token');
->>>>>>> eab8a59cb380ca02388cda218ae00d5f8f745650
 
 	request.onreadystatechange = function() {
 		if (request.readyState == 4 && request.status == 200) {
@@ -126,9 +103,31 @@ function getCodeMirrorContent(){
 	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	request.send(data);
 }
-<<<<<<< HEAD
 
 setInterval(function() { autoSaveCodeMirrorContent() }, 500);
 setInterval(function() { getCodeMirrorContent() }, 5000);
-=======
->>>>>>> eab8a59cb380ca02388cda218ae00d5f8f745650
+
+//Sauvegarde le contenu de codemirror en appuyant sur le bouton
+function saveCodeMirrorContent(){
+	var content = editor.getValue();
+	var request = newXMLHttpRequest();
+	var element = document.getElementById('button_token');
+	var data = "content=" + content + "&token=" + $(element).data('token');
+
+	request.onreadystatechange = function() {
+		if (request.readyState == 4 && request.status == 200) {
+			//alert(request.responseText);
+			//Affiche pop up confirmation
+			var confirm_save = document.getElementById('saved');
+			confirm_save.innerHTML = "Fichier sauvegardé!";
+			//Attend 2000ms soit 2sec et efface la pop up
+			setTimeout(function(){
+		        confirm_save.innerHTML = "";
+		    }, 2000);
+		}
+	}
+
+	request.open('POST', 'saveCodeMirror.php');
+	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	request.send(data);
+}

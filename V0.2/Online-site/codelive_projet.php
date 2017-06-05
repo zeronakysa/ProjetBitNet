@@ -13,18 +13,18 @@
 		$token = '';
 
 		for ($i=0; $i < 6; $i++) {
-			$charIndex = rand(0, 22);
-			$token .=  $token_key[$charIndex];
+			$charIndex = rand(0, 22); 
+			$token .=  $token_key[$charIndex]; 
 		}
 
 		$_SESSION['token'] = $token;
-
+		
 		header("Location: codelive.php?token=" . $token);
 	}
 
 	//si le token existe mais qu'il n'est pas dans l'url, on redirige
 	if ($_GET['token'] == null) {
-		header("Location: codelive.php?token=" . $_SESSION['token']);
+		header("Location: codelive_projet.php?token=" . $_SESSION['token']);
 	}
 
 ?>
@@ -100,7 +100,9 @@
 					<option value="text/x-java">Java</option>
 				</select>
 
-				<input id="token" type="hidden" value="<?php echo $_SESSION['token'] ?>">
+				<button id= "button_token" type="button" class="btn btn-save fa fa-floppy-o" onclick="saveCodeMirrorContent()"
+				data-toggle="tooltip" data-placement="top" data-token="<?php echo $_SESSION['token'] ?>" title="Sauvegarder"></button>
+				<span id="saved"></span>
 			</div>
 		</div>
 
@@ -130,12 +132,12 @@
 		<script src="codemirror/addon/selection/mark-selection.js"></script>
 
 		<!-- addon/fold -->
-		<script src="codemirror/addon/fold/xml-fold.js"></script>
+		<script src="codemirror/addon/fold/xml-fold.js"></script>	
 
 		<!-- addon/display -->
 		<script src="codemirror/addon/display/placeholder.js"></script>
 		<script src="codemirror/addon/display/fullscreen.js"></script>
-
+		
 		<!-- modes codemirror -->
 		<script src="codemirror/mode/clike/clike.js"></script>
 		<script src="codemirror/mode/javascript/javascript.js"></script>
@@ -148,22 +150,15 @@
 		<link rel="stylesheet" href="codemirror/lib/codemirror.css"/>
 		<link rel="stylesheet" href="codemirror/addon/scroll/simplescrollbars.css">
 		<link rel="stylesheet" href="codemirror/addon/display/fullscreen.css">
-
+	
 		<!-- Créé l'éditeur de texte -->
-		<script src="codelive.js"></script>
-		<script src="../global/functions.js"></script>
+		<script src="codelive_projet.js"></script>
 
 		<!-- Tooltip script -->
 		<script>
 			$(document).ready(function(){
-			    $('[data-toggle="tooltip"]').tooltip();
+			    $('[data-toggle="tooltip"]').tooltip(); 
 			});
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> eab8a59cb380ca02388cda218ae00d5f8f745650
 		</script>
 	</body>
 </html>

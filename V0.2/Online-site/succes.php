@@ -3,19 +3,19 @@
 ?>
 	<title>Succes</title>
 </head>
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50" onload="displayAchievement()">
 	<?php
 		include "navBar.php";
 	 ?>
 	<div id="achievementContainer" class="container-fluid">
 		<div class="row text-center">
-			<div class="col-lg-8 col-lg-offset-2">
+			<div class="col-md-8 col-md-offset-2">
 				<h1> Vos succès</h1>
 				<input id="achievementSearchBar" class="form-control" type="text" name="achievementSearchBar" placeholder="Rechercher un succès" />
 			</div>
 		</div>
-		<div id="achievementDisplay" class="row text-center" onload="displayAchievement()">
-
+		<div id="achievementDisplay" class="row">
+			
 		</div>
 	</div>
 	<?php

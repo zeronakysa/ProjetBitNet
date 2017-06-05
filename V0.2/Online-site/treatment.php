@@ -52,23 +52,36 @@ require '../global/conf.inc.php';
 				$id = $_GET["id"];
 				adminUser($id);
 			}
-			if ($_POST["action"]=="editProject" && is_numeric($_GET["id"])){
-				$id = $_GET["id"];
+			if ($_POST["action"]=="editProject" && is_numeric($_POST["idProject"])){
+				$id = $_POST["idProject"];
 				$description = $_POST["description_projet"];
 				updateProject($id, $description);
 			}
-			if ($_POST["action"]=="adminEditProject" && is_numeric($_GET["id"])){
-				$id = $_GET["id"];
+			if ($_POST["action"]=="adminEditProject" && is_numeric($_POST["idProject"])){
+				$id = $_POST["idProject"];
 				$description = $_POST["description_projet"];
 				adminUpdateProject($id, $description);
 			}
-			if ($_POST["action"]=="deleteProject" && is_numeric($_GET["id"])){
-				$id = $_GET["id"];
+			if ($_POST["action"]=="deleteProject" && is_numeric($_POST["idProject"])){
+				$id = $_POST["idProject"];
 				deleteProject($id);
 			}
 			if ($_POST["action"]=="createProject" && is_numeric($_GET["id"])){
 				$id = $_GET["id"];
 				createProject($id, $_POST["projectName"], $_POST["projetDescription"], $_SESSION["email"]);
+			}
+			if ($_POST["action"]=="deleteFile" && is_numeric($_POST["idFile"])){
+				$id = $_POST["idFile"];
+				deleteFile($id);
+			}
+
+
+			if ($_POST["action"]=="openCodeLive" && is_numeric($_POST["idFile"])){
+				if(isset($_SESSION["token"])){
+					unset($_SESSION["token"]);
+					echo "reset token ok";
+				}
+				echo "NOTHIG HERE ! YET !";
 			}
 			include "footer.php";
 		?>

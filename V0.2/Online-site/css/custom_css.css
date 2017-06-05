@@ -342,6 +342,13 @@ footer p {
 	border: 2px solid #C02425;
 	border-radius: 50%;
 }
+
+#pagepersoprez{
+	width: 200px;
+	height: 200px;
+	border: 2px solid #C02425;
+	border-radius: 50%;
+}
 /* ---------------------------------------------------------------------*/
 /* --- Shoutbox --- */
 /* ---------------------------------------------------------------------*/
@@ -391,9 +398,10 @@ footer p {
 
 #projectContainer{
 	margin-top: 60px;
+	margin-bottom: 60px;
 }
 
 #project{
 	margin-top: 60px;
-	margin-bottom: 30px;
+	margin-bottom: 60px;
 }

@@ -32,10 +32,11 @@
 				</div>
 				<div class="col-lg-4">
 					<h2>Projets</h2>
-					<a href="projet.php"><img id="projetprez" src="css/img/projetprez.jpg" alt="projet prez" />
+					<a href="projet.php"><img id="projetprez" src="css/img/projetprez.jpg" alt="projet prez" /></a>
 				</div>
 				<div class="col-lg-4">
 					<h2>Page Perso</h2>
+					<a href="espacePersonnel.php"><img id="pagepersoprez" src="css/img/pagepersoprez.png" alt="page perso prez" /></a>
 				</div>
 			</div>
 		</div>

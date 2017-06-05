@@ -361,7 +361,7 @@ DEBUG */
 			"description_projet" => $description,
 			"ID_projet" => $id
 		]);
-		header("Location: espacePersonnel.php#myProject");
+		header("Location: projet.php#myProject");
 	}
 	function adminUpdateProject($id, $description){
 		//verification pas encore faite
@@ -391,7 +391,7 @@ DEBUG */
       rmdir($newStructure);
     }
     rename ($oldStructure, $newStructure);
-		header('Location: espacePersonnel.php#myProject');
+		header('Location: projet.php#myProject');
 
 	}
 
@@ -414,10 +414,10 @@ DEBUG */
 		    $creationError = 0;
 		  }
 		  if ($creationError == 1) {
-		    header('Location: espacePersonnel.php?ce=1');
+		    header('Location: projet.php?ce=1');
 		  }
 		  else
-		    header('Location: espacePersonnel.php');
+		    header('Location: projet.php#myProject');
 
 			  echo "<B>Arborescence personnel</B><pre>";
 			  listFilesAndPrint($racine);
@@ -544,8 +544,16 @@ DEBUG */
 
 function deleteFile($id_file){
 	$connection=dbConnect();
-	$query=$connection->prepare("UPDATE FICHIER SET is_deleted=1 WHERE ID_fichier=::id_fichier");
+	$query=$connection->prepare("UPDATE FICHIER SET is_deleted=1 WHERE ID_fichier=:id_fichier");
 	$query->execute(["id_fichier" => $id_file]);
+	$query = NULL;
+
+	$query=$connection->prepare("SELECT * FROM FICHIER WHERE ID_fichier=:id_fichier");
+	$query->execute(["id_fichier" => $id_file]);
+	$file = $query->fetch();
+	$fileName = $file["chemin_fichier"].$file["nom_fichier"].".".$file["extension"];
+	unlink($fileName);
+	header('Location: manageProject.php');
 }
 
 ?>

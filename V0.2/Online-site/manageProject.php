@@ -38,15 +38,15 @@ else {?>
 					$query = $connection->prepare("SELECT pseudo FROM MEMBRE,participe_projet WHERE participe_projet.ID_projet = :ID_projet AND participe_projet.role_projet = 'owner' AND MEMBRE.email = participe_projet.email;");
 					$query->execute(['ID_projet' => $_SESSION["ID_project"]]);
 					$membre = $query->fetchAll();
-					echo "<b> Propriétaire:</b><br /> • ".$membre[0]["pseudo"]."<br />";
+					echo "<b> Propriétaire:</b><br /> - ".$membre[0]["pseudo"]."<br />";
 
 					$query = $connection->prepare("SELECT pseudo FROM MEMBRE,participe_projet WHERE participe_projet.ID_projet = :ID_projet AND participe_projet.role_projet = 'admin' AND MEMBRE.email = participe_projet.email;");
 					$query->execute(['ID_projet' => $_SESSION["ID_project"]]);
 					$membres = $query->fetchAll();
+					echo "<b> Administrateur(s):</b><br />";
 					if ($membres){
-						echo "<b> Administrateur(s):</b><br />";
 						foreach ($membres as $membre) {
-							 echo "• ".$membre["pseudo"]."<br />";
+							 echo "- ".$membre["pseudo"]."<br />";
 						}
 					}else{
 						echo"<i>Aucun administrateur..</i>";
@@ -60,7 +60,7 @@ else {?>
 					if ($membres){
 						echo "<br /><b> Contributeur(s):</b><br />";
 						foreach ($membres as $membre) {
-							 echo "• ".$membre["pseudo"]."<br />";
+							 echo "- ".$membre["pseudo"]."<br />";
 						}
 					}else{
 						echo"<i>Aucun contributeur..</i>";

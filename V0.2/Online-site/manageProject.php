@@ -35,25 +35,36 @@ else {?>
 					<h3> Description: <br /></h3> <i><?php echo ($project[0]["description_projet"])?$project[0]["description_projet"]:"";?></i>
 					<h3> Membre du projet: <br /></h3>
 					<?php
-					$query = $connection->prepare("SELECT pseudo FROM MEMBRE,participe_projet WHERE participe_projet.ID_projet = :ID_projet AND participe_projet.role_projet = 'owner' AND MEMBRE.email = participe_projet.email;");
+					$query = $connection->prepare("SELECT pseudo, ID_membre FROM MEMBRE,participe_projet WHERE participe_projet.ID_projet = :ID_projet AND participe_projet.role_projet = 'owner' AND MEMBRE.email = participe_projet.email;");
 					$query->execute(['ID_projet' => $_SESSION["ID_project"]]);
 					$membre = $query->fetchAll();
 					echo "<b> Propriétaire:</b><br /> - ".$membre[0]["pseudo"]."<br />";
+					if ($membre[0]["ID_membre"] == $_SESSION["ID_membre"]){
+						$isOwner = 1;
+					}else{$isOwner = 0;}
 
-					$query = $connection->prepare("SELECT pseudo FROM MEMBRE,participe_projet WHERE participe_projet.ID_projet = :ID_projet AND participe_projet.role_projet = 'admin' AND MEMBRE.email = participe_projet.email;");
+					$query = $connection->prepare("SELECT pseudo, ID_membre FROM MEMBRE,participe_projet WHERE participe_projet.ID_projet = :ID_projet AND participe_projet.role_projet = 'admin' AND MEMBRE.email = participe_projet.email;");
 					$query->execute(['ID_projet' => $_SESSION["ID_project"]]);
 					$membres = $query->fetchAll();
 					echo "<b> Administrateur(s):</b><br />";
 					if ($membres){
 						foreach ($membres as $membre) {
 							 echo "- ".$membre["pseudo"]."<br />";
+							 if($membre["ID_membre"] == $_SESSION["ID_membre"]){
+								 $isAdmin = 1;
+							 }else{}
 						}
 					}else{
 						echo"<i>Aucun administrateur..</i>";
+						$isAdmin = 0;
 					}
-					?><div id="adminSearchBar" class="col-lg-2">
-					 <input type="text" name="adminSearchBar" placeholder="Ajouter un administrateur" />
-				 	</div><?php
+					// Verification si owner
+					if($isOwner == 1){
+						?><div id="adminSearchBar" class="col-lg-2">
+						 <input type="text" name="adminSearchBar" placeholder="Ajouter un administrateur" />
+					 	</div><?php
+					}else{}
+
 					$query = $connection->prepare("SELECT pseudo FROM MEMBRE,participe_projet WHERE participe_projet.ID_projet = :ID_projet AND participe_projet.role_projet = 'contrib' AND MEMBRE.email = participe_projet.email;");
 					$query->execute(['ID_projet' => $_SESSION["ID_project"]]);
 					$membres = $query->fetchAll();
@@ -64,10 +75,12 @@ else {?>
 						}
 					}else{
 						echo"<i>Aucun contributeur..</i>";
-					}
-					?><div id="contribSearchBar" class="col-lg-2">
-					 <input type="text" name="contribSearchBar" placeholder="Ajouter un contributeur" />
-				 	</div>
+					}if($isOwner == 1 || $isAdmin == 1){
+						?><div id="contribSearchBar" class="col-lg-2">
+						 <input type="text" name="contribSearchBar" placeholder="Ajouter un contributeur" />
+					 	</div><?php
+					}else{}
+					?>
     </table>
     <?php
     $structure = "../PROJETS/".$_SESSION["ID_membre"]."/".$project[0]["nom_projet"]."/";

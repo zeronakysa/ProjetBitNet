@@ -168,19 +168,21 @@ $projects = $query->fetchAll();
 			</thead>
 	<?php
 			foreach ($projects as $project) {
-				echo "<form method=\"POST\" action='treatment.php?id=".$project["ID_projet"]."'><tr>"; /* id=".$user["ID_membre"].", */
+				echo "<form method=\"POST\" action='treatment.php'><tr>"; /* id=".$user["ID_membre"].", */
 				echo "<td>".$project["ID_projet"]."</td>";
 				echo "<td>".$project["ID_createur"]."</td>";
 				echo "<td>".date('d F Y', strtotime($project["date_creation"]))." </td>";?>
 				<td><input type="text" name="nom_projet" value="<?php echo ($project["nom_projet"])?$project["nom_projet"]:"";?>" placeholder="Nom projet" required="required"></td>
 				<td><input type="text" name="description_projet" value="<?php echo ($project["description_projet"])?$project["description_projet"]:"";?>" placeholder="Description projet"></td>
 				<td><input type="checkbox" name="is_Deleted" <?php if ($project["is_deleted"] == 1){echo "checked=\"checked\"";}else{};?>/></td>
+				<td><input type="hidden" name="idProject" value="<?php echo $project["ID_projet"] ?>"/></td>
 				<td><input type="hidden" name="action" value="adminEditProject"/></td>
 				<td><input type="submit" value="Modifier"></td>
 			</form><?php
-			echo "<td><form method=\"POST\" action='treatment.php?id=".$project["ID_projet"]."'></td>";
+			echo "<td><form method=\"POST\" action='treatment.php'></td>";
 			?><form>
-				<input type="hidden" name="action" value="adminProject"/>
+				<td><input type="hidden" name="idProject" value="<?php echo $project["ID_projet"] ?>"/></td>
+				<input type="hidden" name="action" value="adminDeleteProject"/>
 			<td><input type="submit" value="Supprimer"></td>
 			</form>
 			</tr><?php

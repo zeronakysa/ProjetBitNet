@@ -62,6 +62,10 @@ require '../global/conf.inc.php';
 				$description = $_POST["description_projet"];
 				adminUpdateProject($id, $description);
 			}
+			if ($_POST["action"]=="adminDeleteProject" && is_numeric($_POST["idProject"])){
+				$id = $_POST["idProject"];
+				adminDeleteProject($id);
+			}			
 			if ($_POST["action"]=="deleteProject" && is_numeric($_POST["idProject"])){
 				$id = $_POST["idProject"];
 				deleteProject($id);

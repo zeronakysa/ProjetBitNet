@@ -184,6 +184,7 @@
 			nom = :nom,
 			prenom = :prenom,
 			langages = :langages,
+			ville = :ville,
 			date_naissance = :date_naissance,
 			date_update = NOW(),
 			profile_picture = :profile_picture
@@ -193,6 +194,7 @@
 			"nom" => $_POST["nom"],
 			"prenom" => $_POST["prenom"],
 			"langages" => $_POST["langages"],
+			"ville" => $_POST["ville"],
 			"date_naissance" => $_POST["date_naissance"],
 			"profile_picture" => $_POST["profile_picture"],
 			"email" => $_SESSION["email"]
@@ -222,6 +224,7 @@
 			nom = :nom,
 			prenom = :prenom,
 			langages = :langages,
+			ville = :ville,
 			date_naissance = :date_naissance,
 			date_creation = :date_creation,
 			date_update = NOW(),
@@ -237,6 +240,7 @@
 			"nom" => $_POST["nom"],
 			"prenom" => $_POST["prenom"],
 			"langages" => $_POST["langages"],
+			"ville" => $_POST["ville"],
 			"date_naissance" => $_POST["date_naissance"],
 			"date_creation" => $_POST["date_creation"],
 			"succes_reussi" => $_POST["succes_reussi"],
@@ -554,6 +558,36 @@ function deleteFile($id_file){
 	$fileName = $file["chemin_fichier"].$file["nom_fichier"].".".$file["extension"];
 	unlink($fileName);
 	header('Location: manageProject.php');
+}
+
+function adminDeleteProject($id){
+	deleteAllFileFromBDD($id);
+	$connection=dbConnect();
+	$query=$connection->prepare("UPDATE PROJET SET is_deleted=1 WHERE ID_projet=:id");
+	$query->execute(["id" => $id]);
+	$query = $connection->prepare('SELECT ID_createur, nom_projet FROM PROJET WHERE ID_projet=:id' );
+	$getInfos = $query->execute(["id" => $id]);
+	$getInfos = $query->fetchAll();
+	$oldStructure = "../PROJETS/".$getInfos[0]["ID_createur"]."/".$getInfos[0]["nom_projet"];
+	$newStructure = "../PROJETS/".$getInfos[0]["ID_createur"]."/".$getInfos[0]["nom_projet"]."_old";
+	if (file_exists($newStructure)){
+		rmdir($newStructure);
+	}
+	rename ($oldStructure, $newStructure);
+	header('Location: admin.php');
+
+}
+
+function deleteAllFileFromBDD($idProjet){
+	$connection=dbConnect();
+	$query=$connection->prepare("SELECT ID_fichier FROM fichier WHERE ID_projet = :ID_projet");
+	$query->execute(["ID_projet" => $idProjet]);
+	$allFiles = $query->fetchAll();
+	foreach ($allFiles as $file) {
+		print_r($file);
+		$query=$connection->prepare("UPDATE FICHIER SET is_deleted=1 WHERE ID_fichier=:id_fichier");
+		$query->execute(["id_fichier" => $file['ID_fichier']]);
+	}
 }
 
 ?>

@@ -153,10 +153,10 @@
                     echo "<td>".$nbFiles[0]." </td>";
                     echo "<td>".$project["nom_projet"]." </td>";
                     echo "<td>".$project["description_projet"]." </td>";?>
-                    <form method="POST" action="contribProject.php">
-                      <input type="hidden" name="action" value="contribProject"/>
-                      <input type="hidden" name="projectID" value="<?php echo $project["ID_projet"]; ?>">
-                    <td><input type="submit" value="Contribuer"></td>
+										<form method="POST" action="manageProject.php">
+											<input type="hidden" name="action" value="contribProject"/>
+											<input type="hidden" name="projectID" value="<?php echo $project["ID_projet"]; ?>">
+										<td><input type="submit" value="Contribuer"></td>
                     </form></tr>
                 <?php  } ?>
               </table>

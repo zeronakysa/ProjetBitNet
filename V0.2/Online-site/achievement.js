@@ -7,6 +7,7 @@ function getAchievement(){
             if(request.status == 200){
                 var achievementsWin = JSON.parse(request.responseText);
                 getAchievementToHTML(achievementsWin);
+                console.log(achievementsWin);
             }
         }
     }
@@ -19,8 +20,18 @@ function getAchievementToHTML(achievementsWin){
     var container = document.getElementById('achievementDisplay');
 
     achievementsWin.forEach(function(achievement) {
+        var div = document.createElement('div');
+
+        var img = document.createElement('img');
+            img.setAttribute('src',`css/img/achievement/${achievement.ID_succes}w.png`);
+
         var p = document.createElement('p');
-        p.innerHTML = `${achievement.nom_succes} ${achievement.description_succes} ${achievement.xp_donnee} ${achievement.goal}`;
-        container.appendChild(p);
+            p.innerHTML = `${achievement.nom_succes}`;
+
+        p.appendChild(img);
+        div.appendChild(p);
+        container.appendChild(div);
+
+
     })
 }

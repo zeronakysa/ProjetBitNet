@@ -14,8 +14,10 @@
 				<input id="achievementSearchBar" class="form-control" type="text" name="achievementSearchBar" placeholder="Rechercher un succès" />
 			</div>
 		</div>
-		<div id="achievementDisplay" class="row">
-
+		<div class="row">
+			<div id="achievementDisplay" class="col-md-8 col-md-offset-2">
+				
+			</div>
 		</div>
 	</div>
 	<?php

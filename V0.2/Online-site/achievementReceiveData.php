@@ -10,10 +10,7 @@ $connection = dbConnect();
 // $request = $connection->prepare("SELECT ID_succes FROM `succes`");
 
 // Select in DB All Achievement Done !
-$request = $connection->prepare("   SELECT  SUCCES.nom_succes,
-                                            SUCCES.description_succes,
-                                            SUCCES.xp_donnee,
-                                            SUCCES.goal
+$request = $connection->prepare("   SELECT  SUCCES.*
                                     FROM    SUCCES, succes_reussi
                                     WHERE   SUCCES.ID_succes = succes_reussi.ID_succes
                                     AND     succes_reussi.progression = SUCCES.goal
@@ -22,7 +19,7 @@ $request = $connection->prepare("   SELECT  SUCCES.nom_succes,
 $request->execute(["email" => $_SESSION["email"]]);
 
 $achievementArray = $request->fetchAll(PDO::FETCH_ASSOC);
-print_r($achievementArray);
+// print_r($achievementArray);
 echo json_encode($achievementArray);
 
 

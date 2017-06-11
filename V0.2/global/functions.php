@@ -57,6 +57,7 @@
 			]);
 		$achievementsInfo = $query->fetch();
 		$query = null;
+
 		//Verify if success' already done.
 		$query = $connection->prepare('SELECT email, progression FROM succes_reussi WHERE email=:email AND ID_succes = :id_succes');
 		$query->execute([
@@ -68,7 +69,6 @@
 
 		//If Achievement not started → add in DB
 		if ($result[0] != $_SESSION['email']){
-			$succesExist = true;
 			$query = $connection->prepare('INSERT INTO `succes_reussi` (`email`, `ID_succes`) VALUES (:email, :id_succes)');
 			$query->execute([
 				'email'=>$_SESSION['email'],
@@ -83,19 +83,26 @@
 					]);
 				$result = $query->fetch();
 				$query = null;
+
+
+			// ------------------------------------
+			// Testing Condition for Debug
+			// ------------------------------------
 			// If prog = goal achievement unlocked
 			if($result[0] == $_SESSION['email'] && $result[1] == $achievementsInfo[1]){
 				echo "Succès " .$achievementsInfo[0] ." accomplie <br />";
+				$succesExist = true;
 			// If prog != goal display progression
 			} else {
 				echo "Succès " .$achievementsInfo[0] ." ".$result[1] ."/".$achievementsInfo[1] ."<br />";
 			}
+
 		//If Achievement started but not finish update progression
 		} else if($result[0] == $_SESSION['email'] && $result[1] < $achievementsInfo[1]){
-			$succesExist = true;
-			$query = $connection->prepare('UPDATE SUCCES_REUSSI SET progression = :prog WHERE email=:email ');
+			$query = $connection->prepare('UPDATE SUCCES_REUSSI SET progression = :prog WHERE email=:email AND ID_succes=:id_succes');
 			$succesExist = $query->execute([
 				"email" => $_SESSION['email'],
+				"id_succes" => $id_succes,
 				"prog" => $result[1] + 1
 			]);
 			// Select new value
@@ -105,9 +112,14 @@
 				'id_succes' => $id_succes
 				]);
 			$result = $query->fetch();
+
+			// ------------------------------------
+			// Testing Condition for Debug
+			// ------------------------------------
 			// if prog = goal achievement unlocked
 			if($result[0] == $_SESSION['email'] && $result[1] == $achievementsInfo[1]){
 				echo "Succès " .$achievementsInfo[0] ." accomplie<br />";
+				$succesExist = true;
 			// if prog != goal display progression
 			} else {
 				echo "Succès " .$achievementsInfo[0] ." ".$result[1] ."/".$achievementsInfo[1];

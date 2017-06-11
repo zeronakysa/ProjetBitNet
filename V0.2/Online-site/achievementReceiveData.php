@@ -8,6 +8,8 @@ require "../global/conf.inc.php";
 $connection = dbConnect();
 
 // $request = $connection->prepare("SELECT * FROM succes");
+
+// Select in DB All Achievement Done ! 
 $request = $connection->prepare("   SELECT  succes_reussi.email,
                                             succes_reussi.progression,
                                             succes.nom_succes,

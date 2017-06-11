@@ -17,4 +17,7 @@ if( isset($_SESSION['ID_membre']) &&
             "pseudo"    => $_SESSION['pseudo'],
             "message"   => $_POST["msg"]
         ]);
+
+        // Succès Shoutbox
+        giveSucces(6);
 }

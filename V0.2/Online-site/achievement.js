@@ -1,4 +1,3 @@
-
 function getAchievement(){
     var request = newXMLHttpRequest();
     var url = 'achievementReceiveData.php';

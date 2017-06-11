@@ -3,7 +3,7 @@
 ?>
 	<title>Succes</title>
 </head>
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50" onload="displayAchievement()">
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50" onload="getAchievement()">
 	<?php
 		include "navBar.php";
 	 ?>
@@ -15,7 +15,7 @@
 			</div>
 		</div>
 		<div id="achievementDisplay" class="row">
-			
+
 		</div>
 	</div>
 	<?php

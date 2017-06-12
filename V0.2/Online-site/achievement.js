@@ -20,17 +20,21 @@ function getAchievementToHTML(achievementsWin){
     var container = document.getElementById('achievementDisplay');
 
     achievementsWin.forEach(function(achievement) {
-        var div = document.createElement('div');
+
 
         var img = document.createElement('img');
             img.setAttribute('src',`css/img/achievement/${achievement.ID_succes}w.png`);
+            // img.setAttribute('class', 'img-responsive')
 
         var p = document.createElement('p');
-            p.innerHTML = `${achievement.nom_succes}`;
+            p.innerHTML =   `${achievement.nom_succes}
+                            </br> ${achievement.description_succes}
+                            </br> Expériences : ${achievement.xp_donnee} XP`;
 
-        p.appendChild(img);
-        div.appendChild(p);
-        container.appendChild(div);
+
+
+        container.appendChild(img);
+        container.appendChild(p);
 
 
     })

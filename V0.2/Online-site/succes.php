@@ -15,8 +15,8 @@
 			</div>
 		</div>
 		<div class="row">
-			<div id="achievementDisplay" class="col-md-8 col-md-offset-2">
-				
+			<div id="achievementDisplay" class="col-md-8 col-md-offset-2 text-center">
+
 			</div>
 		</div>
 	</div>

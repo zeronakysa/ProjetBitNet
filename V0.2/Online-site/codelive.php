@@ -158,12 +158,6 @@
 			$(document).ready(function(){
 			    $('[data-toggle="tooltip"]').tooltip();
 			});
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> eab8a59cb380ca02388cda218ae00d5f8f745650
 		</script>
 	</body>
 </html>

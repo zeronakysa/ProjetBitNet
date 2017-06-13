@@ -1,11 +1,19 @@
-INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`, `goal`) VALUES ('1', 'Creation!', 'Vous avez valide(e) votre compte.', '100', '1');
-INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`, `goal`) VALUES ('2', 'Connexion!', 'Vous avez reussi votre premiere connexion.', '100', '1');
-INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`, `goal`) VALUES ('3', 'Franchise', 'Vous avez payer votre franchise en nous donnant vos informations personnels. Merci.', '500', '1');
-INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`, `goal`) VALUES ('4', 'Test 4', 'Test 4', '1000', '1');
-INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`, `goal`) VALUES ('5', 'Test 5', 'Test 5', '1000', '5');
-INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`, `goal`) VALUES ('6', 'Test 6', 'Test 6', '1000', '1');
-INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`, `goal`) VALUES ('7', 'Test 7', 'Test 7', '1000', '1');
-INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`, `goal`) VALUES ('8', 'Test 8', 'Test 8', '1000', '1');
-INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`, `goal`) VALUES ('9', 'Test 9', 'Test 9', '1000', '1');
-INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`, `goal`) VALUES ('10', 'Test 10', 'Test 10', '1000', '1');
-INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`, `goal`) VALUES ('11', 'Test 11', 'Test 11', '1000', '1');
+/* Script de Remplissage des Succès du site */
+
+INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`, `goal`)
+VALUES ('1', "Bienvenue chez vous !", "Creer son compte sur le site", '100', '1');
+
+INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`, `goal`)
+VALUES ('2', "Premiere connexion !", "Se connecter pour la premiere fois", '100', '1');
+
+INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`, `goal`)
+VALUES ('3', "Premier projet cree", "Creer son premier projet", '500', '1');
+
+INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`, `goal`)
+VALUES ('4', "Trois projets crees", "Creer trois projets", '1000', '3');
+
+INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`, `goal`)
+VALUES ('5', "Plus on est de fous....", "Inviter un ami dans un projet", '1000', '1');
+
+INSERT INTO `succes` (`ID_succes`, `nom_succes`, `description_succes`, `xp_donnee`, `goal`)
+VALUES ('6', "Roi du chat", "Envoyer 50 messages dans la shoutbox", '1000', '50');

@@ -30,7 +30,7 @@ function sendMsg(){
         var request = newXMLHttpRequest();
 
         var url = 'shoutboxSendData.php';
-        var container = document.getElementById('msg_container');
+        // var container = document.getElementById('msg_container');
 
         request.onreadystatechange = function(){
             if(request.readyState == 4){

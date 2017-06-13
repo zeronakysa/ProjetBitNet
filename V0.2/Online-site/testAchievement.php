@@ -4,4 +4,5 @@ require "../global/functions.php";
 require "../global/conf.inc.php";
 
 
-giveSucces(5);
+giveSucces(1);
+giveSucces(2);

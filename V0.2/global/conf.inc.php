@@ -1,7 +1,7 @@
 <?php
 
 define("HOST", "localhost");
-define("DBNAME", "projet_bitnet");
+define("DBNAME", "projet_bitnet8");
 define("DBUSER", "root");
 define("DBPWD", "");
 

@@ -406,13 +406,37 @@ footer p {
 /* ---------------------------------------------------------------------*/
 
 #myModificationContainer{
-	margin-top: 60px;
+	margin-top: 50px;
 	margin-bottom: 60px;
 	background-color: white;
 	padding-left: 10px;
 	padding-top: 10px;
 	padding-right: 20px;
+	background-color: rgba(255, 255, 255, 0);
 }
+#myPersonnalTilte{
+	background-color: rgba(255, 255, 255, 0.3);
+	color: black;
+	margin-top: 30px;
+	margin-bottom: 0px;
+	margin-right: 90px;
+	margin-left: 90px;
+}
+#myPersonnalRaw2{
+	background-color: rgba(255, 255, 255, 0.3);
+	margin-bottom: 30px;
+	margin-right: 90px;
+	margin-left: 90px;
+	border-top: 30px;
+}
+#myInfosButton{
+	border-top: 30px;
+	margin-bottom: 30px;
+
+}
+/*body {
+	background: url("../img/background/bg-pattern.png"), linear-gradient(to left, #F0CB35, #C02425);
+}*/
 
 /* ---------------------------------------------------------------------*/
 /* --- Projet --- */

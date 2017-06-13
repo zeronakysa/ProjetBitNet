@@ -37,45 +37,45 @@
 							<label for="myInfosPseudo">
 								<b>Pseudo: </b>
 							</label>
-              <input class="form-control" value="<?php echo ($user["pseudo"])?$user["pseudo"]:"";?>" type="text" name="pseudo" placeholder="pseudo" required="required">
+              				<input class="form-control" value="<?php echo ($user["pseudo"])?$user["pseudo"]:"";?>" type="text" name="pseudo" placeholder="pseudo" required="required">
 						</div>
-            <div class="form-group" id="myInfosName">
+            			<div class="form-group" id="myInfosName">
 							<label for="myInfosPseudo">
-                <b>Nom: </b>
+                				<b>Nom: </b>
 							</label>
-              <input class="form-control" type="text" name="nom" value="<?php echo ($user["nom"])?$user["nom"]:"";?>" placeholder="Nom">
+              				<input class="form-control" type="text" name="nom" value="<?php echo ($user["nom"])?$user["nom"]:"";?>" placeholder="Nom">
 						</div>
-            <div class="form-group" id="myInfosFirstName">
+            			<div class="form-group" id="myInfosFirstName">
 							<label for="myInfosPseudo">
-                <b>Prenom: </b>
+                				<b>Prenom: </b>
 							</label>
-              <input class="form-control" type="text" name="prenom" value="<?php echo ($user["prenom"])?$user["prenom"]:"";?>" placeholder="Prénom">
+              				<input class="form-control" type="text" name="prenom" value="<?php echo ($user["prenom"])?$user["prenom"]:"";?>" placeholder="Prénom">
 						</div>
-            <div class="form-group" id="myInfosLangage">
+            			<div class="form-group" id="myInfosLangage">
 							<label for="myInfosPseudo">
-                <b>Languages</b>
+                				<b>Languages</b>
 							</label>
-              <input class="form-control" type="text" name="langages" value="<?php echo ($user["langages"])?$user["langages"]:"";?>" placeholder="langages">
+              				<input class="form-control" type="text" name="langages" value="<?php echo ($user["langages"])?$user["langages"]:"";?>" placeholder="langages">
 						</div>
-            <div class="form-group" id="myInfosCP">
+            			<div class="form-group" id="myInfosCP">
 							<label for="myInfosPseudo">
-                <b>Code postale: </b>
+                				<b>Code postale: </b>
 							</label>
-              <input class="form-control" type="text" name="ville" value="<?php echo ($user["ville"])?$user["ville"]:"";?>" placeholder="Code Postale">
+              				<input class="form-control" type="text" name="ville" value="<?php echo ($user["ville"])?$user["ville"]:"";?>" placeholder="Code Postale">
 						</div>
-            <div class="form-group" id="myInfosBirthday">
+            			<div class="form-group" id="myInfosBirthday">
 							<label for="myInfosPseudo">
-                <b>Date de naissance: </b>
+                				<b>Date de naissance: </b>
 							</label>
-              <input class="form-control" type="date" name="date_naissance" placeholder="Date de naissance" value="<?php echo date('Y-m-d', strtotime($user["date_naissance"]))?>">
+              				<input class="form-control" type="date" name="date_naissance" placeholder="Date de naissance" value="<?php echo date('Y-m-d', strtotime($user["date_naissance"]))?>">
 						</div>
-            <div class="form-group" id="myInfosImage">
+            			<div class="form-group" id="myInfosImage">
 							<label for="myInfosPseudo">
-                <b>Image de profile (lien URL): </b>
+                				<b>Image de profile (lien URL): </b>
 							</label>
-              <input class="form-control" type="text" name="profile_picture" value="<?php echo ($user["profile_picture"])?$user["profile_picture"]:"";?>" placeholder="Lien URL">
+              				<input class="form-control" type="text" name="profile_picture" value="<?php echo ($user["profile_picture"])?$user["profile_picture"]:"";?>" placeholder="Lien URL">
 						</div>
-            <input type="hidden" name="action" value="updateUser"/>
+            			<input type="hidden" name="action" value="updateUser"/>
 						<button id="myInfosButton" type="submit" class="btn btn-default text-center">
 							Mettre à jour
 						</button>

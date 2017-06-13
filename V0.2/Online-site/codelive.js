@@ -37,6 +37,10 @@ var editor = CodeMirror.fromTextArea(document.getElementById("codeMirror"),{
     }
 });
 
+$( document ).ready(function() {
+    getCodeMirrorContent();
+});
+
 //Change les options theme ou language pour codemirror
 function changeOption(option, element){
 
@@ -56,7 +60,7 @@ $('div.tab span').on('click', function() {
 	$('div.options').slideToggle('fast');
 });
 
-//Sauvegarde automatiquement le contenu de codemirror toutes les 2secondes
+//Sauvegarde automatiquement le contenu de codemirror toutes les 500millisecondes
 function autoSaveCodeMirrorContent(){
 	var content = editor.getValue();
 	var request = newXMLHttpRequest();

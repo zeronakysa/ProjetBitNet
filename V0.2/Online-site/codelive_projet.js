@@ -37,6 +37,10 @@ var editor = CodeMirror.fromTextArea(document.getElementById("codeMirror"),{
     }
 });
 
+$( document ).ready(function() {
+    getCodeMirrorContent();
+});
+
 //Change les options theme ou language pour codemirror
 function changeOption(option, element){
 

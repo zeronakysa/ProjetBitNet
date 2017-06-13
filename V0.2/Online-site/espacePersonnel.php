@@ -19,12 +19,12 @@
 		?>
 
     <div class="container-fluid" id="myModificationContainer">
-	<div class="row">
+	<div class="row" id="myPersonnalRaw">
 		<div class="col-md-12">
-			<h3 class="text-center text-info">
+			<h3 class="text-center text-info" id="myPersonnalTilte">
 				Informations personnelles
 			</h3>
-			<div class="row">
+			<div class="row" id="myPersonnalRaw2">
 				<div class="col-md-2">
 				</div>
 				<div class="col-md-4">
@@ -85,7 +85,7 @@
 				</div>
 				<div class="col-md-3 text-center" id="myImage">
 					<img alt="yourAvatar" src="<?php echo ($user["profile_picture"])?$user["profile_picture"]:"";?>" height="500" width="500" class="img-rounded">
-          <i>Avatar (500*500px)</i>
+          <br/><i>Avatar (500*500px)</i>
 				</div>
 				<div class="col-md-2">
 				</div>

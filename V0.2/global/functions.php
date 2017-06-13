@@ -201,7 +201,7 @@
 			date_update = NOW(),
 			profile_picture = :profile_picture
 			WHERE email=:email");
-		 $query->execute([
+		 $test = $query->execute([
 			"pseudo" => $_POST["pseudo"],
 			"nom" => $_POST["nom"],
 			"prenom" => $_POST["prenom"],
@@ -213,6 +213,7 @@
 		]);
 
 		$_SESSION['pseudo'] = $_POST['pseudo'];
+		$_SESSION['test'] = $test;
 		header('Location: espacePersonnel.php#myModification');
 	}
 
@@ -279,7 +280,7 @@ DEBUG */
 	    if(! is_dir($from))
 	        return false;
 	    $dirs = array( $from);
-	    while( NULL !== ($dir = array_pop( $dirs)))
+		    while( NULL !== ($dir = array_pop( $dirs)))
 	    {
 	        if( $dh = opendir($dir))
 	        {
@@ -305,7 +306,7 @@ DEBUG */
 									  $id_file = $query->fetch();
 										?>
 										<div class="container-fluid">
-											<div id="projet_nameFile" class="col-lg-2">
+											<div id="projet_nameFile" class="col-lg-3">
 												..<?php echo $path ?>
 											</div>
 											<div id="projet_openCLBox" class="col-lg-1">
@@ -529,7 +530,7 @@ DEBUG */
 									if($results != 1){
 										echo "Impossible d'ajouter en base de donnée.";
 									}
-		  						move_uploaded_file($temp,$UploadFolder."/".$name);
+		  						move_uploaded_file($temp,$UploadFolder.$name);
 		  						array_push($uploadedFiles, $name);
 		  					}
 		  				}

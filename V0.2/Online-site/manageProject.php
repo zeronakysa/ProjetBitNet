@@ -83,7 +83,7 @@ else {?>
 					?>
     </table>
     <?php
-    $structure = "../PROJETS/".$_SESSION["ID_membre"]."/".$project[0]["nom_projet"]."/";
+    $structure = "../PROJETS/".$project[0]["ID_createur"]."/".$project[0]["nom_projet"]."/";
     addMultipleFiles($structure);
 		echo "<br /> <b>Arborescence du projet: </b><br />";
 		listFilesAndPrint($structure);

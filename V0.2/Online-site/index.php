@@ -17,26 +17,29 @@
 			<div class="row text-center">
 				<div class="col-lg-4">
 					<h2>CodeLive</h2>
-					<a href="codelive.php"><img id="codeliveprez" src="css/img/codeliveprez.png" alt="codelive prez" /></a>
+					<a href="codelive.php"><i class="fa fa-code fa-5x" aria-hidden="true"></i></a>
 				</div>
 				<div class="col-lg-4">
 					<h2>HallOfFame</h2>
+					<a href="hallOfFame.php"><i class="fa fa-star-o fa-5x" aria-hidden="true"></i></a>
 				</div>
 				<div class="col-lg-4">
 					<h2>ShoutBox</h2>
+					<a href="shoutBox.php"><i class="fa fa-commenting-o fa-5x" aria-hidden="true"></i></a>
 				</div>
 			</div>
 			<div class="row text-center">
 				<div class="col-lg-4">
 					<h2>Succès</h2>
+					<a href="succes.php"><i class="fa fa-trophy fa-5x" aria-hidden="true"></i></a>
 				</div>
 				<div class="col-lg-4">
 					<h2>Projets</h2>
-					<a href="projet.php"><img id="projetprez" src="css/img/projetprez.jpg" alt="projet prez" /></a>
+					<a href="projet.php"><i class="fa fa-users fa-5x" aria-hidden="true"></i></a>
 				</div>
 				<div class="col-lg-4">
-					<h2>Page Perso</h2>
-					<a href="espacePersonnel.php"><img id="pagepersoprez" src="css/img/pagepersoprez.png" alt="page perso prez" /></a>
+					<h2>Espace perso.</h2>
+					<a href="espacePersonnel.php"><i class="fa fa-id-card-o fa-5x" aria-hidden="true"></i></a>
 				</div>
 			</div>
 		</div>

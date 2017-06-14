@@ -18,8 +18,9 @@
             <ul class="nav navbar-nav">
                 <li><a href="codeLive.php" >CodeLive</a></li>
                 <li><a href="hallOfFame.php">Hall Of Fame</a></li>
-                <li><a href="ShoutBox.php">ShoutBox</a></li>
-                <li><a href="Succes.php">Succès</a></li>
+                <li><a href="shoutBox.php">ShoutBox</a></li>
+                <li><a href="succes.php">Succès</a></li>
+                <li><a href="projet.php">Projets</a></li>
                 <?php if ($_SESSION['role'] == "admin"):?>
                     <li><a href="admin.php">Administration</a></li>
                 <?php endif;?>
@@ -40,7 +41,7 @@
             <!-- Desktop Navbar Login form -->
             <div class="nav navbar-nav navbar-right">
                 <a id="infoCompte" href="espacePersonnel.php">Vous êtes connectés en tant que: <em><b><?php echo $_SESSION['pseudo']; ?></b></em></a>
-<img src="<?php echo $_SESSION["profile_picture"]?>" height="32" width="32" /> 
+                <img src="<?php echo $_SESSION["profile_picture"]?>" height="32" width="32" /> 
                 <br>
                 <span style="float: right"><a href="deconnection.php">Se déconnecter</a></span>
             </div>

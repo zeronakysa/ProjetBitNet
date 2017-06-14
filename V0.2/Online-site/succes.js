@@ -1,3 +1,7 @@
+$( document ).ready(function() {
+    getAchievement();
+});
+
 function getAchievement(){
     var request = newXMLHttpRequest();
     var url = 'achievementReceiveData.php';
@@ -20,22 +24,16 @@ function getAchievementToHTML(achievementsWin){
     var container = document.getElementById('achievementDisplay');
 
     achievementsWin.forEach(function(achievement) {
-
-
         var img = document.createElement('img');
-            img.setAttribute('src',`css/img/achievement/${achievement.ID_succes}w.png`);
-            // img.setAttribute('class', 'img-responsive')
+        img.setAttribute('src',`css/img/achievement/${achievement.ID_succes}w.png`);
+        // img.setAttribute('class', 'img-responsive')
 
         var p = document.createElement('p');
-            p.innerHTML =   `${achievement.nom_succes}
-                            </br> ${achievement.description_succes}
-                            </br> Expériences : ${achievement.xp_donnee} XP`;
-
-
+        p.innerHTML =   `${achievement.nom_succes}
+                        </br> ${achievement.description_succes}
+                        </br> Expériences : ${achievement.xp_donnee} XP`;
 
         container.appendChild(img);
         container.appendChild(p);
-
-
     })
 }

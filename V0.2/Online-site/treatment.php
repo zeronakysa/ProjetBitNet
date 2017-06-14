@@ -36,8 +36,10 @@ require '../global/conf.inc.php';
 		<h1>TREATMENT ZONE </h1>
     <?php
 			print_r ($_POST);
+			echo "<br />";
+			print_r ($_SESSION);
+
 			if ($_POST["action"]=="updateUser"){
-				giveSucces(3);
 				updateUser();
 			}
 			if ($_POST["action"]=="deleteUser" && is_numeric($_GET["id"])){
@@ -65,13 +67,14 @@ require '../global/conf.inc.php';
 			if ($_POST["action"]=="adminDeleteProject" && is_numeric($_POST["idProject"])){
 				$id = $_POST["idProject"];
 				adminDeleteProject($id);
-			}			
+			}
 			if ($_POST["action"]=="deleteProject" && is_numeric($_POST["idProject"])){
 				$id = $_POST["idProject"];
 				deleteProject($id);
 			}
 			if ($_POST["action"]=="createProject" && is_numeric($_GET["id"])){
 				$id = $_GET["id"];
+				giveSucces(3);
 				createProject($id, $_POST["projectName"], $_POST["projetDescription"], $_SESSION["email"]);
 			}
 			if ($_POST["action"]=="deleteFile" && is_numeric($_POST["idFile"])){

@@ -59,7 +59,7 @@
 						</div>
             			<div class="form-group" id="myInfosCP">
 							<label for="myInfosPseudo">
-                				<b>Code postale: </b>
+                				<b>Code postal: </b>
 							</label>
               				<input class="form-control" type="text" name="ville" value="<?php echo ($user["ville"])?$user["ville"]:"";?>" placeholder="Code Postale">
 						</div>

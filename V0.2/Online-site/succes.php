@@ -3,7 +3,7 @@
 ?>
 	<title>Succes</title>
 </head>
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50" onload="getAchievement()">
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
 	<?php
 		include "navBar.php";
 	 ?>
@@ -20,20 +20,11 @@
 			</div>
 		</div>
 	</div>
-	<?php
-
-		// etatSucces();
-		// $exp = getExp($_SESSION['email']);
-		// echo "<br>";
-		// echo "Votre expérience: ";
-		// print_r($exp);
-	?>
-
 
 	<?php
   		include "footer.php";
 	?>
-	<script src="achievement.js"></script>
+	<script src="succes.js"></script>
 	<script src="../global/functions.js"></script>
 </body>
 </html>

@@ -85,7 +85,10 @@
 				</div>
 				<div class="col-md-3 text-center" id="myImage">
 					<img alt="yourAvatar" src="<?php echo ($user["profile_picture"])?$user["profile_picture"]:"";?>" height="500" width="500" class="img-rounded">
-          <br/><i>Avatar (500*500px)</i>
+          <br/><i>Avatar (500*500px)</i><br /><br />
+					<div class="form-group">
+						<label for="myInfosExp"><b>Expérience: </b></label>
+							<div id="myInfosExp"><?php echo $user["experience"] ?></div>
 				</div>
 				<div class="col-md-2">
 				</div>

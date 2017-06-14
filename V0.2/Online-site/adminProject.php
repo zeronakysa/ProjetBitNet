@@ -69,13 +69,13 @@ else {?>
 					$query = $connection->prepare("SELECT pseudo FROM MEMBRE,participe_projet WHERE participe_projet.ID_projet = :ID_projet AND participe_projet.role_projet = 'contrib' AND MEMBRE.email = participe_projet.email;");
 					$query->execute(['ID_projet' => $_SESSION["ID_project"]]);
 					$membres = $query->fetchAll();
-					echo "<br /><b> Contributeur(s):</b><br />";
-					if($isOwner == 1 || $isAdmin == 1){
-						?><div id="contribSearchBar" class="col-lg-2 col-lg-offset-2">
-						 <input type="text" name="contribSearchBar" placeholder="Ajouter un contributeur" />
-						</div><?php
-					}else{}
 					if ($membres){
+						echo "<br /><b> Contributeur(s):</b><br />";
+						if($isOwner == 1 || $isAdmin == 1){
+							?><div id="contribSearchBar" class="col-lg-2">
+							 <input type="text" name="contribSearchBar" placeholder="Ajouter un contributeur" />
+						 	</div><?php
+						}else{}
 						foreach ($membres as $membre) {
 							 echo "- ".$membre["pseudo"]."<br />";
 						}

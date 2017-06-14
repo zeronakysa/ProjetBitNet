@@ -153,11 +153,26 @@
                     echo "<td>".$nbFiles[0]." </td>";
                     echo "<td>".$project["nom_projet"]." </td>";
                     echo "<td>".$project["description_projet"]." </td>";?>
-										<form method="POST" action="manageProject.php">
+										<form method="POST" action="contribProject.php">
 											<input type="hidden" name="action" value="contribProject"/>
 											<input type="hidden" name="projectID" value="<?php echo $project["ID_projet"]; ?>">
 										<td><input type="submit" value="Contribuer"></td>
-                    </form></tr>
+										</form>
+										<?php
+										$query = $connection->prepare("SELECT role_projet FROM participe_projet WHERE email=:email AND ID_projet=:ID_projet");
+										$query->execute(['email' => $_SESSION["email"],
+																			'ID_projet' => $idProjects[$i][0]
+																		]);
+										$isAdmin = $query->fetch();
+											if($isAdmin["role_projet"] == "admin"){?>
+												<form method="POST" action="manageProject.php">
+													<input type="hidden" name="action" value="manageProject"/>
+													<input type="hidden" name="projectID" value="<?php echo $project["ID_projet"]; ?>">
+												<td><input type="submit" value="Manager"></td>
+												</form>
+											<?php }else{}
+										 ?>
+                    </tr>
                 <?php  } ?>
               </table>
             </pre>

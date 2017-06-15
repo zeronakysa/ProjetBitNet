@@ -2,6 +2,7 @@ $( document ).ready(function() {
     getAchievement();
 });
 
+// Ajax function to get Achievement suceed
 function getAchievement(){
     var request = newXMLHttpRequest();
     var url = 'achievementReceiveData.php';
@@ -14,7 +15,7 @@ function getAchievement(){
                 // console.log(achievementsWin);
             }
         }
-    }
+    };
 
     request.open('GET', url, true);
     request.send();
@@ -38,5 +39,5 @@ function getAchievementToHTML(achievementsWin){
         div.appendChild(img);
         div.appendChild(p);
         container.appendChild(div);
-    })
+    });
 }

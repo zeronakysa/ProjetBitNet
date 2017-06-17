@@ -38,7 +38,7 @@ function sendMsg(){
                     // container.innerHTML = request.responseText;
                 }
             }
-        }
+        };
 
         request.open('POST', url, true);
         request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -60,7 +60,7 @@ function displayMsg(){
                 container.innerHTML = request.responseText;
             }
         }
-    }
+    };
     request.open('GET', url, true);
     request.send();
 

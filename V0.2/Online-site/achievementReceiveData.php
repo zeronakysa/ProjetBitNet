@@ -21,19 +21,3 @@ $request->execute(["email" => $_SESSION["email"]]);
 $achievementArray = $request->fetchAll(PDO::FETCH_ASSOC);
 // print_r($achievementArray);
 echo json_encode($achievementArray);
-
-
-
-
-
-// Reminder SQL Request
-// SELECT 	succes_reussi.email,
-// 		succes_reussi.progression,
-//         succes.nom_succes,
-//         succes.description_succes,
-//         succes.xp_donnee,
-//         succes.goal
-// FROM succes, succes_reussi
-// WHERE succes.ID_succes = succes_reussi.ID_succes
-// AND succes_reussi.progression <= succes.goal
-// AND succes_reussi.email = "steven.canta@gmail.com"

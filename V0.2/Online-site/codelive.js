@@ -99,5 +99,5 @@ function getCodeMirrorContent(){
 	request.send(data);
 }
 
-setInterval(function() { autoSaveCodeMirrorContent() }, 500);
-setInterval(function() { getCodeMirrorContent() }, 5000);
+setInterval(function() { autoSaveCodeMirrorContent(); }, 500);
+setInterval(function() { getCodeMirrorContent(); }, 5000);

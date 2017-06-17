@@ -2,6 +2,7 @@ $( document ).ready(function() {
     getAchievement();
 });
 
+// Ajax function to get Achievement suceed
 function getAchievement(){
     var request = newXMLHttpRequest();
     var url = 'achievementReceiveData.php';
@@ -11,10 +12,10 @@ function getAchievement(){
             if(request.status == 200){
                 var achievementsWin = JSON.parse(request.responseText);
                 getAchievementToHTML(achievementsWin);
-                console.log(achievementsWin);
+                // console.log(achievementsWin);
             }
         }
-    }
+    };
 
     request.open('GET', url, true);
     request.send();
@@ -24,6 +25,8 @@ function getAchievementToHTML(achievementsWin){
     var container = document.getElementById('achievementDisplay');
 
     achievementsWin.forEach(function(achievement) {
+
+        var div = document.createElement('div');
         var img = document.createElement('img');
         img.setAttribute('src',`css/img/achievement/${achievement.ID_succes}w.png`);
         // img.setAttribute('class', 'img-responsive')
@@ -33,7 +36,8 @@ function getAchievementToHTML(achievementsWin){
                         </br> ${achievement.description_succes}
                         </br> Expériences : ${achievement.xp_donnee} XP`;
 
-        container.appendChild(img);
-        container.appendChild(p);
-    })
+        div.appendChild(img);
+        div.appendChild(p);
+        container.appendChild(div);
+    });
 }

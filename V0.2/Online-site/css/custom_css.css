@@ -408,14 +408,26 @@ footer p {
  margin-top: 20px;
 }
 
+#achievementDisplay div {
+	display: flex;
+}
+
 #achievementDisplay img {
+	margin: 10px;
+}
+
+#achievementDisplay p{
+	margin: 10px;
+}
+
+/*#achievementDisplay img {
 	height: 100px;
 	width: 100px;
 }
 
 #achievementDisplay p {
 	font-size: 150%;
-}
+}*/
 
 /* ---------------------------------------------------------------------*/
 /* --- Espace Personnel --- */

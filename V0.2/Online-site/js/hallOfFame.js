@@ -13,6 +13,6 @@ function getHallOfFame(){
 		}
 	}
 
-	request.open('GET', 'getHallOfFame.php');
+	request.open('GET', 'services/getHallOfFame.php');
 	request.send();
 }

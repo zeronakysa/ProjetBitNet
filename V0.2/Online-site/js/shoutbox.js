@@ -29,7 +29,7 @@ function sendMsg(){
 
         var request = newXMLHttpRequest();
 
-        var url = 'shoutboxSendData.php';
+        var url = 'services/shoutboxSendData.php';
         // var container = document.getElementById('msg_container');
 
         request.onreadystatechange = function(){
@@ -52,7 +52,7 @@ function displayMsg(){
 
     var request = newXMLHttpRequest();
     var container = document.getElementById('msg_container');
-    var url = 'shoutboxReceiveData.php';
+    var url = 'services/shoutboxReceiveData.php';
 
     request.onreadystatechange = function(){
         if(request.readyState == 4){

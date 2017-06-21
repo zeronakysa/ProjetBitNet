@@ -150,7 +150,7 @@
 		<link rel="stylesheet" href="codemirror/addon/display/fullscreen.css">
 
 		<!-- Créé l'éditeur de texte -->
-		<script src="codelive.js"></script>
+		<script src="js/codelive.js"></script>
 		<script src="../global/functions.js"></script>
 
 		<!-- Tooltip script -->

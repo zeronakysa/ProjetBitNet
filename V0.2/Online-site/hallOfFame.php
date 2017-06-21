@@ -15,11 +15,11 @@
 
 			</div>
 		</div>
-		
+
 		<?php
 	  		include "footer.php";
 		?>
-		<script src="hallOfFame.js"></script>
+		<script src="js/hallOfFame.js"></script>
 		<script src="../global/functions.js"></script>
 	</body>
 </html>

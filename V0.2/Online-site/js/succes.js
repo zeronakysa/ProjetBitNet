@@ -5,7 +5,7 @@ $( document ).ready(function() {
 // Ajax function to get Achievement suceed
 function getAchievement(){
     var request = newXMLHttpRequest();
-    var url = 'achievementReceiveData.php';
+    var url = 'services/achievementReceiveData.php';
 
     request.onreadystatechange = function(){
         if(request.readyState == 4) {

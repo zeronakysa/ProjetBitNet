@@ -24,7 +24,7 @@
 	<?php
   		include "footer.php";
 	?>
-	<script src="succes.js"></script>
+	<script src="js/succes.js"></script>
 	<script src="../global/functions.js"></script>
 </body>
 </html>

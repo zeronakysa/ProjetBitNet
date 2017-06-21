@@ -28,7 +28,7 @@
 		<?php
 	  		include "footer.php";
 		?>
-		<script src="shoutbox.js"></script>
+		<script src="js/shoutbox.js"></script>
 		<script src="../global/functions.js"></script>
 	</body>
 </html>

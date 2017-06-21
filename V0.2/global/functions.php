@@ -445,6 +445,46 @@ DEBUG */
 			  echo "</pre>";
 		}
 
+		function createFile($pathName){
+			$creation = fopen( $pathName, "w+");
+			if( $creation ){
+				$fileName = pathinfo($pathName, PATHINFO_FILENAME);
+				$ext = pathinfo($pathName, PATHINFO_EXTENSION);
+				$connection = dbConnect();
+				$query = $connection->prepare('INSERT INTO `fichier` (
+					`ID_projet`,
+					`chemin_fichier`,
+					`proprietaire`,
+					`nom_fichier`,
+					`extension`,
+					`date_creation`,
+					`date_modification`,
+					`content`,
+					`is_deleted`)
+				VALUES (
+					:ID_projet,
+					:chemin_fichier,
+					:proprietaire,
+					:nom_fichier,
+					:extension,
+					NOW(),
+					NOW(),
+					:content,
+					:is_deleted)');
+				$query->execute([
+					'ID_projet'=>$_SESSION["ID_project"],
+					'chemin_fichier'=>$pathName,
+					'proprietaire'=>$_SESSION["ID_membre"],
+					'nom_fichier'=>$fileName,
+					'extension'=>$ext,
+					'content'=>'',
+					'is_deleted'=>0
+				]);
+				header('Location: contribProject.php#NewFile');
+			}
+			return $creation;
+		}
+
 		function addMultipleFiles($UploadFolder){
 		  ?>
 		  		<form method="post" enctype="multipart/form-data" name="formUploadFile">

@@ -39,14 +39,30 @@ else {?>
 					$query->execute(['ID_projet' => $_SESSION["ID_project"]]);
 					$membre = $query->fetchAll();
 					echo "<br /><b> Propriétaire:</b><br /> - ".$membre[0]["pseudo"]."<br />";
+					if ($membre[0]["ID_membre"] == $_SESSION["ID_membre"]){
+						$isOwner = 1;
+					}else{$isOwner = 0;}
 
 					$query = $connection->prepare("SELECT pseudo, ID_membre FROM MEMBRE,participe_projet WHERE participe_projet.ID_projet = :ID_projet AND participe_projet.role_projet = 'admin' AND MEMBRE.email = participe_projet.email;");
 					$query->execute(['ID_projet' => $_SESSION["ID_project"]]);
 					$membres = $query->fetchAll();
 					echo "<br /><b> Administrateur(s):</b><br />";
+					if($isOwner == 1){
+						?><div class="raw">
+								<div id="adminSearchBar">
+								 <input type="text" name="adminSearchBar" placeholder="Ajouter un administrateur" />
+								</div>
+							</div>
+						<?php
+					}else{}
 					if ($membres){
 						foreach ($membres as $membre) {
 							 echo "- ".$membre["pseudo"]."<br />";
+							 if($membre["ID_membre"] == $_SESSION["ID_membre"]){
+								 $isAdmin = 1;
+							 }else{
+								 $isAdmin = 0;
+							 }
 						}
 					}else{
 						echo"<i>Aucun administrateur..</i><br />";
@@ -56,6 +72,14 @@ else {?>
 					$query->execute(['ID_projet' => $_SESSION["ID_project"]]);
 					$membres = $query->fetchAll();
 					echo "<br /><b> Contributeur(s):</b><br />";
+					if($isOwner == 1 || $isAdmin == 1){
+						?><div class="raw">
+								<div id="contribSearchBar" >
+								 <input type="text" name="contribSearchBar" placeholder="Ajouter un contributeur" />
+								</div>
+							</div>
+						<?php
+					}else{}
 					if ($membres){
 						foreach ($membres as $membre) {
 							 echo "- ".$membre["pseudo"]."<br />";
@@ -65,7 +89,15 @@ else {?>
 					}
      			echo "</table><br />";
     $structure = "../PROJETS/".$project[0]["ID_createur"]."/".$project[0]["nom_projet"]."/";
+		$structure = realpath($structure);
     addMultipleFiles($structure);
+		echo "<br /> <b>Ajouter un fichier au projet: </b><br />";
+		?><form method="post" action="treatment.php">
+			<input type="text" name="nameFile" id="nameFile" placeholder="Nom (55 car max)" maxlength="55" required="required"><br />
+			<input type="text" name="extFile" id="extFile" placeholder="Extension (5 car max)" maxlength="5" required="required"><br />
+			<input type="hidden" name="action" value="createFile"/>
+			<input type="submit" value="Creer nouveau fichier">
+		</form><?php
 		echo "<br /> <b>Arborescence du projet: </b><br />";
 		listFilesAndPrint($structure);
   }?>

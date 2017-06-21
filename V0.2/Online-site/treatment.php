@@ -81,6 +81,19 @@ require '../global/conf.inc.php';
 				$id = $_POST["idFile"];
 				deleteFile($id);
 			}
+			if ($_POST["action"]=="createFile"){
+
+					$connection = dbConnect();
+					$query = $connection->prepare("SELECT nom_projet, ID_createur FROM PROJET WHERE ID_projet=:ID_projet AND is_deleted=0;");
+					$query->execute(['ID_projet' => $_SESSION["ID_project"]]);
+					$nameProject = $query->fetch();
+
+					$path = '..\\PROJETS\\'.$nameProject["ID_createur"].'\\'.$nameProject["nom_projet"].'\\';
+					$path = realpath($path);
+					chdir($path);
+					$fullPath = getcwd()."\\".$_POST["nameFile"].".".$_POST["extFile"];
+					createFile($fullPath);
+				}
 
 
 			if ($_POST["action"]=="openCodeLive" && is_numeric($_POST["idFile"])){

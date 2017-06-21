@@ -60,17 +60,7 @@ $('div.tab span').on('click', function() {
 	$('div.options').slideToggle('fast');
 });
 
-//création de la requête pour toutes versions de navigateur
-function newXMLHttpRequest() {
-	//Pour les navigateurs à jours
-	if (window.XMLHttpRequest){
-		return new XMLHttpRequest();
-	}
-	//Pour les anciennes versions d'IE
-	return new ActiveXObject("Microsoft.XMLHTTP");
-}
-
-//Sauvegarde automatiquement le contenu de codemirror toutes les 2secondes
+//Sauvegarde automatiquement le contenu de codemirror toutes les 500millisecondes
 function autoSaveCodeMirrorContent(){
 	var content = editor.getValue();
 	var request = newXMLHttpRequest();
@@ -83,8 +73,9 @@ function autoSaveCodeMirrorContent(){
 		}
 	}
 
-	request.open('POST', 'saveCodeMirror.php');
+	request.open('POST', 'services/saveCodeMirror.php');
 	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
 	request.send(data);
 }
 
@@ -103,35 +94,10 @@ function getCodeMirrorContent(){
 		}
 	}
 
-	request.open('POST', 'getCodeMirror.php');
+	request.open('POST', 'services/getCodeMirror.php');
 	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	request.send(data);
 }
 
-setInterval(function() { autoSaveCodeMirrorContent() }, 500);
-setInterval(function() { getCodeMirrorContent() }, 5000);
-
-//Sauvegarde le contenu de codemirror en appuyant sur le bouton
-function saveCodeMirrorContent(){
-	var content = editor.getValue();
-	var request = newXMLHttpRequest();
-	var element = document.getElementById('button_token');
-	var data = "content=" + content + "&token=" + $(element).data('token');
-
-	request.onreadystatechange = function() {
-		if (request.readyState == 4 && request.status == 200) {
-			//alert(request.responseText);
-			//Affiche pop up confirmation
-			var confirm_save = document.getElementById('saved');
-			confirm_save.innerHTML = "Fichier sauvegardé!";
-			//Attend 2000ms soit 2sec et efface la pop up
-			setTimeout(function(){
-		        confirm_save.innerHTML = "";
-		    }, 2000);
-		}
-	}
-
-	request.open('POST', 'saveCodeMirror.php');
-	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	request.send(data);
-}
+setInterval(function() { autoSaveCodeMirrorContent(); }, 500);
+setInterval(function() { getCodeMirrorContent(); }, 5000);

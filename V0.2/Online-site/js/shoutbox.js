@@ -1,4 +1,3 @@
-
 // Keep Scroll At Bottom
 function updateScroll(){
     var scroll = document.getElementById('msg_container');

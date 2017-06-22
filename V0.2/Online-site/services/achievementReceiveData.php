@@ -2,8 +2,8 @@
     session_start();
     header('Content-type: application/json');
 
-    require "../global/functions.php";
-    require "../global/conf.inc.php";
+    require "../../global/functions.php";
+    require "../../global/conf.inc.php";
 
     $connection = dbConnect();
 

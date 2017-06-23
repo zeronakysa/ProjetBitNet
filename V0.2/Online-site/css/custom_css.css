@@ -420,14 +420,19 @@ footer p {
 	margin: 10px;
 }
 
-/*#achievementDisplay img {
-	height: 100px;
-	width: 100px;
+#myProgressBar {
+	width : 100%;
+	background-color: #ddd;
 }
 
-#achievementDisplay p {
-	font-size: 150%;
-}*/
+#myBar {
+	width: 0;
+	height: 20px;
+	background-color: #4CAF50;
+	text-align: center;
+	line-height: 30px;
+	color: white;
+}
 
 /* ---------------------------------------------------------------------*/
 /* --- Espace Personnel --- */

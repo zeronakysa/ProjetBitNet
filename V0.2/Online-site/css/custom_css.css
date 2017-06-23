@@ -425,12 +425,15 @@ footer p {
 	background-color: #ddd;
 }
 
+/*#C02425
+#F0CB35*/
+
 #myBar {
 	width: 0;
-	height: 20px;
-	background-color: #4CAF50;
+	height: 100px;
+	background-color: #C02425;
 	text-align: center;
-	line-height: 30px;
+	line-height: 100px;
 	color: white;
 }
 

@@ -11,7 +11,11 @@
 		<div class="row text-center">
 			<div class="col-md-8 col-md-offset-2">
 				<h1> Vos succès</h1>
-				<input id="achievementSearchBar" class="form-control" type="text" name="achievementSearchBar" placeholder="Rechercher un succès" />
+				<input id="achievementSearchBar" class="form-control" type="text" name="achievementSearchBar" placeholder="Rechercher un succès" onkeyup="showResult(this.value)" />
+
+				<div id="achievementSearchResult">
+					
+				</div>
 			</div>
 		</div>
 		<div class="row">

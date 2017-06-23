@@ -2,7 +2,37 @@ $( document ).ready(function() {
     getAchievement();
 });
 
-// Ajax function to get Achievement suceed
+function showResult(str){
+    
+    if(str.length == 0){
+        document.getElementById('achievementSearchResult').innerHTML = '';
+    }
+
+    var request = newXMLHttpRequest();
+
+    request.onreadystatechange = function(){
+        if(request.readyState == 4){
+            if(request.status == 200){
+                var achievementsResult = JSON.parse(request.responseText);
+                achievementResultToHtml(achievementsResult);
+            }
+        }
+    };
+
+    request.open('GET', 'achievementSearch.php?query='+str);
+    request.send();
+}
+
+function achievementResultToHtml(achievementsResult){
+    var container = document.getElementById('achievementSearchResult');
+
+    achievementsResult.forEach(function(achievement){
+        var p = document.createElement('p');
+        p.innerHTML = `${achievement.nom_succes}`;
+        container.appendChild(p);
+    });
+}
+// Ajax function to get Achievement succeed
 function getAchievement(){
     var request = newXMLHttpRequest();
     var url = 'services/achievementReceiveData.php';
@@ -70,6 +100,7 @@ function formatAchievementToHtml(achievement){
 
         progressBar.id = 'myProgressBar';
         bar.id = 'myBar';
+        bar.innerHTML = "Click to see progression";
 
         progressBar.appendChild(bar);
 

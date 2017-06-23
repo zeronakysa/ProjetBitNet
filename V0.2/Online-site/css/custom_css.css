@@ -425,6 +425,22 @@ footer p {
 	background-color: #ddd;
 }
 
+#achievementSearchResult {
+	margin-top: 20px;
+}
+
+#achievementSearchResult div {
+	display: flex;
+}
+
+#achievementSearchResult img {
+	margin: 10px;
+}
+
+#achievementSearchResult p {
+	margin: 10px;
+}
+
 /*#C02425
 #F0CB35*/
 

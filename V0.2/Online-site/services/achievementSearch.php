@@ -20,7 +20,7 @@
         $pattern = "#" . $query . "#i";
 
         foreach($achievementsResult as $result) {
-            $is_not_empty = !empty(preg_match($pattern, $result['nom_succes']));
+            $is_not_empty = !empty(preg_grep($pattern, $result));
 
             if($is_not_empty){
                 $matches[] = $result;

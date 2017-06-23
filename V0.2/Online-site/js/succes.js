@@ -6,6 +6,7 @@ function showResult(str){
 
     if(str.length == 0){
         document.getElementById('achievementSearchResult').innerHTML = '';
+        return;
     }
 
     var request = newXMLHttpRequest();
@@ -19,19 +20,38 @@ function showResult(str){
         }
     };
 
-    request.open('GET', 'services/achievementSearch.php?query=' + str);
+    request.open('GET', 'services/achievementSearch.php?query='+str);
     request.send();
 }
 
 function achievementResultToHtml(achievementsResult){
     var container = document.getElementById('achievementSearchResult');
     container.innerHTML = '';
-    
-    achievementsResult.forEach(function(achievement){
-        var p = document.createElement('p');
-        p.innerHTML = `${achievement.nom_succes}`;
-        container.appendChild(p);
+
+    var achievementsTags = achievementsResult.map(formatAchievementsResultToHtml);
+
+    achievementsTags.forEach(function(achievementTag){
+        container.appendChild(achievementTag);
     });
+}
+
+function formatAchievementsResultToHtml(achievementResult) {
+
+    var div = document.createElement('div');
+    var img = document.createElement('img');
+    var p = document.createElement('p');
+
+    div.id = 'id_achievement_searchResult_'+achievementResult.ID_succes;
+    img.setAttribute('src',`css/img/achievement/${achievementResult.ID_succes}.png`);
+
+    p.innerHTML =   `${achievementResult.nom_succes}
+                    </br> ${achievementResult.description_succes}
+                    </br> Expérience : ${achievementResult.xp_donnee} XP`;
+
+    div.appendChild(img);
+    div.appendChild(p);
+
+    return div;
 }
 // Ajax function to get Achievement succeed
 function getAchievement(){
@@ -101,7 +121,6 @@ function formatAchievementToHtml(achievement){
 
         progressBar.id = 'myProgressBar';
         bar.id = 'myBar';
-        bar.innerHTML = "Click to see progression";
 
         progressBar.appendChild(bar);
 

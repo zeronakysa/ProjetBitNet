@@ -3,7 +3,7 @@ $( document ).ready(function() {
 });
 
 function showResult(str){
-    
+
     if(str.length == 0){
         document.getElementById('achievementSearchResult').innerHTML = '';
     }
@@ -19,13 +19,14 @@ function showResult(str){
         }
     };
 
-    request.open('GET', 'achievementSearch.php?query='+str);
+    request.open('GET', 'services/achievementSearch.php?query=' + str);
     request.send();
 }
 
 function achievementResultToHtml(achievementsResult){
     var container = document.getElementById('achievementSearchResult');
-
+    container.innerHTML = '';
+    
     achievementsResult.forEach(function(achievement){
         var p = document.createElement('p');
         p.innerHTML = `${achievement.nom_succes}`;

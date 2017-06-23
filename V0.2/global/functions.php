@@ -643,4 +643,23 @@ function deleteAllFileFromBDD($idProjet){
 	}
 }
 
+function addContrib($id, $email, $role_projet){
+	if( isset($id) &&
+	    isset($email) &&
+	    isset($role_projet) ) {
+	      $params = [
+	        $email,
+	        $id,
+	        $role_projet
+	      ];
+				$connection=dbConnect();
+	      $statement = $connection->prepare('INSERT INTO participe_projet (email, ID_projet, role_projet) VALUES (?, ?, ?)');
+	      echo (int)$statement->execute($params);
+	} else {
+		header('Location: projet.php#addPASOK');
+
+	}
+	header('Location: projet.php#addOK');
+}
+
 ?>

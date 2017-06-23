@@ -94,6 +94,13 @@ require '../global/conf.inc.php';
 					$fullPath = getcwd()."\\".$_POST["nameFile"].".".$_POST["extFile"];
 					createFile($fullPath);
 				}
+				if ($_POST["action"]=="addContrib" && is_numeric($_POST["projectID"])){
+					$id = $_POST["projectID"];
+					$email = $_POST["email"];
+					$role_projet = $_POST["role_projet"];
+					addContrib($id, $email, $role_projet);
+				}
+
 
 
 			if ($_POST["action"]=="openCodeLive" && is_numeric($_POST["idFile"])){

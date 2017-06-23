@@ -47,14 +47,15 @@ else {?>
 					$query->execute(['ID_projet' => $_SESSION["ID_project"]]);
 					$membres = $query->fetchAll();
 					echo "<br /><b> Administrateur(s):</b><br />";
-					if($isOwner == 1){
-						?><div class="raw">
+					// if($isOwner == 1){
+						?>
+							<!-- <div class="raw">
 								<div id="adminSearchBar">
 								 <input type="text" name="adminSearchBar" placeholder="Ajouter un administrateur" />
 								</div>
-							</div>
+							</div> -->
 						<?php
-					}else{}
+					// }else{}
 					if ($membres){
 						foreach ($membres as $membre) {
 							 echo "- ".$membre["pseudo"]."<br />";
@@ -72,14 +73,15 @@ else {?>
 					$query->execute(['ID_projet' => $_SESSION["ID_project"]]);
 					$membres = $query->fetchAll();
 					echo "<br /><b> Contributeur(s):</b><br />";
-					if($isOwner == 1 || $isAdmin == 1){
-						?><div class="raw">
+					// if($isOwner == 1 || $isAdmin == 1){
+						?>
+							<!-- <div class="raw">
 								<div id="contribSearchBar" >
 								 <input type="text" name="contribSearchBar" placeholder="Ajouter un contributeur" />
 								</div>
-							</div>
+							</div> -->
 						<?php
-					}else{}
+					// }else{}
 					if ($membres){
 						foreach ($membres as $membre) {
 							 echo "- ".$membre["pseudo"]."<br />";

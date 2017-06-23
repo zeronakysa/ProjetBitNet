@@ -97,6 +97,13 @@
 									<input type="hidden" name="projectID" value="<?php echo $myProject["ID_projet"]; ?>">
 								<td><input type="submit" value="Gérer"></td>
 								</form>
+								<form method="POST" action="treatment.php">
+									<input type="hidden" name="action" value="addContrib"/>
+									<td><input type="text" name="email" minlength="3" maxlength="255" placeholder="E-mail admin à add"></td>
+									<input type="hidden" name="projectID" value="<?php echo $myProject["ID_projet"]; ?>">
+									<input type="hidden" name="role_projet" value="admin">
+									<td><input type="submit"  value="Ajouter Administrateur"></td>
+								</form>
 								</tr><?php
 							}
 								?>
@@ -157,6 +164,13 @@
 											<input type="hidden" name="action" value="contribProject"/>
 											<input type="hidden" name="projectID" value="<?php echo $project["ID_projet"]; ?>">
 										<td><input type="submit" value="Contribuer"></td>
+										</form>
+										<form method="POST" action="treatment.php">
+											<input type="hidden" name="action" value="addContrib"/>
+											<td><input type="text" name="email" minlength="3" maxlength="255" placeholder="E-mail contrib à add"></td>
+											<input type="hidden" name="projectID" value="<?php echo $project["ID_projet"]; ?>">
+											<input type="hidden" name="role_projet" value="contrib">
+											<td><input type="submit"  value="Ajouter Contributeur"></td>
 										</form>
                     </tr>
                 <?php  } ?>

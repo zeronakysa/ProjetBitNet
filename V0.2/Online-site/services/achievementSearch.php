@@ -16,10 +16,11 @@
         $achievementsResult = $request->fetchAll(PDO::FETCH_ASSOC);
 
         $matches = [];
-        $pattern = "#" .$_GET["query"] ."#i";
+        $query = trim($_GET['query']);
+        $pattern = "#" . $query . "#i";
 
         foreach($achievementsResult as $result) {
-            $is_not_empty = !empty(preg_grep($pattern, $result));
+            $is_not_empty = !empty(preg_match($pattern, $result['nom_succes']));
 
             if($is_not_empty){
                 $matches[] = $result;

@@ -8,13 +8,13 @@
 		include "navBar.php";
 	 ?>
 	<div id="achievementContainer" class="container-fluid">
-		<div class="row text-center">
+		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
-				<h1> Vos succès</h1>
+				<h1 class="text-center"> Vos succès</h1>
 				<input id="achievementSearchBar" class="form-control" type="text" name="achievementSearchBar" placeholder="Rechercher un succès" onkeyup="showResult(this.value)" />
 
 				<div id="achievementSearchResult">
-					
+
 				</div>
 			</div>
 		</div>

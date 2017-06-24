@@ -7,6 +7,11 @@ function showResult(str){
 
     if(str.length == 0){
         document.getElementById('achievementSearchResult').innerHTML = '';
+
+        if (document.getElementById('achievementDisplay').innerHTML == '') {
+            getAchievement();
+        }
+
         return;
     }
 
@@ -27,7 +32,10 @@ function showResult(str){
 
 function achievementResultToHtml(achievementsResult){
     var container = document.getElementById('achievementSearchResult');
+    var containerSuccess = document.getElementById('achievementDisplay');
+
     container.innerHTML = '';
+    containerSuccess.innerHTML = '';
 
     var achievementsTags = achievementsResult.map(formatAchievementsResultToHtml);
 

@@ -322,6 +322,10 @@ footer p {
 	background-color: #e7e7e7;
 	padding: 5px;
 }
+
+.bitnet-footer {
+	margin-top: 20px;
+}
 /* ---------------------------------------------------------------------*/
 /* --- Online site Index --- */
 /* ---------------------------------------------------------------------*/
@@ -400,17 +404,20 @@ footer p {
 /* ---------------------------------------------------------------------*/
 /* --- Succès --- */
 /* ---------------------------------------------------------------------*/
+
+/* Achievement Container */
 #achievementContainer{
 	margin-top: 60px;
+	margin-bottom: 60px;
 }
 
 #achievementDisplay {
  margin-top: 20px;
 }
 
-#achievementDisplay div {
+/*#achievementDisplay div {
 	display: flex;
-}
+}*/
 
 #achievementDisplay img {
 	margin: 10px;
@@ -420,11 +427,7 @@ footer p {
 	margin: 10px;
 }
 
-#myProgressBar {
-	width : 100%;
-	background-color: #ddd;
-}
-
+/* Live Search Achievement */
 #achievementSearchResult {
 	margin-top: 20px;
 }
@@ -441,10 +444,13 @@ footer p {
 	margin: 10px;
 }
 
-/*#C02425
-#F0CB35*/
+/*Progress Bar */
+.myProgressBar {
+	width : 100%;
+	background-color: #ddd;
+}
 
-#myBar {
+.myBar {
 	width: 0;
 	height: 100px;
 	background-color: #C02425;

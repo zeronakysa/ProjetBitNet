@@ -59,7 +59,7 @@ function formatSearchResultsToHtml(searchResult) {
     div.style.paddingLeft = '10px';
 
     var link = document.createElement('a');
-    link.href = '../pageMembre.php?pseudo=' + `${searchResult.pseudo}`;
+    link.href = 'pageMembre.php?pseudo=' + `${searchResult.pseudo}`;
 
     link.innerHTML =  `Email : ${searchResult.email} <br>
                     Pseudo : ${searchResult.pseudo}`;

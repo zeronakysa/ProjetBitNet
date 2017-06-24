@@ -75,6 +75,7 @@ require '../global/conf.inc.php';
 			if ($_POST["action"]=="createProject" && is_numeric($_GET["id"])){
 				$id = $_GET["id"];
 				giveSucces(3);
+				giveSucces(4);
 				createProject($id, $_POST["projectName"], $_POST["projetDescription"], $_SESSION["email"]);
 			}
 			if ($_POST["action"]=="deleteFile" && is_numeric($_POST["idFile"])){

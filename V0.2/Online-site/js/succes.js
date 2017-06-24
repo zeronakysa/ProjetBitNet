@@ -2,10 +2,16 @@ $( document ).ready(function() {
     getAchievement();
 });
 
+// ------------- Live Search ------------- //
 function showResult(str){
 
     if(str.length == 0){
         document.getElementById('achievementSearchResult').innerHTML = '';
+
+        if (document.getElementById('achievementDisplay').innerHTML == '') {
+            getAchievement();
+        }
+
         return;
     }
 
@@ -26,7 +32,10 @@ function showResult(str){
 
 function achievementResultToHtml(achievementsResult){
     var container = document.getElementById('achievementSearchResult');
+    var containerSuccess = document.getElementById('achievementDisplay');
+
     container.innerHTML = '';
+    containerSuccess.innerHTML = '';
 
     var achievementsTags = achievementsResult.map(formatAchievementsResultToHtml);
 
@@ -53,7 +62,9 @@ function formatAchievementsResultToHtml(achievementResult) {
 
     return div;
 }
-// Ajax function to get Achievement succeed
+
+
+// ------------- GetAchievement ------------- //
 function getAchievement(){
     var request = newXMLHttpRequest();
     var url = 'services/achievementReceiveData.php';
@@ -90,7 +101,7 @@ function formatAchievementToHtml(achievement){
         var div = document.createElement('div');
         var img = document.createElement('img');
 
-        div.id = 'id_achievement_succeed_'+achievement.ID_succes;
+        div.setAttribute('class', 'achievement_succeed');
         img.setAttribute('src',`css/img/achievement/${achievement.ID_succes}w.png`);
         // img.setAttribute('class', 'img-responsive')
 
@@ -107,7 +118,7 @@ function formatAchievementToHtml(achievement){
         var div = document.createElement('div');
         var img = document.createElement('img');
 
-        div.id = 'id_achievement_inprogress_'+achievement.ID_succes;
+        div.setAttribute('class', 'achievement_inprogress');
         img.setAttribute('src',`css/img/achievement/${achievement.ID_succes}.png`);
 
         var p = document.createElement('p');
@@ -119,26 +130,11 @@ function formatAchievementToHtml(achievement){
         var progressBar = document.createElement('div');
         var bar = document.createElement('div');
 
-        progressBar.id = 'myProgressBar';
-        bar.id = 'myBar';
-
+        progressBar.setAttribute('class','myProgressBar');
+        progressBar.setAttribute('onmouseover',`showProgress(this, ${achievement.progression}, ${achievement.goal})`);
+        progressBar.setAttribute('onmouseleave', 'hideProgress(this)');
+        bar.setAttribute('class','myBar');
         progressBar.appendChild(bar);
-
-        progressBar.onclick = function(){
-            var elem = document.getElementById('myBar');
-            var width = 0;
-            var id = setInterval(frame, 25);
-
-            function frame(){
-                if(width >= achievement.progression){
-                    clearInterval(id);
-                } else {
-                    width++;
-                    elem.style.width = (width * 100) / achievement.goal + '%';
-                    elem.innerHTML = width +`/${achievement.goal}`;
-                }
-            }
-        }
 
         div.appendChild(img);
         div.appendChild(p);
@@ -146,4 +142,26 @@ function formatAchievementToHtml(achievement){
     }
 
     return div;
+}
+
+function showProgress(elem, prog, goal){
+    var elem = elem.childNodes[0];
+    var width = 0;
+    var id = setInterval(frame, 25);
+
+    function frame(){
+        if(width >= prog){
+            clearInterval(id);
+        } else {
+            width++;
+            elem.style.width = (width * 100) / goal + '%';
+            elem.innerHTML = width +'/'+goal;
+        }
+    }
+}
+
+function hideProgress(elem) {
+    var elem = elem.childNodes[0];
+    elem.style.width = 0;
+    elem.innerHTML = '';
 }

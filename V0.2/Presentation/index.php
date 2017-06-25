@@ -57,7 +57,7 @@
 							<!-- Pseudo -->
 							<label>Pseudo</label>
 							<i class="fa fa-user"></i>
-							<input class="form-control" type="text" name="pseudo" placeholder="Votre pseudo" 
+							<input class="form-control" type="text" name="pseudo" placeholder="Votre pseudo"
 							required="required" data-toggle="tooltip" data-placement="bottom" title="Pseudo entre 3 et 36 caractères!"
 							value="<?php echo (isset($_SESSION['form_post']['pseudo'])) ? $_SESSION['form_post']['pseudo']:'' ?>">
 
@@ -114,21 +114,21 @@
 						<h2>CodeLive</h2>
 						<i class="fa fa-code fa-5x" aria-hidden="true"></i>
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+							CodeLive est un editeur de texte en ligne dédié a la programmation. Il vous permettra de coder seul ou avec des amis grâce à son système de partage de session.
 						</p>
 					</div>
 					<div class="col-md-4">
 						<h2>Projets</h2>
 						<i class="fa fa-users fa-5x" aria-hidden="true"></i>
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+							Créez, gérez tous vos fichiers avec notre fonctionnalité Projets qui vous permettra de travailler en groupe avec vos amis.
 						</p>
 					</div>
 					<div class="col-md-4">
 						<h2>Hall Of Fame</h2>
 						<i class="fa fa-star-o fa-5x" aria-hidden="true"></i>
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+							Retrouvez le classement des meilleurs membres du site dans notre fonctionnalité Hall Of Fame. Serez vous parmi le top du top ?
 						</p>
 					</div>
 				</div>
@@ -139,21 +139,21 @@
 						<h2>Espace Personnel</h2>
 						<i class="fa fa-id-card-o fa-5x" aria-hidden="true"></i>
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+							Votre espace dédié à vous et rien qu'a vous. Vous pourrez y remplir toutes les informations essentielles que vous souhaitez mettre en avant !
 						</p>
 					</div>
 					<div class="col-md-4">
 						<h2>ShoutBox</h2>
 						<i class="fa fa-commenting-o fa-5x" aria-hidden="true"></i>
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+							Une question ? Une suggestion ? Discutez avec tous les membres du site dans notre Shoutbox dédiée !
 						</p>
 					</div>
 					<div class="col-md-4">
 						<h2>Succès</h2>
 						<i class="fa fa-trophy fa-5x" aria-hidden="true"></i>
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+							Fan de programmation et de jeux vidéo ? Essayer de remporter tous les succès disponibles sur le site ! Amusez-vous en travaillant !
 						</p>
 					</div>
 				</div>
@@ -177,7 +177,7 @@
 					</div>
 					<div class="col-md-4">
 						<p class="text-center"><strong>Quentin Hermiteau</strong></p>
-						<a href="#quentin" data-toggle="collapse"><img src="img/team/quentin.jpg" class="img-circle member" alt="quentin-photo" /></a>
+						<a href="#quentin" data-toggle="collapse"><img src="img/team/quentin2.jpg" class="img-circle member" alt="quentin-photo" /></a>
 						<div id="quentin" class="collapse">
 							<p>Codeur incurvé</p>
 							<p>Aime les mangas et les belles courbes</p>
@@ -219,12 +219,12 @@
 				</div>
 			</div>
 		</footer>
-		
+
 		<!-- Bootstrap Jquery Link -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<!-- Bootstrap JavaScript Link -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<!-- Chargement fonctionnalités perso -->
-		<script src="../global/functions.js"></script>		
+		<script src="../global/functions.js"></script>
 	</body>
 </html>

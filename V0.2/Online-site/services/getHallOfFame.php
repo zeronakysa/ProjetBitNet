@@ -28,7 +28,7 @@ if (isset($_GET['query'])) {
         $array = [];
 
         foreach ($members as $member) {
-            $query = $connection->prepare('SELECT membre.pseudo, COUNT(projet.Id_createur) AS countProject FROM projet,membre WHERE membre.ID_membre = projet.ID_createur AND membre.ID_membre = ? GROUP  BY membre.pseudo ORDER BY countProject LIMIT 20');
+            $query = $connection->prepare('SELECT membre.pseudo, COUNT(projet.Id_createur) AS countProject FROM projet,membre WHERE membre.ID_membre = projet.ID_createur AND membre.ID_membre = ? GROUP BY membre.pseudo ORDER BY countProject DESC LIMIT 20');
             $query->execute([$member['ID_membre']]);
             $results = $query->fetch(PDO::FETCH_ASSOC);
 
@@ -49,7 +49,7 @@ if (isset($_GET['query'])) {
         $array = [];
 
         foreach ($members as $member) {
-            $query = $connection->prepare('SELECT membre.pseudo, COUNT(shoutbox_message.Id_sender) AS countMessage FROM shoutbox_message,membre WHERE membre.ID_membre = shoutbox_message.ID_sender AND membre.ID_membre = ? GROUP BY pseudo ORDER BY countMessage LIMIT 20');
+            $query = $connection->prepare('SELECT membre.pseudo, COUNT(shoutbox_message.Id_sender) AS countMessage FROM shoutbox_message,membre WHERE membre.ID_membre = shoutbox_message.ID_sender AND membre.ID_membre = ? GROUP BY pseudo ORDER BY countMessage DESC LIMIT 20');
             $query->execute([$member['ID_membre']]);
             $results = $query->fetch(PDO::FETCH_ASSOC);
 

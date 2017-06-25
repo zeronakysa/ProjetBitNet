@@ -492,7 +492,9 @@ DEBUG */
 		  			<input type="file" value="Choisir fichiers" name="files[]" multiple="multiple" />
 		  			<input type="submit" value="Uploader" name="btnSubmit"/>
 		  		</form>
+
 		  		<?php
+
 		  			if(isset($_POST["btnSubmit"]))
 		  			{
 		  				$errors = array();
@@ -570,7 +572,8 @@ DEBUG */
 									if($results != 1){
 										echo "Impossible d'ajouter en base de donnée.";
 									}
-		  						move_uploaded_file($temp,$UploadFolder.$name);
+									$newName = "$UploadFolder/$name";
+		  						move_uploaded_file($temp,$newName);
 		  						array_push($uploadedFiles, $name);
 		  					}
 		  				}
@@ -591,6 +594,7 @@ DEBUG */
 		  						}
 		  						echo "</ul><br/>";
 		  						echo count($uploadedFiles)." fichier(s) uploadé(s) avec succès.";
+
 		  					}
 		  				}
 		  				else{

@@ -120,11 +120,8 @@ require '../global/conf.inc.php';
 
 
 			if ($_POST["action"]=="openCodeLive" && is_numeric($_POST["idFile"])){
-				if(isset($_SESSION["token"])){
-					unset($_SESSION["token"]);
-					echo "reset token ok";
-				}
-				echo "NOTHIG HERE ! YET !";
+
+				$idFile = $_POST["idFile"];
 			}
 			include "footer.php";
 		?>

@@ -43,14 +43,23 @@ require '../global/conf.inc.php';
 				updateUser();
 			}
 			if ($_POST["action"]=="deleteUser" && is_numeric($_GET["id"])){
+				if ($_SESSION['role'] != 'admin') {
+					header('Location: index.php');
+				}
 				$id = $_GET["id"];
 				deleteUser($id);
 			}
 			if ($_POST["action"]=="unDeleteUser" && is_numeric($_GET["id"])){
+				if ($_SESSION['role'] != 'admin') {
+					header('Location: index.php');
+				}
 				$id = $_GET["id"];
 				unDeleteUser($id);
 			}
 			if ($_POST["action"]=="adminUser" && is_numeric($_GET["id"])){
+				if ($_SESSION['role'] != 'admin') {
+					header('Location: index.php');
+				}
 				$id = $_GET["id"];
 				adminUser($id);
 			}
@@ -60,11 +69,17 @@ require '../global/conf.inc.php';
 				updateProject($id, $description);
 			}
 			if ($_POST["action"]=="adminEditProject" && is_numeric($_POST["idProject"])){
+				if ($_SESSION['role'] != 'admin') {
+					header('Location: index.php');
+				}
 				$id = $_POST["idProject"];
 				$description = $_POST["description_projet"];
 				adminUpdateProject($id, $description);
 			}
 			if ($_POST["action"]=="adminDeleteProject" && is_numeric($_POST["idProject"])){
+				if ($_SESSION['role'] != 'admin') {
+					header('Location: index.php');
+				}
 				$id = $_POST["idProject"];
 				adminDeleteProject($id);
 			}

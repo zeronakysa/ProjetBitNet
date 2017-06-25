@@ -7,22 +7,22 @@
 		<?php
 	  		include "navBar.php";
 		?>
-		<?php echo "<div id='memberContainer' class='container-fluid' onload='getInfoMember(" . $_GET['pseudo'] . ")'>" ?>
+		<div id='memberContainer' class='container-fluid')>
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
 					<h1 class="text-center">Page membre</h1>
 				</div>
 			</div>
-			<div class="row">
+			<div id="displayMember" class="row">
                 <div id="infoMember" class="col-md-4 col-md-offset-2">
 
                 </div>
 
-                <div id="imgMember" class="col-md-4 col-md-offset-1 text-center">
-
+                <div id="displayImgMember" class="col-md-4 text-center">
+					<img id="imgMember" height="500" width="500"/>
                 </div>
 			</div>
-		<?php echo "</div>" ?>
+		</div>
 
 		<?php
 	  		include "footer.php";
@@ -32,6 +32,7 @@
             $( document ).ready(function() {
                 var pseudo = "<?php echo $_GET['pseudo'] ?>";
                 getInfoMember(pseudo);
+				getImgMember(pseudo);
             });
 
             function getInfoMember(pseudo){
@@ -52,10 +53,8 @@
 
             function infoMemberToHtml(results) {
                 var container = document.getElementById('infoMember');
-                //console.log(results);
 
                 for (var result in results) {
-                    console.log(`results.${result} = ${results[result]}`);
                     if (`${results[result]}`) {
                         var p = document.createElement('p');
                         p.innerHTML = `${result}: ${results[result]}`;
@@ -63,6 +62,31 @@
                     }
                 }
             }
+
+			function getImgMember(pseudo) {
+				var request = newXMLHttpRequest();
+
+                request.onreadystatechange = function(){
+                    if(request.readyState == 4) {
+                        if(request.status == 200){
+                            var result = JSON.parse(request.responseText);
+                            imgMemberToHtml(result);
+                        }
+                    }
+                };
+
+                request.open('GET', 'services/getImgMember.php?pseudo=' + pseudo);
+                request.send();
+			}
+
+			function imgMemberToHtml(result) {
+				var container = document.getElementById('displayImgMember')
+				var img = document.getElementById('imgMember');
+
+				img.src = result.profile_picture;
+
+				container.appendChild(img);
+			}
         </script>
 	</body>
 </html>

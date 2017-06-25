@@ -9,7 +9,18 @@ if (isset($_GET['pseudo'])) {
 
     $connection = dbConnect();
 
-    $query = $connection->prepare('SELECT email, pseudo, date_naissance, ville, date_creation, role, experience FROM membre WHERE pseudo = ?');
+    $query = $connection->prepare("SELECT email AS Email,
+                                    pseudo AS Pseudo,
+                                    langages AS Langages,
+                                    nom AS Nom,
+                                    prenom AS Prenom,
+                                    DATE_FORMAT(date_naissance, '%d/%m/%Y') AS Date_de_naissance,
+                                    ville AS Ville,
+                                    DATE_FORMAT(date_creation, '%d/%m/%Y') AS Date_inscription,
+                                    role AS Role,
+                                    experience AS Experience
+                                    FROM membre
+                                    WHERE pseudo = ?");
     $query->execute([
         $_GET['pseudo']
     ]);

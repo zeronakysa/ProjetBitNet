@@ -82,7 +82,6 @@ function autoSaveCodeMirrorContent(){
 //Récupère automatiquemernt le contenu de codeMirror toutes les 2 secondes
 function getCodeMirrorContent(){
 	var request = newXMLHttpRequest();
-	var element = document.getElementById('button_token');
 	var token = document.getElementById('token').value;
 	var data = "token=" + token;
 

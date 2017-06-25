@@ -74,16 +74,16 @@ function newXMLHttpRequest() {
 function autoSaveCodeMirrorContent(){
 	var content = editor.getValue();
 	var request = newXMLHttpRequest();
-	var token = document.getElementById('token').value;
-	var data = "content=" + content + "&token=" + token;
+	var id_fichier = document.getElementById('id_fichier').value;
+	var data = "content=" + content + "&id_fichier=" + id_fichier;
 
 	request.onreadystatechange = function() {
 		if (request.readyState == 4 && request.status == 200) {
-			//alert(request.responseText);
+
 		}
 	}
 
-	request.open('POST', 'services/saveCodeMirror.php');
+	request.open('POST', 'services/saveCodeMirrorProjet.php');
 	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	request.send(data);
 }
@@ -91,47 +91,20 @@ function autoSaveCodeMirrorContent(){
 //Récupère automatiquemernt le contenu de codeMirror toutes les 2 secondes
 function getCodeMirrorContent(){
 	var request = newXMLHttpRequest();
-	var element = document.getElementById('button_token');
-	var token = document.getElementById('token').value;
-	var data = "token=" + token;
+	var id_fichier = document.getElementById('id_fichier').value;
+	var data = "id_fichier=" + id_fichier;
 
 	request.onreadystatechange = function() {
 		if (request.readyState == 4 && request.status == 200) {
-			//alert(request.responseText);
 			editor.setValue(request.responseText);
 			editor.execCommand("goDocEnd");
 		}
 	}
 
-	request.open('POST', 'services/getCodeMirror.php');
+	request.open('POST', 'services/getCodeMirrorProjet.php');
 	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	request.send(data);
 }
 
 setInterval(function() { autoSaveCodeMirrorContent() }, 500);
 setInterval(function() { getCodeMirrorContent() }, 5000);
-
-//Sauvegarde le contenu de codemirror en appuyant sur le bouton
-function saveCodeMirrorContent(){
-	var content = editor.getValue();
-	var request = newXMLHttpRequest();
-	var element = document.getElementById('button_token');
-	var data = "content=" + content + "&token=" + $(element).data('token');
-
-	request.onreadystatechange = function() {
-		if (request.readyState == 4 && request.status == 200) {
-			//alert(request.responseText);
-			//Affiche pop up confirmation
-			var confirm_save = document.getElementById('saved');
-			confirm_save.innerHTML = "Fichier sauvegardé!";
-			//Attend 2000ms soit 2sec et efface la pop up
-			setTimeout(function(){
-		        confirm_save.innerHTML = "";
-		    }, 2000);
-		}
-	}
-
-	request.open('POST', 'services/saveCodeMirror.php');
-	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	request.send(data);
-}

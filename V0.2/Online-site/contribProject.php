@@ -95,8 +95,8 @@ else {?>
     addMultipleFiles($structure);
 		echo "<br /> <b>Ajouter un fichier au projet: </b><br />";
 		?><form method="post" action="treatment.php">
-			<input type="text" name="nameFile" id="nameFile" placeholder="Nom (55 car max)" maxlength="55" required="required"><br />
-			<input type="text" name="extFile" id="extFile" placeholder="Extension (5 car max)" maxlength="5" required="required"><br />
+			<input type="text" name="nameFile" id="nameFile" placeholder="Nom (55 car max)" minlength="3" maxlength="55" required="required"><br />
+			<input type="text" name="extFile" id="extFile" placeholder="Extension (5 car max)" maxlength="5" minlength="1" required="required"><br />
 			<input type="hidden" name="action" value="createFile"/>
 			<input type="submit" value="Creer nouveau fichier">
 		</form><?php

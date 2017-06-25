@@ -44,7 +44,7 @@ $users = $query->fetchAll();
 			<th>Date_creation </th>
 			<th>Date_update </th>
 			<th>Is_deleted </th>
-			<th>Succes_reussi </th>
+			<!-- <th>Succes_reussi </th> -->
 			<th>Role </th>
 			<th>Profile_picture </th>
 			<th>Experience</th>
@@ -66,7 +66,7 @@ $users = $query->fetchAll();
 		echo "<td>".date('d F Y', strtotime($user["date_creation"]))." </td>";
 		echo "<td>".date('d F Y', strtotime($user["date_update"]))." </td>";
 		echo "<td>".$user["is_deleted"]." </td>";
-		echo "<td>".$user["succes_reussi"]." </td>";
+		// echo "<td>".$user["succes_reussi"]." </td>";
 		echo "<td>".$user["role"]." </td>";
 		echo "<td>".$user["profile_picture"]." </td>";
 		echo "<td>".$user["experience"]." </td>";
@@ -110,7 +110,7 @@ Pannel administrateur (modification de compte actif uniquement NB:A VENIR)
 				<th>Date_creation </th>
 				<th>Date_update </th>
 <!--				<th>Is_deleted </th> -->
-				<th>Succes_reussi </th>
+				<!-- <th>Succes_reussi </th> -->
 				<th>Role </th>
 				<th>Profile_picture </th>
 				<th>Experience</th>
@@ -131,7 +131,11 @@ Pannel administrateur (modification de compte actif uniquement NB:A VENIR)
 			<td><input type="date" name="date_creation" placeholder="Date de creation" value="<?php echo date('Y-m-d', strtotime($user["date_creation"]))?>"></td>
 			<td><input type="date" name="date_update" placeholder="Date d'update'" value="<?php echo date('Y-m-d', strtotime($user["date_update"]))?>"></td>
 <!--			<td><input type="checkbox" name="is_Deleted" <?php if ($user["is_deleted"] == 1){echo "checked=\"checked\"";}else{};?>/></td> -->
-			<td><input type="text" name="succes_reussi" value="<?php echo ($user["succes_reussi"])?$user["succes_reussi"]:"";?>" placeholder="ID_succes,..."></td>
+			<!-- <td><input type="text" name="succes_reussi" value="
+			<?php
+			// echo ($user["succes_reussi"])?$user["succes_reussi"]:"";
+			?>
+			" placeholder="ID_succes,..."></td> -->
 			<td><select name="role"><?php foreach ($listOfRole as $value) {
 							if ($user["role"] == $value){$selected = "selected='selected'";}
 							else {$selected = "";}echo $value;echo "<option value='".$value."' ".$selected.">".$value."</option>";}?></select></td>

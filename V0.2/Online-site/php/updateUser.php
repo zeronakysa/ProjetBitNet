@@ -1,5 +1,5 @@
 <?php
-		include "header.php";
+		include "../header.php";
 	?>
 		<title>UpdateUser</title>
 	</head>

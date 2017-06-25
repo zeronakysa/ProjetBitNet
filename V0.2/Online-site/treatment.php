@@ -122,6 +122,7 @@ require '../global/conf.inc.php';
 			if ($_POST["action"]=="openCodeLive" && is_numeric($_POST["idFile"])){
 
 				$idFile = $_POST["idFile"];
+				header("Location: codeliveProjet.php?id_fichier=" . $idFile);
 			}
 			include "footer.php";
 		?>

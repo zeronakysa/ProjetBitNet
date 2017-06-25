@@ -92,6 +92,7 @@ else {?>
      			echo "</table><br />";
     $structure = "../PROJETS/".$project[0]["ID_createur"]."/".$project[0]["nom_projet"]."/";
 		$structure = realpath($structure);
+
     addMultipleFiles($structure);
 		echo "<br /> <b>Ajouter un fichier au projet: </b><br />";
 		?><form method="post" action="treatment.php">

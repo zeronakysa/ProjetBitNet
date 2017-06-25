@@ -26,7 +26,8 @@ $users = $query->fetchAll();
  ?>
 <!--<section>-->
 
- Visuel complet + bouton deleteUser/unDeleteUser.
+<h2>Suppression de compte membre</h2>
+
 
 <pre>
 <table>
@@ -94,7 +95,7 @@ $users = $query->fetchAll();
 </table>
 </pre>
 
-Pannel administrateur (modification de compte actif uniquement NB:A VENIR)
+<h2>Modification de compte membre</h2>
 <pre>
 	<table>
 		<thead>
@@ -151,7 +152,8 @@ Pannel administrateur (modification de compte actif uniquement NB:A VENIR)
 ?>
 </table>
 </pre>
-Pannel administrateur PROJETS
+<h2>Modification de projet</h2>
+
 <?php
 $connection = dbConnect();
 $query = $connection->prepare("SELECT * FROM PROJET ");

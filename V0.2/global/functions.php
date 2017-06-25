@@ -91,6 +91,7 @@
 			// If prog = goal achievement unlocked
 			if($result[0] == $_SESSION['email'] && $result[1] == $achievementsInfo[1]){
 				echo "Succès " .$achievementsInfo[0] ." accomplie <br />";
+				giveExp($_SESSION['email'], $id_succes);
 				$succesExist = true;
 			// If prog != goal display progression
 			} else {
@@ -119,6 +120,7 @@
 			// if prog = goal achievement unlocked
 			if($result[0] == $_SESSION['email'] && $result[1] == $achievementsInfo[1]){
 				echo "Succès " .$achievementsInfo[0] ." accomplie<br />";
+				giveExp($_SESSION['email'], $id_succes);
 				$succesExist = true;
 			// if prog != goal display progression
 			} else {
@@ -129,10 +131,6 @@
 			echo "Succès " .$achievementsInfo[0] ."déja accomplie <br />";
 		}
 
-		// GiveExp to member
-		if ($succesExist) {
-			giveExp($_SESSION['email'], $id_succes);
-		}
 	}
 
 	//Récupère l'exp actuel d'un membre
